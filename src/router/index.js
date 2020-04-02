@@ -34,7 +34,7 @@ export default new Router({
     },
     {
         path:'/user',
-        component:()=>import('@/components/layout/Layout.vue'),
+        component:()=>import('@/components/layout/LoginLayout.vue'),
         children:[
             {
                 path:'/login',

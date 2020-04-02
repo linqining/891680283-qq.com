@@ -10,14 +10,14 @@
                     <router-link to="/register">免费注册</router-link>
                 </span>
                 </div>
-                <div class="order-block">
-                <span class="my-order">
-                    <router-link :to="{name: 'Orders'}">我的订单</router-link>
-                </span>
-                    <span class="shopping-cart">
-                    <img :src="cart">
-                    <router-link to="/shopping_cart">购物车(<span class="cart-num">0</span>)</router-link>
-                </span>
+                <div class="order-block" v-if="showOrder">
+                    <span class="my-order">
+                        <router-link :to="{name: 'Orders'}">我的订单</router-link>
+                    </span>
+                        <span class="shopping-cart">
+                        <img :src="cart">
+                        <router-link to="/shopping_cart">购物车(<span class="cart-num">0</span>)</router-link>
+                    </span>
                 </div>
             </div>
         </div>
@@ -30,19 +30,19 @@
             </div>
             <div class="header-bg-wrap">
                 <img :src="logo">
-                    <div id="nav-menu">
-                        <div class="nav-container">
-                            <div class="links-wrapper">
-                                <router-link to="/"><span class="el-icon-s-fold"></span>所有产品</router-link>
-                                <router-link to="/">首页</router-link>
-                                <router-link to="/">音箱</router-link>
-                                <router-link to="/">游戏机</router-link>
-                                <router-link to="/">平板电脑</router-link>
-                                <router-link to="/">电子手表</router-link>
-                                <router-link to="/">更多</router-link>
-                            </div>
+                <div id="nav-menu" v-if="showMenu">
+                    <div class="nav-container">
+                        <div class="links-wrapper">
+                            <router-link to="/"><span class="el-icon-s-fold"></span>所有产品</router-link>
+                            <router-link to="/">首页</router-link>
+                            <router-link to="/">音箱</router-link>
+                            <router-link to="/">游戏机</router-link>
+                            <router-link to="/">平板电脑</router-link>
+                            <router-link to="/">电子手表</router-link>
+                            <router-link to="/">更多</router-link>
                         </div>
                     </div>
+                </div>
             </div>
 
         </div>
@@ -65,6 +65,16 @@
         methods:{
             handleSelect(){
 
+            }
+        },
+        props:{
+            showOrder:{
+                type: Boolean,
+                default: true,
+            },
+            showMenu:{
+                type:Boolean,
+                default:true
             }
         }
     }
@@ -186,8 +196,11 @@
         background-image: linear-gradient(#1f333c,#2d464c);
     }
     .header-bg-wrap{
+        background-size: cover;
         background-image:url("~@/assets/image/layout/headbg.png");
+        background-repeat: no-repeat;
         background-position: 48% 0%;
+        min-width:1200px;
         width:1200px;
         margin:auto;
         height: 150px;

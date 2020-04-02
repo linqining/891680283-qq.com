@@ -1,30 +1,25 @@
 <template>
-    <div>
-        <layout-header>
-            <div class="search-block">
-                <div class='search-container'>
-                    <div>
-                        <div class="search-wrapper">
-                            <input class="search-input" v-model="keyword">
-                            <el-button class="btn-custom" @click="search">搜索</el-button>
-                        </div>
-                    </div>
-                    <div>
-                        <ul class="fast-search">
-                            <li v-for="item in searchItems" :key="item" @click="setItem(item)">{{item}}</li>
-                        </ul>
-                    </div>
-
+    <div class="search-block">
+        <div class='search-container'>
+            <div>
+                <div class="search-wrapper">
+                    <input class="search-input" v-model="keyword">
+                    <el-button class="btn-custom" @click="search">搜索</el-button>
                 </div>
             </div>
-        </layout-header>
+            <div>
+                <ul class="fast-search">
+                    <li v-for="item in searchItems" :key="item" @click="setItem(item)">{{item}}</li>
+                </ul>
+            </div>
+
+        </div>
     </div>
 </template>
 
 <script>
-    import LayoutHeader from "./LayoutHeader";
     export default{
-        name:'LayoutHeaderWithSearch',
+        name:'HomeSearch',
         data(){
             return{
                 keyword:'',
@@ -32,7 +27,6 @@
             }
         },
         components:{
-            LayoutHeader
         },
         methods:{
             search(){

@@ -1,18 +1,26 @@
 <template>
     <div>
-        <layout-header-with-search></layout-header-with-search>
+        <layout-header>
+            <home-search></home-search>
+        </layout-header>
         <router-view></router-view>
-        <layout-footer></layout-footer>
+        <layout-footer>
+            <icp-info></icp-info>
+        </layout-footer>
     </div>
 </template>
 <script>
     import LayoutFooter from "./LayoutFooter";
-    import LayoutHeaderWithSearch from "./LayoutHeaderWithSearch";
+    import LayoutHeader from "./LayoutHeader";
+    import HomeSearch from "./HomeSearch";
+    import IcpInfo from "./IcpInfo";
     export default {
         name: 'HomeLayout',
         components: {
             LayoutFooter,
-            LayoutHeaderWithSearch
+            LayoutHeader,
+            HomeSearch,
+            IcpInfo
         },
     }
 </script>
