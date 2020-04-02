@@ -1,0 +1,55 @@
+.box-card{
+    width: 444px;
+    position: absolute;
+    height: 400px;
+    top: 10%;
+    right: 10%;
+}
+.login-title{
+    font-size:24px;
+    font-weight: bold;
+    padding-top:25px;
+    padding-bottom: 30px;
+}
+.input-container{
+    padding: 15px 0px;
+}
+.login-input-group{
+    display:inline-block;
+    background-color: #d3d2d2;
+}
+.login-input-group .el-icon-user-solid,.login-input-group .el-icon-lock{
+    height:100%;
+}
+.login-input-group input{
+    height: 36px;
+    width: 272px;
+    text-indent: 14px;
+}
+.icon-wrap{
+    width:36px;
+    display:inline-block;
+    background-color: #d3d2d2;
+}
+.submit-btn{
+    width:312px;
+    background-color: #f7c85c;
+    border:none;
+    height:42px;
+    color: white;
+    font-size: 20px;
+    font-weight:bold;
+    letter-spacing: 9px;
+    margin-top:20px;
+}
+.forget-password{
+    text-align: right;
+    padding-top:10px;
+}
+.forget-password a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #7e8080;
+    padding-top:5px;
+    padding-right:45px;
+}
