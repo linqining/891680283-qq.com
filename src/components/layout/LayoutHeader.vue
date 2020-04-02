@@ -22,35 +22,76 @@
             </div>
         </div>
         <slot></slot>
-        <div class="header-container">
-            <div class="header-left">
-                <router-link to="/login">登录</router-link>
-                <router-link to="/register">注册</router-link>
-                <router-link to="/favourite">收藏icon</router-link>
+
+
+<!--        <div class="header-container">-->
+<!--            <div class="header-left">-->
+<!--                <router-link to="/login">登录</router-link>-->
+<!--                <router-link to="/register">注册</router-link>-->
+<!--                <router-link to="/favourite">收藏icon</router-link>-->
+<!--            </div>-->
+<!--            <div class="header-center">-->
+<!--                <div class="header-logo">-->
+<!--                    <img :src="logo">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="header-right">-->
+<!--                <img id="shopping-bag" :src="logo">-->
+<!--                <router-link to="/favourite">购物袋(<span class="cart-num">{{cartGoodsNum}}</span>)</router-link>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="header-home">
+            <div class="bg-left">
             </div>
-            <div class="header-center">
-                <div class="header-logo">
-                    <img :src="logo">
-                </div>
+            <div class="bg-right">
             </div>
-            <div class="header-right">
-                <img id="shopping-bag" :src="logo">
-                <router-link to="/favourite">购物袋(<span class="cart-num">{{cartGoodsNum}}</span>)</router-link>
+            <div class="header-bg-wrap">
+                <img :src="logo">
+<!--                <el-menu-->
+<!--                        :default-active="activeIndex2"-->
+<!--                        class="el-menu-demo"-->
+<!--                        mode="horizontal"-->
+<!--                        @select="handleSelect"-->
+<!--                        background-color="#294048"-->
+<!--                        text-color="#fff"-->
+<!--                        active-text-color="#FFF">-->
+<!--                    <el-submenu index="2">-->
+<!--                        <template slot="title"><i class="el-icon-s-fold"></i>所有产品</template>-->
+<!--                        <el-menu-item index="2-1">item one</el-menu-item>-->
+<!--                        <el-menu-item index="2-2">item two</el-menu-item>-->
+<!--                        <el-menu-item index="2-3">item three</el-menu-item>-->
+<!--                        <el-submenu index="2-4">-->
+<!--                            <template slot="title">item four</template>-->
+<!--                            <el-menu-item index="2-4-1">item one</el-menu-item>-->
+<!--                            <el-menu-item index="2-4-2">item two</el-menu-item>-->
+<!--                            <el-menu-item index="2-4-3">item three</el-menu-item>-->
+<!--                        </el-submenu>-->
+<!--                    </el-submenu>-->
+<!--                    <el-menu-item index="4"><router-link to="/">首页</router-link></el-menu-item>-->
+<!--                    <el-menu-item index="5"><router-link to="/">音箱</router-link></el-menu-item>-->
+<!--                    <el-menu-item index="6"><router-link to="/">游戏机</router-link></el-menu-item>-->
+<!--                    <el-menu-item index="7"><router-link to="/">平板电脑</router-link></el-menu-item>-->
+<!--                    <el-menu-item index="8"><router-link to="/">电子手表</router-link></el-menu-item>-->
+<!--                    <el-menu-item index="9"><router-link to="/">更多</router-link></el-menu-item>-->
+<!--                </el-menu>-->
+
+                    <div id="nav-menu">
+                        <div class="nav-container">
+                            <div class="links-wrapper">
+                                <router-link to="/"><span class="el-icon-s-fold"></span>所有产品</router-link>
+                                <router-link to="/">首页</router-link>
+                                <router-link to="/">音箱</router-link>
+                                <router-link to="/">游戏机</router-link>
+                                <router-link to="/">平板电脑</router-link>
+                                <router-link to="/">电子手表</router-link>
+                                <router-link to="/">更多</router-link>
+                            </div>
+                        </div>
+                    </div>
             </div>
+
         </div>
-        <div id="nav-menu">
-            <div class="nav-container">
-                <div class="links-wrapper">
-                    <router-link to="/">首页</router-link>
-                    <router-link to="/">首页</router-link>
-                    <router-link to="/">首页</router-link>
-                    <router-link to="/">首页</router-link>
-                </div>
-                <div class="search-box">
-                    asdfasd
-                </div>
-            </div>
-        </div>
+
     </div>
 </template>
 <script>
@@ -63,6 +104,12 @@
                 logo: logo,
                 cart: cart,
                 cartGoodsNum: 3,
+                activeIndex2:'',
+            }
+        },
+        methods:{
+            handleSelect(){
+
             }
         }
     }
@@ -70,10 +117,9 @@
 <style scoped>
     .top-links-container{
         border-bottom: 1px solid #7e808040;
-        /*box-shadow: 0px 1px 2px #7e8080;*/
     }
     .top-links{
-        width: 800px;
+        width: 1200px;
         padding: 5px 0px;
         text-align:left;
         margin:auto;
@@ -111,7 +157,7 @@
     }
 
     .header-container{
-        width:800px;
+        width:1200px;
         margin:auto;
         padding: 30px 0;
         height: 60px;
@@ -143,11 +189,12 @@
     }
 
     #nav-menu{
-        background:black;
-        /*height: 40px;*/
+        position:absolute;
+        bottom: 0px;
+        display:flex;
     }
     .nav-container{
-        width:800px;
+        width:1200px;
         margin:auto;
         text-align: left;
     }
@@ -159,10 +206,40 @@
         color: white;
         padding: 15px 30px;
         display:inline-block;
+        flex:1;
     }
     .search-box{
         float: right;
         color: white;
         padding: 15px 0;
+    }
+    .header-home{
+        height: 150px;
+        /*background-image: linear-gradient(#1d303a,#294048);*/
+    }
+    .bg-left,.bg-right{
+        height:150px;
+        width:calc(50% - 600px);
+    }
+    .bg-left{
+        float:left;
+        background-image: linear-gradient(#1d303a,#294048);
+    }
+    .bg-right{
+        float:right;
+        background-image: linear-gradient(#1f333c,#2d464c);
+    }
+    .header-bg-wrap{
+        background-image:url("~@/assets/image/layout/headbg.png");
+        background-position: 48% 0%;
+        width:1200px;
+        margin:auto;
+        height: 150px;
+        text-align:left;
+        position:relative;
+    }
+    .header-bg-wrap img{
+        padding-left: 29px;
+        padding-top: 21px;
     }
 </style>

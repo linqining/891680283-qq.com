@@ -3,13 +3,18 @@
         <layout-header>
             <div class="search-block">
                 <div class='search-container'>
-                    <div class="search-wrapper">
-                        <input class="search-input" v-model="keyword">
-                        <el-button class="btn-custom" @click="search">搜索</el-button>
+                    <div>
+                        <div class="search-wrapper">
+                            <input class="search-input" v-model="keyword">
+                            <el-button class="btn-custom" @click="search">搜索</el-button>
+                        </div>
                     </div>
-                    <ul class="fast-search">
-                        <li v-for="item in searchItems" :key="item" @click="setItem(item)">{{item}}</li>
-                    </ul>
+                    <div>
+                        <ul class="fast-search">
+                            <li v-for="item in searchItems" :key="item" @click="setItem(item)">{{item}}</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </layout-header>
@@ -42,10 +47,10 @@
 
 <style scoped>
     .search-block{
-        padding: 50px 0;
+        padding: 30px 0;
     }
     .search-container{
-        width:800px;
+        width:1200px;
         margin:auto;
         text-align:right;
     }
@@ -54,7 +59,7 @@
         display:inline-block;
         border: 3px solid #f7c85c;
         position: relative;
-        width:400px
+        width:600px
     }
     .search-input,.btn-custom{
         border-radius:0px;
@@ -65,7 +70,7 @@
         border-radius: 0px;
         border: 0px;
         padding: 0px;
-        width: 300px;
+        width: 500px;
     }
 
     .btn-custom{
@@ -83,7 +88,7 @@
     }
     .fast-search{
         display: inline-flex;
-        width:400px;
+        width:600px;
         color: #7e8080;
     }
     .fast-search li{

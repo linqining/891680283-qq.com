@@ -1,30 +1,8 @@
 <template>
     <div id="footer">
+<!--        <img :src="footContact">-->
+        <div class="footer-image"></div>
         <div class="footer-container">
-            <div id="service-icon">
-                <ul>
-                    <li>
-                        <img :src="logo">
-                        <div class="icon-desc">值得信赖</div>
-                    </li>
-                    <li>
-                        <img :src="logo">
-                        <div class="icon-desc">品质保证</div>
-                    </li>
-                    <li>
-                        <img :src="logo">
-                        <div class="icon-desc">无忧退换货</div>
-                    </li>
-                    <li>
-                        <img :src="logo">
-                        <div class="icon-desc">闪电发货</div>
-                    </li>
-                    <li>
-                        <img :src="logo">
-                        <div class="icon-desc">贴心服务</div>
-                    </li>
-                </ul>
-            </div>
             <div id="bottom-links">
                 <ul class="links-cat">
                     <li>
@@ -70,46 +48,37 @@
                     </li>
                 </ul>
             </div>
-            <div id="contact-us">
-                <div class="contact-wrapper">
-                    <div class="contact-group">
-                        <img :src="logo">
-                        <div class="contact-detail">678279360</div>
-                    </div>
-                    <div class="contact-group">
-                        <img :src="logo">
-                        <div class="contact-detail">pabpkb@163.com</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="website-registration">
-            <div class="registration-wrapper">
-                test
-            </div>
         </div>
     </div>
 </template>
 <script>
     import logo from '@/assets/image/layout/logo.png'
+    import footContact from '@/assets/image/layout/foot-contact.png'
     export default {
         name: 'LayoutFooter',
         data(){
             return{
                 logo: logo,
+                footContact: footContact
             }
         }
     }
 </script>
 <style scoped>
     #footer{
-        position:fixed;
+        /*position:fixed;*/
         bottom:0px;
         width:100%;
     }
     .footer-container{
-        width:800px;
+        width:1200px;
         margin:auto;
+    }
+    .footer-image{
+        height:398px;
+        background-image: url("~@/assets/image/layout/foot-contact.png");
+        background-position: bottom;
+        min-width: 1200px;
     }
     #service-icon ul{
         display: flex;
@@ -118,23 +87,29 @@
         list-style: none;
         flex: 1;
     }
-    #service-icon::after,#bottom-links::after{
+    #service-icon::after{
         border: 1px solid black;
         content:'';
         display:flex;
     }
-    #bottom-links{
-        /*height:33px;*/
-    }
+
     .links-cat{
         display: flex;
     }
     .links-cat li{
         flex:1;
         list-style: none;
+        text-align: left;
+    }
+    .links-cat-title{
+        margin-bottom:14px;
+        font-size: 20px;
+        font-weight: bold;
     }
     .links-list{
         text-align:left;
+        padding: 0px;
+        font-size:14px;
     }
     .links-cat::after{
 
@@ -148,7 +123,7 @@
         width:100%;
     }
     .registration-wrapper{
-        width:800px;
+        width:1200px;
         padding:30px 0;
     }
     .registration-wrapper{
