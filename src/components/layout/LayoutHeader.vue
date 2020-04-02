@@ -56,7 +56,10 @@
 <script>
     import logo from '@/assets/image/layout/logo.png'
     import cart from '@/assets/image/layout/cart.png'
-    import {catList} from "@/api/api";
+
+    import { mapMutations } from 'vuex'
+
+    import {catList,fetchProductList} from "@/api/api";
 
     export default {
         name: 'LayoutHeader',
@@ -87,11 +90,49 @@
         },
         methods:{
             handleChange(value){
-                console.log(value)
+                fetchProductList({categoryId: value[1]},(result)=>{
+                    console.log(result);
+                    let productList = [{
+                        "id": "bcad0604f23911e9a3827085c2a6d524",
+                        "category": "墙布",
+                        "categoryId": "10024",
+                        "productName": "羊绒无缝墙布现代简约卧室客厅家用电视背景墙纯色素色墨绿色壁布",
+                        "productInfo": "羊绒无缝墙布现代简约卧室客厅家用电视背景墙纯色素色墨绿色壁布",
+                        "productAddress": "北京",
+                        "size": "标准",
+                        "groupId": "44",
+                        "productPrice": 30,
+                        "preProductPrice": 269,
+                        "soldedCount": 911,
+                        "inventoryCount": 1286,
+                        "hot": 1,
+                        "sizeList": [{
+                            "size": "2.75米高 1平方 ",
+                            "productPrice": 30,
+                            "preProductPrice": 269
+                        },
+                            {
+                                "size": "2.75米高 10平方",
+                                "productPrice": 46,
+                                "preProductPrice": 285
+                            }],
+                        "abbreviationFile": "b9e27a98293b11ea90177085c2a6d524"
+                    }]
+                    this.setProductList(productList)
+                    this.showCat = false
+                })
+
+                if(this.$route.name!=='ProductList'){
+                    this.$router.push({name:'ProductList',params:{categoryId: value[1]}})
+                }else{
+                    console.log(this.$route)
+                }
+
             },
             showProductCat(){
                 this.showCat = !this.showCat
-            }
+            },
+            ...mapMutations(['setProductList'])
         },
         mounted(){
             catList(0,'',(result)=>{

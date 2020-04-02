@@ -46,6 +46,16 @@ export default new Router({
                 component:()=>import('@/components/user_center/Register.vue')
             },
         ]
+    },{
+        path:'/product',
+        component:()=>import('@/components/layout/Layout.vue'),
+        children:[
+            {
+                path:'/list',
+                name: 'ProductList',
+                component:()=>import('@/components/product/List.vue')
+            },
+        ]
     },
     ]
 })

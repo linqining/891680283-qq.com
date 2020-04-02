@@ -17,4 +17,9 @@ const catList = (level,value,callback)=>{
         requests.get(url,{parentId: value},callback)
     }
 }
-export {userRegister,userLogin,catList}
+
+const fetchProductList = (params,callback)=>{
+    requests.post('/sm/product/list',params,callback)
+}
+
+export {userRegister,userLogin,catList,fetchProductList}

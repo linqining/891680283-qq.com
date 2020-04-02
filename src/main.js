@@ -3,6 +3,7 @@ import App from './App.vue'
 import './plugins/element.js'
 import router from'./router/index'
 import axios from 'axios'
+import store from './store'
 
 
 // 改写组件的样式
@@ -14,5 +15,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   axios,
+  store,
   render: h => h(App),
 }).$mount('#app')
