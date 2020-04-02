@@ -72,10 +72,8 @@
                     email: this.form.email,
                     phoneNum: this.form.phoneNum
                 }
-                userRegister({data: data},(response)=>{
-                    if(response.data.errcode){
-                        this.$message.error(response.data.errmsg);
-                    }
+                userRegister(data,(response)=>{
+                    console.log(response);
                 });
             }
         }

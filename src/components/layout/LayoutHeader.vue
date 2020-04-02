@@ -33,13 +33,17 @@
                 <div id="nav-menu" v-if="showMenu">
                     <div class="nav-container">
                         <div class="links-wrapper">
-                            <router-link to="/"><span class="el-icon-s-fold"></span>所有产品</router-link>
+                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品
+                            </a>
                             <router-link to="/">首页</router-link>
                             <router-link to="/">音箱</router-link>
                             <router-link to="/">游戏机</router-link>
                             <router-link to="/">平板电脑</router-link>
                             <router-link to="/">电子手表</router-link>
                             <router-link to="/">更多</router-link>
+                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"
+                                               @change="handleChange"></el-cascader-panel>
+
                         </div>
                     </div>
                 </div>
@@ -52,6 +56,8 @@
 <script>
     import logo from '@/assets/image/layout/logo.png'
     import cart from '@/assets/image/layout/cart.png'
+    import {catList} from "@/api/api";
+
     export default {
         name: 'LayoutHeader',
         data(){
@@ -59,13 +65,42 @@
                 logo: logo,
                 cart: cart,
                 cartGoodsNum: 3,
-                activeIndex2:'',
+                showCat: false,
+                menuProps:{
+                    lazy: true,
+                    lazyLoad(node,resolve){
+                        catList(node.level,parseInt(node.value),(result)=>{
+                            if(result  && result.data.child){
+                                const nodes = result.data.child.map(item=>(
+                                    {value: item.id,label: item.categoryName,leaf: true}
+                                ))
+                                resolve(nodes)
+                            }else{
+                                const nodes = []
+                                resolve(nodes)
+                            }
+                        })
+                    }
+                },
+                options:[],
             }
         },
         methods:{
-            handleSelect(){
-
+            handleChange(value){
+                console.log(value)
+            },
+            showProductCat(){
+                this.showCat = !this.showCat
             }
+        },
+        mounted(){
+            catList(0,'',(result)=>{
+                if(result){
+                    this.options = result.data.map(item=>(
+                        {value: item.id,label: item.categoryName}
+                    ))
+                }
+            })
         },
         props:{
             showOrder:{
@@ -127,15 +162,15 @@
         padding: 30px 0;
         height: 60px;
     }
-    .header-left,.header-center,.header-right{
-        display:inline-block;
-    }
-    .header-left{
-        float:left;
-    }
-    .header-right{
-        float: right;
-    }
+    /*.header-left,.header-center,.header-right{*/
+    /*    display:inline-block;*/
+    /*}*/
+    /*.header-left{*/
+    /*    float:left;*/
+    /*}*/
+    /*.header-right{*/
+    /*    float: right;*/
+    /*}*/
     .header-right a{
         text-decoration: none;
         color: black;
@@ -210,5 +245,17 @@
     .header-bg-wrap img{
         padding-left: 29px;
         padding-top: 21px;
+    }
+    #cascader-menu{
+        position:absolute;
+        background-color: #253a43;
+        border:solid 1px #5a6478;
+        margin-top:55px;
+
+    }
+    .el-cascader-menu{
+        /*border:none;*/
+        /*color: #ffffff;*/
+        border-right:solid 1px #5a6478;
     }
 </style>

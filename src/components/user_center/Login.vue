@@ -25,6 +25,8 @@
 </template>
 <script>
     import logincss from '@/assets/components/login/form.css'
+    import {userLogin} from "@/api/api";
+
     export default{
         name: 'Login',
         data(){
@@ -38,7 +40,13 @@
         },
         methods:{
             login(){
-                console.log(this.form.userName);
+                userLogin(this.form,(res)=>{
+                    console.log(res);
+                    if(res){
+                        this.$message.success('登录成功！')
+                        this.$router.push({name:'Home'})
+                    }
+                })
             }
         }
     }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Message } from 'element-ui';
 let http = axios.create({
     baseURL: 'http://47.107.62.230:9081',
     timeout: 5000,
@@ -19,23 +20,24 @@ let http = axios.create({
 
 // 错误处理函数
 const err = (error) => {
-    if (error.response) {
-        // const data = error.response.data
-        // const token = Vue.ls.get(ACCESS_TOKEN)
-        if (error.response.status === 403) {
-            // Notify({ type: 'danger', message: data.message||data.msg });
-        }
-        if (error.response.status === 401) {
-            // Notify({ type: 'danger', message: '你没有权限。' });
-            // if (token) {
-            //   store.dispatch('Logout').then(() => {
-            //     setTimeout(() => {
-            //       window.location.reload()
-            //     }, 1500)
-            //   })
-            // }
-        }
-    }
+    // console.log(error)
+    // if (error.response) {
+    //     // const data = error.response.data
+    //     // const token = Vue.ls.get(ACCESS_TOKEN)
+    //     if (error.response.status === 403) {
+    //         // Notify({ type: 'danger', message: data.message||data.msg });
+    //     }
+    //     if (error.response.status === 401) {
+    //         // Notify({ type: 'danger', message: '你没有权限。' });
+    //         // if (token) {
+    //         //   store.dispatch('Logout').then(() => {
+    //         //     setTimeout(() => {
+    //         //       window.location.reload()
+    //         //     }, 1500)
+    //         //   })
+    //         // }
+    //     }
+    // }
     return Promise.reject(error)
 }
 
@@ -51,19 +53,15 @@ http.interceptors.request.use(config => {
 }, err)
 
 // response interceptor（接收拦截器）
-// http.interceptors.response.use((response) => {
-//     const res = response.data
-//     if (res.code !== 0&&res.code!==200) {
-//         // Notify({ type: 'danger', message: res.message||res.msg });
-//         // 401:未登录;
-//         if (res.code === 401||res.code === 403||res.code===999) {
-//             // Notify({ type: 'danger', message: '请登录'});
-//         }
-//         return Promise.reject('error')
-//     } else {
-//         return res
-//     }
-// }, err)
+http.interceptors.response.use((response) => {
+    const res = response.data
+    if (res.errcode !== '000000') {
+        Message.error(res.errmsg)
+        // return Promise.reject('error')
+    } else {
+        return res
+    }
+}, err)
 
 
 
