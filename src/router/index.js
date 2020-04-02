@@ -14,26 +14,38 @@ export default new Router({
             }
         ]
     },{
-        path:'/login',
-        name: 'Login',
-        component:()=>import('@/components/user_center/Login.vue')
-    },{
-        path:'/register',
-        name: 'Register',
-        component:()=>import('@/components/user_center/Register.vue')
-    },{
-        path:'/favourite',
-        name: 'Favourite',
-        component:()=>import('@/components/user_center/Favourite.vue')
-    },{
-        path:'/orders',
-        name:'Orders',
-        component:()=>import('@/components/order/Orders.vue')
-    },{
-        path:'/shopping_cart',
-        name:'ShoppingCart',
-        component:()=>import('@/components/order/ShoppingCart.vue')
-    }
-
+        path: '/order',
+        component:()=>import('@/components/layout/Layout.vue'),
+        children:[
+            {
+                path:'/favourite',
+                name: 'Favourite',
+                component:()=>import('@/components/user_center/Favourite.vue')
+            },{
+                path:'/orders',
+                name:'Orders',
+                component:()=>import('@/components/order/Orders.vue')
+            },{
+                path:'/shopping_cart',
+                name:'ShoppingCart',
+                component:()=>import('@/components/order/ShoppingCart.vue')
+            }
+        ]
+    },
+    {
+        path:'/user',
+        component:()=>import('@/components/layout/Layout.vue'),
+        children:[
+            {
+                path:'/login',
+                name: 'Login',
+                component:()=>import('@/components/user_center/Login.vue')
+            },{
+                path:'/register',
+                name: 'Register',
+                component:()=>import('@/components/user_center/Register.vue')
+            },
+        ]
+    },
     ]
 })

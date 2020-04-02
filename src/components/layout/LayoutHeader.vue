@@ -12,7 +12,7 @@
                 </div>
                 <div class="order-block">
                 <span class="my-order">
-                    <router-link to="/orders">我的订单</router-link>
+                    <router-link :to="{name: 'Orders'}">我的订单</router-link>
                 </span>
                     <span class="shopping-cart">
                     <img :src="cart">
@@ -23,23 +23,6 @@
         </div>
         <slot></slot>
 
-
-<!--        <div class="header-container">-->
-<!--            <div class="header-left">-->
-<!--                <router-link to="/login">登录</router-link>-->
-<!--                <router-link to="/register">注册</router-link>-->
-<!--                <router-link to="/favourite">收藏icon</router-link>-->
-<!--            </div>-->
-<!--            <div class="header-center">-->
-<!--                <div class="header-logo">-->
-<!--                    <img :src="logo">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="header-right">-->
-<!--                <img id="shopping-bag" :src="logo">-->
-<!--                <router-link to="/favourite">购物袋(<span class="cart-num">{{cartGoodsNum}}</span>)</router-link>-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="header-home">
             <div class="bg-left">
             </div>
