@@ -7,7 +7,11 @@ export default new Router({
         path: '/',
         component:()=>import('@/components/layout/HomeLayout.vue'),
         children:[
-
+            {
+                path:'/',
+                name: 'Home',
+                component:()=>import('@/components/Home.vue')
+            }
         ]
     },{
         path:'/login',

@@ -47,34 +47,6 @@
             </div>
             <div class="header-bg-wrap">
                 <img :src="logo">
-<!--                <el-menu-->
-<!--                        :default-active="activeIndex2"-->
-<!--                        class="el-menu-demo"-->
-<!--                        mode="horizontal"-->
-<!--                        @select="handleSelect"-->
-<!--                        background-color="#294048"-->
-<!--                        text-color="#fff"-->
-<!--                        active-text-color="#FFF">-->
-<!--                    <el-submenu index="2">-->
-<!--                        <template slot="title"><i class="el-icon-s-fold"></i>所有产品</template>-->
-<!--                        <el-menu-item index="2-1">item one</el-menu-item>-->
-<!--                        <el-menu-item index="2-2">item two</el-menu-item>-->
-<!--                        <el-menu-item index="2-3">item three</el-menu-item>-->
-<!--                        <el-submenu index="2-4">-->
-<!--                            <template slot="title">item four</template>-->
-<!--                            <el-menu-item index="2-4-1">item one</el-menu-item>-->
-<!--                            <el-menu-item index="2-4-2">item two</el-menu-item>-->
-<!--                            <el-menu-item index="2-4-3">item three</el-menu-item>-->
-<!--                        </el-submenu>-->
-<!--                    </el-submenu>-->
-<!--                    <el-menu-item index="4"><router-link to="/">首页</router-link></el-menu-item>-->
-<!--                    <el-menu-item index="5"><router-link to="/">音箱</router-link></el-menu-item>-->
-<!--                    <el-menu-item index="6"><router-link to="/">游戏机</router-link></el-menu-item>-->
-<!--                    <el-menu-item index="7"><router-link to="/">平板电脑</router-link></el-menu-item>-->
-<!--                    <el-menu-item index="8"><router-link to="/">电子手表</router-link></el-menu-item>-->
-<!--                    <el-menu-item index="9"><router-link to="/">更多</router-link></el-menu-item>-->
-<!--                </el-menu>-->
-
                     <div id="nav-menu">
                         <div class="nav-container">
                             <div class="links-wrapper">
@@ -199,7 +171,8 @@
         text-align: left;
     }
     .links-wrapper{
-        display: inline-block;
+        /*display: inline-block;*/
+        display:flex;
     }
     .links-wrapper a{
         text-decoration: none;
