@@ -13,11 +13,32 @@
                 <div class="order-block" v-if="showOrder">
                     <span class="my-order">
                         <router-link :to="{name: 'Orders'}">我的订单</router-link>
+                    </span >
+
+                    <el-popover
+                            placement="bottom-end"
+                            width="500"
+                            trigger="manual"
+                            v-model="visible"
+                    >
+                        <div >
+                            <div class="cart-item-list">
+                                <div class="cart-item" v-for="(item,index) in this.$store.state.productList" :key="index">
+                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.abbreviationFile">
+                                    <div class="desc-block">
+                                        <div class="product-name">{{item.productName}}</div>
+                                        <div class="buy-num"><strong>{{item.productPrice}}X1</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="shopping-link" @click="goToCart">去购物袋结算</button>
+<!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
+                        </div>
+                        <span class="shopping-cart"  slot="reference" @click="visible=!visible">
+                            <img :src="cart">
+                        <span>购物车(<span class="cart-num">0</span>)</span>
                     </span>
-                        <span class="shopping-cart">
-                        <img :src="cart">
-                        <router-link to="/shopping_cart">购物车(<span class="cart-num">0</span>)</router-link>
-                    </span>
+                    </el-popover>
                 </div>
             </div>
         </div>
@@ -86,6 +107,7 @@
                     }
                 },
                 options:[],
+                visible: false
             }
         },
         methods:{
@@ -104,6 +126,12 @@
             },
             showProductCat(){
                 this.showCat = !this.showCat
+            },
+            goToCart(){
+                this.visible = !this.visible
+                if(this.$route.path!=='/shopping_cart'){
+                    this.$router.push({path:'/shopping_cart',target:'_blank'})
+                }
             },
             ...mapMutations(['setProductList'])
         },
@@ -176,15 +204,6 @@
         padding: 30px 0;
         height: 60px;
     }
-    /*.header-left,.header-center,.header-right{*/
-    /*    display:inline-block;*/
-    /*}*/
-    /*.header-left{*/
-    /*    float:left;*/
-    /*}*/
-    /*.header-right{*/
-    /*    float: right;*/
-    /*}*/
     .header-right a{
         text-decoration: none;
         color: black;
@@ -271,5 +290,41 @@
         /*border:none;*/
         /*color: #ffffff;*/
         border-right:solid 1px #5a6478;
+    }
+    .cart-item-list{
+        /*height:auto;*/
+        max-height: 400px;
+        overflow-y:scroll;
+    }
+    .cart-item-list img{
+        width:80px;
+        height:80px;
+    }
+    .desc-block{
+        display:inline-block;
+        vertical-align: top;
+        padding: 0 15px;
+        width: calc(100% - 110px);
+    }
+    .desc-block .product-name{
+        width: 295px;
+        display: inline-block;
+    }
+    .desc-block .buy-num{
+        display:inline-block;
+        float:right;
+    }
+    .cart-item{
+        vertical-align: top;
+    }
+    .shopping-link{
+        text-decoration:none;
+        width:100%;
+        background-color: #f7c85c;
+        font-size:20px;
+        color:white;
+        border:none;
+        margin-top:20px;
+        height:40px;
     }
 </style>
