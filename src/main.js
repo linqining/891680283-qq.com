@@ -6,10 +6,6 @@ import axios from 'axios'
 import store from './store'
 
 
-// 改写组件的样式
-import '@/assets/css/custom.css'
-
-
 Vue.config.productionTip = false
 
 new Vue({

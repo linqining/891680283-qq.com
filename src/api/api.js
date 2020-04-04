@@ -22,4 +22,11 @@ const fetchProductList = (params,callback)=>{
     requests.post('/sm/product/list',params,callback)
 }
 
-export {userRegister,userLogin,catList,fetchProductList}
+const getProductDetail = (productid,callback)=>{
+    requests.get('/sm/product/detail',{productId: productid},callback)
+}
+
+const commentList = (params,callback)=>{
+    requests.get('/sm/product/comment',params,callback)
+}
+export {userRegister,userLogin,catList,fetchProductList,getProductDetail,commentList}

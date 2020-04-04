@@ -29,6 +29,10 @@ export default new Router({
                 path:'/shopping_cart',
                 name:'ShoppingCart',
                 component:()=>import('@/components/order/ShoppingCart.vue')
+            },{
+                path:'purchase',
+                name: 'Purchase',
+                component:()=>import('@/components/order/Purchase.vue')
             }
         ]
     },
@@ -55,6 +59,11 @@ export default new Router({
                 name: 'ProductList',
                 component:()=>import('@/components/product/List.vue')
             },
+            {
+                path:'/detail',
+                name: 'ProductDetail',
+                component:()=>import('@/components/product/Detail.vue')
+            }
         ]
     },
     ]

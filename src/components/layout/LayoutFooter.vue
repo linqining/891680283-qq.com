@@ -70,6 +70,7 @@
         /*position:fixed;*/
         bottom:0px;
         width:100%;
+        background:white;
     }
     .footer-container{
         width:1200px;

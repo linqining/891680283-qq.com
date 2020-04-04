@@ -74,6 +74,7 @@
                 }
                 userRegister(data,(response)=>{
                     console.log(response);
+                    this.$message.success('注册成功！')
                 });
             }
         }
