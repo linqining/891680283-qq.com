@@ -67,10 +67,10 @@
         position:relative;
         width: 300px;
         height: 160px;
-        border-left: 1px solid #DEDBDC;
-        border-right: 1px solid #DEDBDC;
+        border: 1px solid #DEDBDC;
         padding: 21px 24px;
         display:inline-block;
+        vertical-align:top;
     }
     .head-line,.bottom-line{
         position: absolute;

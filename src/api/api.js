@@ -29,4 +29,22 @@ const getProductDetail = (productid,callback)=>{
 const commentList = (params,callback)=>{
     requests.get('/sm/product/comment',params,callback)
 }
-export {userRegister,userLogin,catList,fetchProductList,getProductDetail,commentList}
+
+const addressList=(params,callback)=>{
+    requests.get('/sm/address/list',params,callback)
+}
+const provinceList=(callback)=>{
+    requests.get('/sm/province/all',{},callback)
+}
+const cityList=(provinceId,callback)=>{
+    requests.get('/sm/province/getCityByProvinceId/'+provinceId,{},callback)
+}
+const areaList=(cityId,callback)=>{
+    requests.get('/sm/province/getAreaByCityId/'+cityId,{},callback)
+}
+const createAddress = (params,callback)=>{
+    requests.post('/sm/address/add',params,callback)
+}
+export {userRegister,userLogin,catList,fetchProductList,
+    getProductDetail,commentList,addressList,provinceList,
+    cityList,areaList, createAddress}
