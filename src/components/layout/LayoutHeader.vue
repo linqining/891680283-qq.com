@@ -90,9 +90,10 @@
         },
         methods:{
             handleChange(value){
-                fetchProductList({categoryId: value[1],pageNum:0,pageSize:20},(result)=>{
-                    console.log(result)
+                this.$store.state.productCategoryId = value[1]
+                fetchProductList({categoryId: value[1],pageNum:1,pageSize:20},(result)=>{
                     this.setProductList(result.data)
+                    this.$store.state.productTotal = result.total
                     this.showCat = false
                 })
                 if(this.$route.name!=='ProductList'){

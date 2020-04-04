@@ -22,6 +22,10 @@ const fetchProductList = (params,callback)=>{
     requests.post('/sm/product/list',params,callback)
 }
 
+const fetchHotSell = (callback)=>{
+    requests.get('/sm/product/hot',{},callback)
+}
+
 const getProductDetail = (productid,callback)=>{
     requests.get('/sm/product/detail',{productId: productid},callback)
 }
@@ -47,4 +51,4 @@ const createAddress = (params,callback)=>{
 }
 export {userRegister,userLogin,catList,fetchProductList,
     getProductDetail,commentList,addressList,provinceList,
-    cityList,areaList, createAddress}
+    cityList,areaList, createAddress,fetchHotSell}

@@ -52,7 +52,11 @@
             <div class="recommend">
                 <el-card>
                     <div class="fellow-buy">大家都在买</div>
-
+                    <div class="hot-item" v-for="(item,index) in hotList" :key="index">
+                        <img :src="'http://47.107.62.230:9080/repo/tb/'+item.relaList[0].filePath">
+                        <div><span>{{item.productName}}</span></div>
+                        <div class="price"><strong>￥{{item.productPrice}}</strong></div>
+                    </div>
                 </el-card>
             </div>
 
@@ -93,6 +97,8 @@
 </template>
 <script>
     import {getProductDetail,commentList} from "@/api/api";
+    import {fetchHotSell} from "@/api/api";
+
 
     export default{
         name: 'ProductDetail',
@@ -119,12 +125,13 @@
                 activeName:'first',
                 comments:[],
                 mainPicIndex:0,
+                hotList:[],
             }
         },
         props:{
 
         },
-        mounted(){
+        created(){
             getProductDetail(this.$route.params.productId,(result)=>{
                 console.log(result.data)
                 this.productDetail = result.data
@@ -139,6 +146,10 @@
             },(res)=>{
                 console.log(res)
                 this.comments = res.data.comments;
+            })
+            fetchHotSell((res)=>{
+                this.hotList = res.data
+                console.log(res)
             })
 
         },
@@ -367,6 +378,19 @@
     .comment-right .el-rate__text{
         font-size:23px;
         color: #c9272a !important;
+    }
+    .hot-item{
+        height:300px;
+        padding: 15px 10px;
+    }
+
+    .hot-item img{
+        width:100%;
+        height:250px;
+    }
+    .hot-item .price{
+        padding-bottom:15px;
+        border-bottom: 1px dashed #7e8080;
     }
 
 </style>
