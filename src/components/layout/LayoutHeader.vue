@@ -23,13 +23,14 @@
                     >
                         <div >
                             <div class="cart-item-list">
-                                <div class="cart-item" v-for="(item,index) in this.$store.state.productList" :key="index">
-                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.abbreviationFile">
-                                    <div class="desc-block">
-                                        <div class="product-name">{{item.productName}}</div>
-                                        <div class="buy-num"><strong>{{item.productPrice}}X1</strong></div>
-                                    </div>
-                                </div>
+                                <shopping-cart-item v-for="(item,index) in this.$store.state.productList" :key="index" :item="item"></shopping-cart-item>
+<!--                                <div class="cart-item" v-for="(item,index) in this.$store.state.productList" :key="index">-->
+<!--                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.abbreviationFile">-->
+<!--                                    <div class="desc-block">-->
+<!--                                        <div class="product-name">{{item.productName}}</div>-->
+<!--                                        <div class="buy-num"><strong>{{item.productPrice}}X1</strong></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                             <button class="shopping-link" @click="goToCart">去购物袋结算</button>
 <!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
@@ -77,6 +78,7 @@
 <script>
     import logo from '@/assets/image/layout/logo.png'
     import cart from '@/assets/image/layout/cart.png'
+    import ShoppingCartItem from "../product/ShoppingCartItem";
 
     import { mapMutations } from 'vuex'
 
@@ -84,6 +86,9 @@
 
     export default {
         name: 'LayoutHeader',
+        components:{
+            ShoppingCartItem
+        },
         data(){
             return{
                 logo: logo,
@@ -296,27 +301,7 @@
         max-height: 400px;
         overflow-y:scroll;
     }
-    .cart-item-list img{
-        width:80px;
-        height:80px;
-    }
-    .desc-block{
-        display:inline-block;
-        vertical-align: top;
-        padding: 0 15px;
-        width: calc(100% - 110px);
-    }
-    .desc-block .product-name{
-        width: 295px;
-        display: inline-block;
-    }
-    .desc-block .buy-num{
-        display:inline-block;
-        float:right;
-    }
-    .cart-item{
-        vertical-align: top;
-    }
+
     .shopping-link{
         text-decoration:none;
         width:100%;
