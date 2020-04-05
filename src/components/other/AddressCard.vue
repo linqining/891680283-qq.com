@@ -3,19 +3,19 @@
         <div class="head-line"></div>
         <div class="first-line">
             <span class="username">
-                {{username}}
+                {{address.linkName}}
             </span>
-            <span v-if="is_default" class="default_address">默认地址</span>
+            <span v-if="!address.firstAddress" class="default_address">默认地址</span>
         </div>
 
         <div class="second-line">
-            <span class="phone">{{phone}}</span>
+            <span class="phone">{{address.phoneNum}}</span>
             <span class="receive-date">{{receive_time}}</span>
         </div>
         <div class="third-line">
             <span class="el-icon-location-outline"></span>
-            <span class="city">{{city}}</span>
-            <span class="address">{{address}}</span>
+            <span class="city">{{address.address}}</span>
+            <span class="address">{{address.detail}}</span>
         </div>
         <img v-if="is_selected" :src="line" class="selected-img">
         <div class="bottom-line"></div>
@@ -31,30 +31,18 @@
             }
         },
         props:{
-           username:{
-               type: String,
-               required: true,
-           },
-            is_default:{
-               type: Boolean,
-                default: false
+            address:{
+              type: Object,
+              retuired: true
             },
-            phone:{
-               type: String,
-                required: true
-            },
+
+
             receive_time:{
                type: String,
                 default: ''
             },
-            city:{
-               type: String,
-                required: true
-            },
-            address:{
-               type: String,
-                required: true,
-            },
+
+
             is_selected:{
                type: Boolean,
                 default:false,

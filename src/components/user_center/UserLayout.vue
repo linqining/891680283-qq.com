@@ -17,7 +17,7 @@
                 <div class="nav-list list2">
                     <ul>
                         <li @click="activeName='info'"><router-link :class="{active: activeName==='info'}" :to="{name: 'UserInfo'}" >个人信息</router-link></li>
-                        <li @click="activeName='password'"><router-link :class="{active: activeName==='password'}" :to="{name: 'UserPassword'}" >收货地址</router-link></li>
+                        <li @click="activeName='password'"><router-link :class="{active: activeName==='password'}" :to="{name: 'UserPassword'}" >密码修改</router-link></li>
                     </ul>
                 </div>
             </div>
@@ -43,7 +43,7 @@
         margin:auto;
         min-height:600px;
         margin-top:50px;
-        margin-bottom: 300px;
+        margin-bottom: 200px;
         width: 1200px;
     }
     .center-container{
@@ -79,7 +79,8 @@
         color: black
     }
     .nav-content{
-        position:absolute;
+        /*position:absolute;*/
+        margin-left:250px;
         min-height:600px;
         /*background-color: white;*/
         width: 950px;

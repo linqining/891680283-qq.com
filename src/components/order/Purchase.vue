@@ -3,12 +3,7 @@
         <purchase-title>收货信息</purchase-title>
         <div class="address-block">
             <address-card v-for="(item,index) in this.getAddressList" :key="index"
-                    :username="item.linkName"
-                    :is_default="!item.firstAddress"
-                    :phone="item.phoneNum"
-                    receive_time=""
-                    :city="item.address"
-                    :address="item.detail"
+                    :address="item"
                     :is_selected="index===selectAddressIndex"
                     @click.native="selectAddressIndex=index"
             ></address-card>
@@ -163,9 +158,13 @@
         },
         created(){
             let _this = this
-            addressList({},(res)=>{
-                _this.setAddressList(res.data)
-            })
+            if(!this.$store.state.fetchAddress){
+                addressList({},(res)=>{
+                    _this.$store.state.fetchAddress = true
+                    _this.setAddressList(res.data)
+                })
+            }
+
             fetchProductList({categoryId: '10002',pageNum:1,pageSize:20},(res)=>{
                 this.tableData = res.data
             })

@@ -49,6 +49,12 @@ const areaList=(cityId,callback)=>{
 const createAddress = (params,callback)=>{
     requests.post('/sm/address/add',params,callback)
 }
+const userInfo = (callback)=>{
+    requests.get('/sm/user/userInfo',{},callback)
+}
+const userEdit = (params,callback)=>{
+    requests.post('/sm/user/edit',params,callback)
+}
 export {userRegister,userLogin,catList,fetchProductList,
     getProductDetail,commentList,addressList,provinceList,
-    cityList,areaList, createAddress,fetchHotSell}
+    cityList,areaList, createAddress,fetchHotSell,userEdit,userInfo}
