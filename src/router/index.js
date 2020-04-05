@@ -37,7 +37,7 @@ export default new Router({
         ]
     },
     {
-        path:'/user',
+        path:'/login',
         component:()=>import('@/components/layout/LoginLayout.vue'),
         children:[
             {
@@ -65,6 +65,38 @@ export default new Router({
                 component:()=>import('@/components/product/Detail.vue')
             }
         ]
-    },
+    },{
+        path: '/user_center',
+        component:()=>import('@/components/layout/Layout.vue'),
+        children:[
+            {
+                path:'/',
+                name: 'UserOrder',
+                component:()=>import('@/components/user_center/UserLayout.vue'),
+                children:[
+                    {
+                        path:'/user_order',
+                        name: 'UserOrder',
+                        component:()=>import('@/components/user_center/UserOrder.vue')
+                    },
+                    {
+                        path:'/user_address',
+                        name: 'UserAddress',
+                        component:()=>import('@/components/user_center/UserAddress.vue')
+                    },
+                    {
+                        path:'/user_info',
+                        name: 'UserInfo',
+                        component:()=>import('@/components/user_center/UserInfo.vue')
+                    },
+                    {
+                        path:'/user_password',
+                        name: 'UserPassword',
+                        component:()=>import('@/components/user_center/UserPassword.vue')
+                    }
+                ]
+            }
+        ]
+        }
     ]
 })
