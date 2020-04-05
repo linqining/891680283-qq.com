@@ -115,7 +115,6 @@
         created(){
             userInfo((res)=>{
                 res.data.bir_temp = new Date(res.data.birthday)
-                console.log(res.data)
                 this.ruleForm=res.data
 
                 // this.ruleForm.bir_temp = new Date()

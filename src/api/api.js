@@ -55,6 +55,10 @@ const userInfo = (callback)=>{
 const userEdit = (params,callback)=>{
     requests.post('/sm/user/edit',params,callback)
 }
+
+const changePassword = (params,callback)=>{
+    requests.post('/sm/changePassword',params,callback)
+}
 export {userRegister,userLogin,catList,fetchProductList,
     getProductDetail,commentList,addressList,provinceList,
-    cityList,areaList, createAddress,fetchHotSell,userEdit,userInfo}
+    cityList,areaList, createAddress,fetchHotSell,userEdit,userInfo,changePassword}
