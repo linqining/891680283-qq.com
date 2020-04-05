@@ -81,7 +81,7 @@
     .nav-content{
         position:absolute;
         min-height:600px;
-        background-color: white;
+        /*background-color: white;*/
         width: 950px;
         left:250px;
     }

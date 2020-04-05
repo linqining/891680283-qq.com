@@ -1,11 +1,15 @@
 <template>
     <div class="head-title">
         <slot></slot>
+        <span class="time">
+            <slot name="time"></slot>
+        </span>
     </div>
 </template>
 <script>
     export default{
-        name:'PurchaseTitle'
+        name:'PurchaseTitle',
+
     }
 </script>
 <style scoped>
@@ -16,5 +20,12 @@
         font-size: 16px;
         text-align:left;
         padding-left:30px;
+        position: relative;
+    }
+    .time{
+        float:right;
+        position: absolute;
+        padding-right:30px;
+        right:0px;
     }
 </style>
