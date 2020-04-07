@@ -2,13 +2,13 @@
     <div id="header">
         <div class="top-links-container">
             <div class="top-links">
-                <div class="login-block">
-                <span class="login-left">
-                    <router-link to="/login">亲，请登录</router-link>
-                </span>
+                <div class="login-block" v-if="showLogin()">
+                    <span class="login-left">
+                        <router-link to="/login">亲，请登录</router-link>
+                    </span>
                     <span class="login-right">
-                    <router-link to="/register">免费注册</router-link>
-                </span>
+                        <router-link to="/register">免费注册</router-link>
+                    </span>
                 </div>
                 <div class="order-block" v-if="showOrder">
                     <span class="my-order">
@@ -18,8 +18,7 @@
                     <el-popover
                             placement="bottom-end"
                             width="500"
-                            trigger="manual"
-                            v-model="visible"
+                            trigger="click"
                     >
                         <div >
                             <div class="cart-item-list">
@@ -28,10 +27,10 @@
                             <button class="shopping-link" @click="goToCart">去购物袋结算</button>
 <!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
                         </div>
-                        <span class="shopping-cart"  slot="reference" @click="visible=!visible">
+                        <span class="shopping-cart"  slot="reference" >
                             <img :src="cart">
-                        <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>
-                    </span>
+                            <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>
+                        </span>
                     </el-popover>
                 </div>
             </div>
@@ -45,18 +44,38 @@
             </div>
             <div class="header-bg-wrap">
                 <img :src="logo">
-                <div id="nav-menu" v-if="showMenu">
+                <div id="nav-menu" v-if="showMenu" >
                     <div class="nav-container">
                         <div class="links-wrapper">
-                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品
-                            </a>
+<!--                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品-->
+<!--                            </a>-->
+
+
+                            <el-popover
+                                    placement="bottom-start"
+                                    :width="180"
+                                    trigger="click"
+                                    :visible-arrow="false"
+                                    class="all-product"
+                                    popper-class="popper-product"
+                                    :offset="12"
+                            >
+                                <span>
+                                        <el-cascader-panel v-show="true" :options="options" id="cascader-menu" :props="menuProps"
+                                                           @change="handleChange" ></el-cascader-panel>
+                                </span>
+                                <span class="shopping-cart"  slot="reference" >
+                                    <span class="el-icon-s-fold"></span>所有产品
+                                </span>
+                            </el-popover>
+
                             <router-link to="/">首页</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 95}}">灯具</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 10002}}">橱柜</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 10011}}">床上用品</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 23}}">家用电器</router-link>
-                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"
-                                               @change="handleChange"></el-cascader-panel>
+<!--                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"-->
+<!--                                               @change="handleChange" ></el-cascader-panel>-->
 
                         </div>
                     </div>
@@ -71,6 +90,7 @@
     import logo from '@/assets/image/layout/logo.png'
     import cart from '@/assets/image/layout/cart.png'
     import ShoppingCartItem from "../product/ShoppingCartItem";
+
 
     import { mapMutations } from 'vuex'
 
@@ -104,17 +124,11 @@
                     }
                 },
                 options:[],
-                visible: false
             }
         },
         methods:{
             handleChange(value){
-                // this.$store.state.productCategoryId = value[1]
-                // fetchProductList({categoryId: value[1],pageNum:1,pageSize:20},(result)=>{
-                //     this.setProductList(result.data)
-                //     this.$store.state.productTotal = result.total
-                //     this.showCat = false
-                // })
+                this.$store.state.productCategoryId = value[1]
                 this.showCat = false
                 if(this.$route.name==='ProductList' && this.$route.query.categoryId===value[1]){
                     console.log(value)
@@ -129,6 +143,14 @@
                 this.visible = !this.visible
                 if(this.$route.path!=='/shopping_cart'){
                     this.$router.push({path:'/shopping_cart',target:'_blank'})
+                }
+            },
+            showLogin(){
+                return ['Login','Register'].indexOf(this.$route.name)>=0
+            },
+            hideCascader(){
+                if(!this.mouseInCat){
+                    this.showCat=false
                 }
             },
             ...mapMutations(['setProductList'])
@@ -170,6 +192,7 @@
         margin:auto;
         position:relative;
         color: #7e8080;
+        height:20px;
     }
     .login-block,.order-block{
         display:inline-block;
@@ -222,6 +245,11 @@
     .cart-num{
         /*color: deeppink;*/
         color: #f7c85c
+    }
+    .all-product{
+        width:200px;
+        color:white;
+        padding: 15px 30px;
     }
 
     #nav-menu{
@@ -286,7 +314,7 @@
         position:absolute;
         background-color: #253a43;
         border:solid 1px #5a6478;
-        margin-top:55px;
+        /*margin-top:55px;*/
         z-index:2;
     }
     .el-cascader-menu{
@@ -309,5 +337,17 @@
         border:none;
         margin-top:20px;
         height:40px;
+    }
+    .el-popover{
+        padding: 0px;
+    }
+
+
+</style>
+<style>
+    .popper-product{
+        padding: 0px;
+        background: transparent;
+
     }
 </style>

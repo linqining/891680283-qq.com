@@ -3,7 +3,7 @@
         <div class='search-container'>
             <div>
                 <div class="search-wrapper">
-                    <input class="search-input" v-model="keyword">
+                    <input class="search-input" v-model="typeword">
                     <el-button class="btn-custom" @click="search">搜索</el-button>
                 </div>
             </div>
@@ -18,24 +18,40 @@
 </template>
 
 <script>
+    import {fetchProductList} from "@/api/api";
+    import { mapMutations } from 'vuex'
+
     export default{
         name:'HomeSearch',
         data(){
             return{
                 keyword:'',
-                searchItems:{97: '吊灯',10012: '白鸭绒被被芯',10004:'穿衣镜',10013: '枕头枕芯',26: '洗衣机'}
+                searchItems:{97: '吊灯',10012: '白鸭绒被被芯',10004:'穿衣镜',10013: '枕头枕芯',26: '洗衣机'},
+                typeword:'',
             }
         },
         components:{
         },
         methods:{
             search(){
-                console.log(this.keyword);
+
+                if(this.$route.name==='ProductList'){
+                    fetchProductList({pageNum:1,pageSize:12,search: this.typeword},(result)=>{
+                        this.setProductList(result.data)
+                        this.$store.state.productTotal = result.total
+                    })
+                }else{
+                    this.$router.push({path:'/list',query:{search: this.typeword}})
+                }
+
             },
             setItem(categoryId){
+                this.typeword=''
                 this.keyword = this.searchItems[categoryId];
                 this.$router.push({path:'/list',query:{categoryId: categoryId,search: this.keyword}})
-            }
+            },
+            ...mapMutations(['setProductList'])
+
         }
     }
 </script>

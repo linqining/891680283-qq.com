@@ -6,13 +6,12 @@
                     @size-change="handleSizeChange"
                     @current-change="handleCurrentChange"
                     :current-page="currentPage"
-                    :page-sizes="[100, 200, 300, 400]"
-                    :page-size="20"
+                    :page-size="12"
                     prev-text="上一页"
                     next-text="下一页"
                     layout="  prev, pager, next, total,jumper,slot"
                     :total="this.$store.state.productTotal">
-                <slot name="-"><button id="confirmJump" @click="handleCurrentChange">确定</button></slot>
+                <slot name="-"><button id="confirmJump" >确定</button></slot>
             </el-pagination>
 
         </div>
@@ -39,10 +38,8 @@
             $route:{
                 handler(newVal,oldVal){
                     if(newVal.query.categoryId!==oldVal.query.categoryId){
-                        fetchProductList({categoryId: newVal.query.categoryId,pageNum:1,pageSize:20,search: newVal.query.search},(result)=>{
-                            this.setProductList(result.data)
-                            this.$store.state.productTotal = result.total
-                        })
+                        this.$store.state.productCategoryId = newVal.query.categoryId
+                        this.queryPage(1)
                     }
                 },
                 intermidate: true,
@@ -55,22 +52,30 @@
             }
         },
         created(){
-            fetchProductList({categoryId: this.$route.query.categoryId,pageNum:1,pageSize:20,search: this.$route.query.search},(result)=>{
-                this.setProductList(result.data)
-                this.$store.state.productTotal = result.total
-            })
+            this.$store.state.productCategoryId = this.$route.query.categoryId
+            this.queryPage(1)
         },
         methods:{
             showDetail(productId){
-                console.log(productId)
                 this.$router.push({name:'ProductDetail',params:{productId: productId}})
             },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
             },
             handleCurrentChange(val) {
-                this.currentPage = val
-                fetchProductList({categoryId: this.$store.state.productCategoryId,pageNum:val,pageSize:20},(result)=>{
+                this.queryPage(val)
+            },
+            queryPage(pageNum){
+                this.currentPage = pageNum
+                let typeWord = this.$route.query.search || this.typeword
+                // 这个商城的搜索很奇怪，如果关键采用categoryid搜索
+                let baseParam = {pageNum:pageNum,pageSize:12,search: typeWord}
+                if(typeWord){
+                    baseParam.search = typeWord
+                }else{
+                    baseParam.categoryId = this.$store.state.productCategoryId
+                }
+                fetchProductList(baseParam,(result)=>{
                     this.setProductList(result.data)
                     this.$store.state.productTotal = result.total
                 })
@@ -83,7 +88,7 @@
     .product-list{
         width:1200px;
         margin:auto;
-        /*text-align: left;*/
+        text-align: left;
         background-color: white;
         margin-top: 30px;
         margin-bottom: 30px;

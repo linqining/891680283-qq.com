@@ -1,5 +1,8 @@
 import axios from 'axios'
 import { Message } from 'element-ui';
+import Router from '@/router/index'
+
+
 let http = axios.create({
     baseURL: 'http://47.107.62.230:9081',
     timeout: 5000,
@@ -55,11 +58,13 @@ http.interceptors.request.use(config => {
 // response interceptor（接收拦截器）
 http.interceptors.response.use((response) => {
     const res = response.data
-    if (res.errcode !== '000000') {
-        Message.error(res.errmsg)
-        // return Promise.reject('error')
-    } else {
+    if (res.errcode === '000000') {
         return res
+    }else if(res.errcode==='000003'){
+        Router.push({name:'Login'})
+    }else{
+        Message.error(res.errmsg)
+        return Promise.reject('error')
     }
 }, err)
 

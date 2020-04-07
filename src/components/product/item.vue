@@ -57,7 +57,7 @@
         display:inline-block;
         width: 250px;
         height: 400px;
-        padding: 20px;
+        padding: 20px 25px;
     }
     .price-tag{
         text-align: left;
