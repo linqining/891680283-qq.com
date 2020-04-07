@@ -5,27 +5,47 @@
         <img :src="newProduct" class="new-product">
         <ul class="new-product-list">
             <li>
-                <img :src="product1">
+                <router-link :to="{path:'/detail',query:{productId: 'b1a81dc9af9311e99fe37085c2a6d524'}}">
+                    <img :src="product1">
+                </router-link>
             </li>
             <li>
-                <img :src="product2">
+                <router-link :to="{path:'/detail',query:{productId: 'b1cbd931af9311e99fe37085c2a6d524'}}">
+                    <img :src="product2">
+                </router-link>
             </li>
             <li>
-                <img :src="product3">
+                <router-link :to="{path:'/detail',query:{productId: 'b2042b84af9311e99fe37085c2a6d524'}}">
+                    <img :src="product3">
+                </router-link>
             </li>
         </ul>
-        <img :src="sellingPoint" class="selling-point">
-        <img :src="productHall" class="product-hall">
-        <img :src="product4" class="product4">
+
+        <router-link :to="{path:'/detail',query:{productId: 'b350d63faf9311e99fe37085c2a6d524'}}">
+            <img :src="sellingPoint" class="selling-point">
+        </router-link>
+        <router-link :to="{path:'/detail',query:{productId: 'b27f9b9faf9311e99fe37085c2a6d524'}}">
+            <img :src="productHall" class="product-hall">
+        </router-link>
+
+        <router-link :to="{path:'/detail',query:{productId: 'd4e5c6c9af9311e99fe37085c2a6d524'}}">
+            <img :src="product4" class="product4">
+        </router-link>
         <ul class="new-product-list2">
             <li>
-                <img :src="product1">
+                <router-link :to="{path:'/detail',query:{productId: 'd47e825eaf9311e99fe37085c2a6d524'}}">
+                    <img :src="product5">
+                </router-link>
             </li>
             <li>
-                <img :src="product2">
+                <router-link :to="{path:'/detail',query:{productId: 'd39f41a1af9311e99fe37085c2a6d524'}}">
+                    <img :src="product6">
+                </router-link>
             </li>
             <li>
-                <img :src="product3">
+                <router-link :to="{path:'/detail',query:{productId: 'd43eb304af9311e99fe37085c2a6d524'}}">
+                    <img :src="product7">
+                </router-link>
             </li>
         </ul>
     </div>
