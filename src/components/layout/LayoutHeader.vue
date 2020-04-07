@@ -23,21 +23,14 @@
                     >
                         <div >
                             <div class="cart-item-list">
-                                <shopping-cart-item v-for="(item,index) in this.$store.state.productList" :key="index" :item="item"></shopping-cart-item>
-<!--                                <div class="cart-item" v-for="(item,index) in this.$store.state.productList" :key="index">-->
-<!--                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.abbreviationFile">-->
-<!--                                    <div class="desc-block">-->
-<!--                                        <div class="product-name">{{item.productName}}</div>-->
-<!--                                        <div class="buy-num"><strong>{{item.productPrice}}X1</strong></div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>
                             </div>
                             <button class="shopping-link" @click="goToCart">去购物袋结算</button>
 <!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
                         </div>
                         <span class="shopping-cart"  slot="reference" @click="visible=!visible">
                             <img :src="cart">
-                        <span>购物车(<span class="cart-num">0</span>)</span>
+                        <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>
                     </span>
                     </el-popover>
                 </div>
@@ -157,6 +150,11 @@
             showMenu:{
                 type:Boolean,
                 default:true
+            }
+        },
+        created(){
+            if(localStorage['cartItems']){
+                this.$store.state.cartItems = JSON.parse(localStorage['cartItems'])
             }
         }
     }
@@ -289,7 +287,7 @@
         background-color: #253a43;
         border:solid 1px #5a6478;
         margin-top:55px;
-
+        z-index:2;
     }
     .el-cascader-menu{
         /*border:none;*/

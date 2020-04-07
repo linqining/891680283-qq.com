@@ -3,7 +3,7 @@
         <div class="table-wrapper">
             <el-table
                     ref="multipleTable"
-                    :data="tableData"
+                    :data="$store.state.cartItems"
                     tooltip-effect="dark"
                     style="width: 100%"
                     @selection-change="handleSelectionChange">
@@ -24,13 +24,13 @@
                         width="auto">
                 </el-table-column>
                 <el-table-column
-                        prop="productPrice"
+                        prop="unitPrice"
                         label="单价"
                         width="auto"
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="inventoryCount"
+                        prop="count"
                         label="数量"
                         width="auto"
                 >
@@ -46,7 +46,7 @@
 <!--                <span>清空失效商品</span>-->
             </div>
             <div class="summary">
-                <div>商品<span class="num">3</span>件，商品金额： ￥3693</div>
+                <div>商品<span class="num">{{multipleSelection.length}}</span>件，商品金额： ￥3693</div>
                 <custom-button>去结算</custom-button>
             </div>
         </div>

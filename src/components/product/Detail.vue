@@ -42,7 +42,7 @@
                 </ul>
                 <div class="action-list">
                     <button class="purchase" @click="buyNow">立即购买</button>
-                    <button class="favourite"><span class="el-icon-shopping-bag-2"></span>加入购物袋</button>
+                    <button class="favourite" @click="addToCart"><span class="el-icon-shopping-bag-2"></span>加入购物袋</button>
                 </div>
             </div>
         </el-card>
@@ -135,7 +135,6 @@
             getProductDetail(this.$route.params.productId,(result)=>{
                 console.log(result.data)
                 this.productDetail = result.data
-
                 this.priceDiscounted = result.data.product.productPrice
                 this.priceOrigin = result.data.product.preProductPrice
             })
@@ -144,12 +143,10 @@
                 page: 1,
                 pageSize: 20
             },(res)=>{
-                console.log(res)
                 this.comments = res.data.comments;
             })
             fetchHotSell((res)=>{
                 this.hotList = res.data
-                console.log(res)
             })
 
         },
@@ -176,6 +173,29 @@
                 }
                 let size = this.productDetail.product.sizeList[this.activeIndex-1].size
                 this.$router.push({name:'Purchase', params:{price: this.priceDiscounted,size: size,num: this.buyNum}})
+            },
+            addToCart(){
+                if(this.activeIndex===0){
+                    this.$message.error('请选择尺寸')
+                    return
+                }
+                let cartItems = []
+                if(localStorage['cartItems']){
+                    cartItems = JSON.parse(localStorage['cartItems'])
+                }
+
+                cartItems.push({
+                    productId: this.productDetail.product.id,
+                    fileId: this.productDetail.thumb[0].fileId,
+                    filePath: this.productDetail.thumb[0].filePath,
+                    productName: this.productDetail.product.productName,
+                    totalPrice: this.priceDiscounted*this.buyNum,
+                    count: this.buyNum,
+                    size: this.productDetail.product.sizeList[this.activeIndex-1].size,
+                    unitPrice: this.priceDiscounted
+                })
+                this.$store.state.cartItems = cartItems
+                localStorage['cartItems'] = JSON.stringify(cartItems)
             }
         }
     }

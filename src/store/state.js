@@ -6,6 +6,7 @@ const state = {
     addressSuccess: false,
     productTotal: 0,
     productCategoryId: '',
+    cartItems:[]
 }
 
 export default state

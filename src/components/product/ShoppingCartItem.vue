@@ -1,9 +1,9 @@
 <template>
     <div class="cart-item">
-        <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.abbreviationFile">
+        <img :src="'http://47.107.62.230:9080/repo/tb/'+item.filePath">
         <div class="desc-block">
             <div class="product-name">{{item.productName}}</div>
-            <div class="buy-num" v-if="show_price"><strong>{{item.productPrice}}X1</strong></div>
+            <div class="buy-num" v-if="show_price"><strong>{{item.unitPrice}}X{{item.count}}</strong></div>
         </div>
     </div>
 </template>
