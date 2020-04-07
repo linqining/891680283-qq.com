@@ -35,13 +35,30 @@
         components:{
             ProductItem
         },
+        watch:{
+            $route:{
+                handler(newVal,oldVal){
+                    if(newVal.query.categoryId!==oldVal.query.categoryId){
+                        fetchProductList({categoryId: newVal.query.categoryId,pageNum:1,pageSize:20,search: newVal.query.search},(result)=>{
+                            this.setProductList(result.data)
+                            this.$store.state.productTotal = result.total
+                        })
+                    }
+                },
+                intermidate: true,
+                deep:true
+            }
+        },
         data(){
             return{
                 currentPage: 1,
             }
         },
         created(){
-
+            fetchProductList({categoryId: this.$route.query.categoryId,pageNum:1,pageSize:20,search: this.$route.query.search},(result)=>{
+                this.setProductList(result.data)
+                this.$store.state.productTotal = result.total
+            })
         },
         methods:{
             showDetail(productId){

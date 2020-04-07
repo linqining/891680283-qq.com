@@ -2,7 +2,9 @@
     <div class="cart-item">
         <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.fileId">
         <div class="desc-block">
-            <div class="product-name">{{item.productName}}</div>
+            <router-link :to="{path:'/detail',query:{productId: item.productId}}">
+                <div class="product-name">{{item.productName}}</div>
+            </router-link>
             <div class="buy-num" v-if="show_price"><strong>{{item.unitPrice}}X{{item.count}}</strong></div>
         </div>
     </div>
@@ -42,6 +44,9 @@
     .desc-block .buy-num{
         display:inline-block;
         float:right;
+    }
+    .desc-block a{
+        color: black;
     }
     .cart-item{
         vertical-align: top;

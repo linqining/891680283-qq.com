@@ -9,7 +9,7 @@
             </div>
             <div>
                 <ul class="fast-search">
-                    <li v-for="item in searchItems" :key="item" @click="setItem(item)">{{item}}</li>
+                    <li v-for="(value,key) in searchItems" :key="key" @click="setItem(key)">{{value}}</li>
                 </ul>
             </div>
 
@@ -23,7 +23,7 @@
         data(){
             return{
                 keyword:'',
-                searchItems:['打印机','碎纸机','投影仪','复印机','扫描仪','U盘','移动硬盘']
+                searchItems:{97: '吊灯',10012: '白鸭绒被被芯',10004:'穿衣镜',10013: '枕头枕芯',26: '洗衣机'}
             }
         },
         components:{
@@ -32,8 +32,9 @@
             search(){
                 console.log(this.keyword);
             },
-            setItem(item){
-                this.keyword = item;
+            setItem(categoryId){
+                this.keyword = this.searchItems[categoryId];
+                this.$router.push({path:'/list',query:{categoryId: categoryId,search: this.keyword}})
             }
         }
     }

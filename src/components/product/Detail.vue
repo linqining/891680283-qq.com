@@ -54,7 +54,9 @@
                     <div class="fellow-buy">大家都在买</div>
                     <div class="hot-item" v-for="(item,index) in hotList" :key="index">
                         <img :src="'http://47.107.62.230:9080/repo/tb/'+item.relaList[0].filePath">
-                        <div><span>{{item.productName}}</span></div>
+                        <router-link :to="{path:'/detail',query:{productId: item.id}}">
+                            <div><span>{{item.productName}}</span></div>
+                        </router-link>
                         <div class="price"><strong>￥{{item.productPrice}}</strong></div>
                     </div>
                 </el-card>
@@ -72,7 +74,7 @@
                         <el-tab-pane label="产品评论" name="second">
                             <div class="comment-row" v-for="(item,index) in comments" :key="index">
                                 <div class="comment-left">
-                                    <img src="">
+                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.id">
                                     <div>{{item.userName}}</div>
                                 </div>
                                 <div class="comment-right">
@@ -128,18 +130,39 @@
                 hotList:[],
             }
         },
+        watch:{
+            $route:{
+                handler(newVal,oldVal){
+                    if(newVal.query.productId!==oldVal.query.productId){
+                        getProductDetail(newVal.query.productId,(result)=>{
+                            this.productDetail = result.data
+                            this.priceDiscounted = result.data.product.productPrice
+                            this.priceOrigin = result.data.product.preProductPrice
+                        })
+                        commentList({
+                            productId: newVal.query.productId,
+                            page: 1,
+                            pageSize: 20
+                        },(res)=>{
+                            this.comments = res.data.comments;
+                        })
+                    }
+                },
+                intermidate: true,
+                deep:true
+            }
+        },
         props:{
 
         },
         created(){
-            getProductDetail(this.$route.params.productId,(result)=>{
-                console.log(result.data)
+            getProductDetail(this.$route.query.productId,(result)=>{
                 this.productDetail = result.data
                 this.priceDiscounted = result.data.product.productPrice
                 this.priceOrigin = result.data.product.preProductPrice
             })
             commentList({
-                productId: this.$route.params.productId,
+                productId: this.$route.query.productId,
                 page: 1,
                 pageSize: 20
             },(res)=>{
@@ -410,6 +433,10 @@
     .hot-item{
         height:300px;
         padding: 15px 10px;
+    }
+    .hot-item a{
+        color: black;
+        text-decoration: none;
     }
 
     .hot-item img{

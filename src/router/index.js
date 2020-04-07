@@ -52,7 +52,7 @@ export default new Router({
         ]
     },{
         path:'/product',
-        component:()=>import('@/components/layout/Layout.vue'),
+        component:()=>import('@/components/layout/HomeLayout.vue'),
         children:[
             {
                 path:'/list',

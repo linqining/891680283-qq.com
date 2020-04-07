@@ -1,5 +1,5 @@
 <template>
-    <router-link  :to="{name: 'ProductDetail',params:{productId: data.id}}" class="detail-link">
+    <router-link  :to="{path: '/detail',query:{productId: data.id}}" class="detail-link">
         <div class="product-card">
             <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+data.abbreviationFile" class="product-cover">
             <div>
