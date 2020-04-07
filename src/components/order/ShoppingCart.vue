@@ -42,8 +42,8 @@
             <el-checkbox class="select-all" v-model="checked" @change="selectAll">全选</el-checkbox>
             <div class="actions">
                 <span>删除选中商品</span>
-                <span>移入收藏夹</span>
-                <span>清空失效商品</span>
+<!--                <span>移入收藏夹</span>-->
+<!--                <span>清空失效商品</span>-->
             </div>
             <div class="summary">
                 <div>商品<span class="num">3</span>件，商品金额： ￥3693</div>
@@ -53,15 +53,18 @@
 
         <div class="recommend-good">
             <el-card >
+                <span class="refresh-products" v-if="activeName==='first'" @click="changeSlice"><span class="el-icon-refresh-right"></span>换一批</span>
                 <el-tabs  class="recommend-tab" v-model="activeName" type="card" @tab-click="handleClick">
+
                     <el-tab-pane label="为你优选" name="first">
+
                         <div>
-                            <recommend-item v-for="(item,index) in this.tableData.slice(0,5)" :key="index" :item="item"></recommend-item>
+                            <recommend-item v-for="(item,index) in this.hotSellSlice" :key="index" :item="item"></recommend-item>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="最近浏览" name="second">
                         <div>
-                            <recommend-item v-for="(item,index) in this.tableData.slice(0,5)" :key="index" :item="item"></recommend-item>
+                            <history-item v-for="(item,index) in this.historyProduct" :key="index" :item="item"></history-item>
                         </div>
                     </el-tab-pane>
                 </el-tabs>
@@ -70,9 +73,10 @@
     </div>
 </template>
 <script>
-    import {fetchProductList} from "../../api/api";
+    import {fetchProductList,fetchHotSell} from "../../api/api";
     import ShoppingCartItem from "../product/ShoppingCartItem";
     import RecommendItem from "../other/RecommendItem";
+    import HistoryItem from "../other/HistoryItem";
     import CustomButton from "../other/CustomButton";
 
     export default{
@@ -83,16 +87,28 @@
                 multipleSelection:[],
                 checked:false,
                 activeName:'first',
+                historyProduct:[],
+                hotSellList:[],
+                sliceAlter:0,
+                hotSellSlice:[],
             }
         },
         components:{
+            HistoryItem,
             CustomButton,
           ShoppingCartItem,
             RecommendItem
         },
         created(){
+            if(localStorage['productHistory']){
+                this.historyProduct = JSON.parse(localStorage['productHistory'])
+            }
             fetchProductList({categoryId: '10002',pageNum:1,pageSize:20},(res)=>{
                 this.tableData = res.data
+            })
+            fetchHotSell((res)=>{
+                this.hotSellList = res.data
+                this.hotSellSlice = this.hotSellList.slice(0,5)
             })
         },
         methods:{
@@ -117,6 +133,15 @@
             },
             handleClick(){
 
+            },
+            changeSlice(){
+                if(this.sliceAlter===0){
+                    this.hotSellSlice = this.hotSellList.slice(5,10)
+                    this.sliceAlter=1
+                }else{
+                    this.hotSellSlice = this.hotSellList.slice(0,5)
+                    this.sliceAlter=0
+                }
             }
 
         }
@@ -137,6 +162,7 @@
         margin-top:30px;
         text-align:left;
         padding: 50px;
+        height: 65px;
         background-color: white;
     }
     .select-all{
@@ -156,10 +182,14 @@
         display: inline-block;
         float:right;
         text-align:right;
+        /*position:absolute;*/
+        right:0px;
     }
     .recommend-good{
         margin-top:50px;
         margin-bottom:200px;
+        text-align: left;
+        position: relative;
     }
     .is_active_thumb{
         background-color: #f7c85c;
@@ -175,4 +205,14 @@
     .recommend-tab /deep/ .el-tabs__item{
         border-bottom: 2px solid #f7c85c;
     }
+    .custom-button{
+        margin-top: 20px;
+    }
+    .refresh-products{
+        z-index:10;
+        position:absolute;
+        right:0;
+        margin-right:20px;
+    }
+
 </style>

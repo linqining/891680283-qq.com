@@ -100,7 +100,7 @@
     import CustomButton from "../other/CustomButton";
     import {addressList} from '@/api/api.js'
     import { mapGetters,mapMutations } from 'vuex'
-    import {fetchProductList} from "../../api/api";
+    import {fetchProductList} from "@/api/api";
     import alipay from '@/assets/image/payment/alipay.png'
     import bank_card from '@/assets/image/payment/bank_card.png'
     import wechat from '@/assets/image/payment/wechat.png'
@@ -168,6 +168,9 @@
             fetchProductList({categoryId: '10002',pageNum:1,pageSize:20},(res)=>{
                 this.tableData = res.data
             })
+            // payType((res)=>{
+            //     console.log(res)
+            // })
         }
     }
 </script>

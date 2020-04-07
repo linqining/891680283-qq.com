@@ -78,6 +78,31 @@ function apiAxios(method, url, params, response) {
     })
 }
 
+function productDetail(productid,response){
+    http({
+        method: 'GET',
+        url: '/sm/product/detail',
+        params: {productId: productid}
+    }).then(function (res) {
+        let hisArr=[]
+        if(localStorage['productHistory']){
+            hisArr= JSON.parse(localStorage['productHistory'])
+        }
+        let existIndex = hisArr.findIndex((item)=>item.product.id===res.data.product.id)
+        while(existIndex>=0){
+            hisArr.splice(existIndex,1)
+            existIndex = hisArr.findIndex((item)=>item.product.id===res.data.product.id)
+        }
+        hisArr.push(res.data)
+        while(hisArr.length>5){
+            hisArr.shift()
+        }
+        localStorage['productHistory'] = JSON.stringify(hisArr)
+        response(res);
+    }).catch(function (err) {
+        response(err);
+    })
+}
 
 
 
@@ -95,5 +120,6 @@ export default {
     },
     delete: function (url, params, response) {
         return apiAxios('DELETE', url, params, response)
-    }
+    },
+    productDetail: productDetail
 }

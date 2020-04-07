@@ -27,7 +27,8 @@ const fetchHotSell = (callback)=>{
 }
 
 const getProductDetail = (productid,callback)=>{
-    requests.get('/sm/product/detail',{productId: productid},callback)
+    // requests.get('/sm/product/detail',{productId: productid},callback)
+    requests.productDetail(productid,callback)
 }
 
 const commentList = (params,callback)=>{
@@ -59,6 +60,23 @@ const userEdit = (params,callback)=>{
 const changePassword = (params,callback)=>{
     requests.post('/sm/changePassword',params,callback)
 }
+
+const payType = (callback)=>{
+    requests.get('/sm/order/payType',{},callback)
+}
+
+const createOrder = (params,callback)=>{
+    requests.post('/sm/order/createOrder',params,callback)
+}
+const orderDetail = (params,callback)=>{
+    requests.post('/sm/order/orderDetail',params,callback)
+}
+
+// 订单状态 0:全部 1:待支付 2:待收货 3:已完成
+const  orderList = (orderType,callback)=>{
+    requests.post('/sm/order/list/'+orderType,{},callback)
+}
 export {userRegister,userLogin,catList,fetchProductList,
     getProductDetail,commentList,addressList,provinceList,
-    cityList,areaList, createAddress,fetchHotSell,userEdit,userInfo,changePassword}
+    cityList,areaList, createAddress,fetchHotSell,userEdit,
+    userInfo,changePassword,payType,createOrder,orderDetail,orderList}
