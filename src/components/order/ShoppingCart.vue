@@ -30,10 +30,12 @@
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="count"
                         label="数量"
                         width="auto"
                 >
+                    <template slot-scope="scope">
+                        <el-input-number v-model="scope.row.count" @change="handleChange(scope.$index)" :min="1" label="描述文字"></el-input-number>
+                    </template>
                 </el-table-column>
             </el-table>
         </div>
@@ -41,12 +43,12 @@
         <div class="action-list">
             <el-checkbox class="select-all" v-model="checked" @change="selectAll">全选</el-checkbox>
             <div class="actions">
-                <span>删除选中商品</span>
+                <span @click="deleteProducts">删除选中商品</span>
 <!--                <span>移入收藏夹</span>-->
 <!--                <span>清空失效商品</span>-->
             </div>
             <div class="summary">
-                <div>商品<span class="num">{{multipleSelection.length}}</span>件，商品金额： ￥3693</div>
+                <div>商品<span class="num">{{totalCount}}</span>件，商品金额： ￥{{totalPrice}}</div>
                 <custom-button>去结算</custom-button>
             </div>
         </div>
@@ -93,6 +95,22 @@
                 hotSellSlice:[],
             }
         },
+        computed:{
+            totalPrice(){
+                let total = 0
+                this.multipleSelection.forEach((item)=>{
+                    total+= item.unitPrice*item.count
+                })
+                return total
+            },
+            totalCount(){
+                let total = 0
+                this.multipleSelection.forEach((item)=>{
+                    total+= item.count
+                })
+                return total
+            }
+        },
         components:{
             HistoryItem,
             CustomButton,
@@ -124,6 +142,10 @@
             handleSelectionChange(val) {
                 this.multipleSelection = val;
             },
+            deleteProducts(){
+                let selectProductIds = this.multipleSelection.map(item=>{return item.productId})
+                this.$store.state.cartItems = this.$store.state.cartItems.filter((value)=>{ return selectProductIds.indexOf(value.productId)<0})
+            },
             selectAll(){
                 this.$refs.multipleTable.clearSelection();
                 if(this.checked){
@@ -133,6 +155,9 @@
             },
             handleClick(){
 
+            },
+            handleChange(index){
+                this.multipleSelection[index].totalPrice = this.multipleSelection[index].unitPrice*this.multipleSelection[index].count
             },
             changeSlice(){
                 if(this.sliceAlter===0){

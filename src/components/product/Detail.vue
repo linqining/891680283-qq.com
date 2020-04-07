@@ -183,17 +183,25 @@
                 if(localStorage['cartItems']){
                     cartItems = JSON.parse(localStorage['cartItems'])
                 }
-
-                cartItems.push({
-                    productId: this.productDetail.product.id,
-                    fileId: this.productDetail.thumb[0].fileId,
-                    filePath: this.productDetail.thumb[0].filePath,
-                    productName: this.productDetail.product.productName,
-                    totalPrice: this.priceDiscounted*this.buyNum,
-                    count: this.buyNum,
-                    size: this.productDetail.product.sizeList[this.activeIndex-1].size,
-                    unitPrice: this.priceDiscounted
+                let existIndex = cartItems.findIndex((item)=>{
+                    return item.productId===this.productDetail.product.id && item.size === this.productDetail.product.sizeList[this.activeIndex-1].size && item.unitPrice=== this.priceDiscounted
                 })
+
+                if(existIndex>=0){
+                    cartItems[existIndex]['count']+=this.buyNum
+                    cartItems[existIndex]['totalPrice'] = cartItems[existIndex].count*cartItems[existIndex].unitPrice
+                }else{
+                    cartItems.push({
+                        productId: this.productDetail.product.id,
+                        fileId: this.productDetail.thumb[0].id,
+                        filePath: this.productDetail.thumb[0].filePath,
+                        productName: this.productDetail.product.productName,
+                        totalPrice: this.priceDiscounted*this.buyNum,
+                        count: this.buyNum,
+                        size: this.productDetail.product.sizeList[this.activeIndex-1].size,
+                        unitPrice: this.priceDiscounted
+                    })
+                }
                 this.$store.state.cartItems = cartItems
                 localStorage['cartItems'] = JSON.stringify(cartItems)
             }

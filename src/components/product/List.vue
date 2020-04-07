@@ -1,7 +1,6 @@
 <template>
     <div class="product-list">
         <product-item v-for="(item,index) in this.getProductList" :key="index"  :data="item" @click="showDetail(item.id)"></product-item>
-
         <div class="pager-block">
             <el-pagination
                     @size-change="handleSizeChange"
@@ -67,7 +66,10 @@
     .product-list{
         width:1200px;
         margin:auto;
-        text-align: left;
+        /*text-align: left;*/
+        background-color: white;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
     .pager-block{
         text-align: center;
@@ -78,6 +80,5 @@
     }
     .el-pagination /deep/  button.btn-next,.el-pagination /deep/  button.btn-prev{
         border:1px solid black;
-
     }
 </style>
