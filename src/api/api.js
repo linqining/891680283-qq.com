@@ -74,7 +74,7 @@ const orderDetail = (params,callback)=>{
 
 // 订单状态 0:全部 1:待支付 2:待收货 3:已完成
 const  orderList = (orderType,callback)=>{
-    requests.post('/sm/order/list/'+orderType,{},callback)
+    requests.get('/sm/order/list/'+orderType,{},callback)
 }
 export {userRegister,userLogin,catList,fetchProductList,
     getProductDetail,commentList,addressList,provinceList,

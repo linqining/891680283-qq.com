@@ -13,12 +13,14 @@
                 </thead>
             </table>
         </div>
-        <user-order-item :order="order">
+        <user-order-item v-for="(item,index) in orders" :order="item" :key="index">
         </user-order-item>
     </div>
 </template>
 <script>
     import UserOrderItem from "./UserOrderItem";
+    import {orderList} from "@/api/api";
+
     export default{
         name: 'UserOrder',
         components: {UserOrderItem},
@@ -26,6 +28,7 @@
             return{
                 orderStatus: ['全部订单','待付款','待收货','已完成'],
                 activeStatus: 0,
+                orders:[],
                 order:{
                     sn: '20032732188382',
                     created_at: '2020-2-20/19:35',
@@ -91,7 +94,10 @@
             }
         },
         created(){
-
+            orderList(0,(res)=>{
+                this.orders = res.data
+                // console.log(res)
+            })
         }
     }
 </script>

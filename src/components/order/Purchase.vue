@@ -12,7 +12,7 @@
         <purchase-title>商品清单</purchase-title>
         <div class="product-table">
             <el-table
-                    :data="tableData"
+                    :data="$route.params.orderItems"
                     style="width: 100%">
                 <el-table-column
                         label="商品信息"
@@ -27,25 +27,25 @@
                         width="auto">
                 </el-table-column>
                 <el-table-column
-                        prop="productPrice"
+                        prop="unitPrice"
                         label="单价"
                         width="auto"
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="inventoryCount"
+                        prop="count"
                         label="数量"
                         width="auto"
                 >
                 </el-table-column>
             </el-table>
-            <div class="total-price"><strong>商品金额：￥13000</strong></div>
+            <div class="total-price"><strong>商品金额：￥{{totalPrice}}</strong></div>
         </div>
         <purchase-title>购买方式</purchase-title>
         <div class="purchase-way">
             <div class="delivery-way">
                 <span class="purchase-title"> 配送方式：</span>
-                <el-radio-group v-model="delivery">
+                <el-radio-group v-model="logistics">
                     <el-radio :label="3">顺丰</el-radio>
                     <el-radio :label="6">平邮</el-radio>
                     <el-radio :label="9">EMS</el-radio>
@@ -54,18 +54,18 @@
             <div class = purchase-bank>
                 <div class="pay-way">
                     <span class="purchase-title"> 支付方式：</span>
-                    <el-radio-group v-model="purchase">
-                        <el-radio :label="3">
+                    <el-radio-group v-model="paymentWay">
+                        <el-radio :label="2">
                             <img class="pay-img" :src="unionpay">
                         </el-radio>
                         <span class="recommend">推荐方式</span>
-                        <el-radio :label="6">
+                        <el-radio :label="4">
                             <img class="pay-img"  :src="alipay">
                         </el-radio>
-                        <el-radio :label="9">
+                        <el-radio :label="5">
                             <img class="pay-img" :src="wechat">
                         </el-radio>
-                        <el-radio :label="12">
+                        <el-radio :label="3">
                             <img class="pay-img" :src="bank_card">
                         </el-radio>
                     </el-radio-group>
@@ -74,12 +74,12 @@
         </div>
         <div class="divider"></div>
         <div class="summary">
-            <div>商品金额：￥13000</div>
+            <div>商品金额：￥{{totalPrice}}</div>
             <div>运费：￥0</div>
-            <div class="sum-price">待支付： ￥13000</div>
+            <div class="sum-price">待支付： ￥{{totalPrice}}</div>
             <div>送货至：{{this.getAddressList[selectAddressIndex] ? this.getAddressList[selectAddressIndex].detail : ''}} </div>
             <div>
-                <custom-button class="submit-order">提交订单</custom-button>
+                <custom-button class="submit-order" @click.native="submitOrder">提交订单</custom-button>
             </div>
         </div>
 
@@ -98,7 +98,7 @@
     import AddressForm from "../address/AddressForm";
     import ShoppingCartItem from "../product/ShoppingCartItem";
     import CustomButton from "../other/CustomButton";
-    import {addressList} from '@/api/api.js'
+    import {addressList,createOrder} from '@/api/api.js'
     import { mapGetters,mapMutations } from 'vuex'
     import {fetchProductList} from "@/api/api";
     import alipay from '@/assets/image/payment/alipay.png'
@@ -112,7 +112,14 @@
             ...mapGetters([
                 'getAddressList',
                 'getAddressSuccess'
-            ])
+            ]),
+            totalPrice(){
+                let total = 0
+                this.$route.params.orderItems.forEach((value)=>{
+                    total += value.unitPrice*value.count
+                })
+                return total
+            }
         },
         watch:{
             getAddressSuccess(){
@@ -127,8 +134,8 @@
                 selectAddressIndex:0,
                 dialogVisible: false,
                 tableData: [],
-                delivery: '',
-                purchase:'',
+                logistics: '',
+                paymentWay:4,
                 alipay: alipay,
                 wechat:wechat,
                 unionpay: unionpay,
@@ -153,6 +160,22 @@
             submitForm(){
                 this.$store.state.addressSubmit = true
                 // this.dialogVisible = false
+            },
+            submitOrder(){
+                let sub_params={
+                    "totalPrice": this.$route.params.totalPrice,
+                    "address": this.getAddressList[this.selectAddressIndex].address,
+                    "phoneNum": this.getAddressList[this.selectAddressIndex].phoneNum,
+                    "paymentWay": this.paymentWay,
+                    "logistics":  this.logistics,
+                    "postalCode": this.getAddressList[this.selectAddressIndex].positalCode,
+                    "orderItem": this.$route.params.orderItems
+                }
+                createOrder(sub_params,(res)=>{
+                    if(res.errmsg==='ok'){
+                        this.$message.success('创建成功')
+                    }
+                })
             },
             ...mapMutations(['setAddressList'])
         },

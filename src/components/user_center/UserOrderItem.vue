@@ -7,17 +7,17 @@
         <table class="order-table">
             <tr>
                 <td class="product-cell">
-                    <shopping-cart-item class="product" v-for="(item,index) in order.productList" :key="index" :item="item"></shopping-cart-item>
+                    <shopping-cart-item class="product" v-for="(item,index) in order.orderItem" :key="index" :item="item"></shopping-cart-item>
                 </td>
-                <td>{{order.totalPrice}}</td>
-                <td>
-                    <span>{{order.orderStatus}}</span>
+                <td class="second-cell">{{order.totalPrice}}</td>
+                <td class="third-cell">
+                    <span>{{order.state===0 ? '未完成' :'已完成'}}</span>
                 </td>
-                <td>
-                    <button id="buyAgain" v-if="order.paymentStatus">再次购买</button>
-                </td>
-                <td>
-                    <button id="confirmReceive">确认收获</button>
+<!--                <td>-->
+<!--                    <button id="buyAgain" v-if="order.paymentStatus">再次购买</button>-->
+<!--                </td>-->
+                <td class="forth-cell">
+                    <button v-if="order.state===0" id="confirmReceive">确认收货</button>
                 </td>
             </tr>
         </table>
@@ -48,7 +48,16 @@
         border-right: 1px solid #DEDBDC;
     }
     .product-cell{
-        width:400px;
+        width:600px;
+    }
+    .second-cell{
+        width:200px;
+    }
+    .third-cell{
+        width:200px;
+    }
+    .forth-cell{
+        width: 200px;
     }
     .product{
         border-bottom: 1px solid #DEDBDC;

@@ -12,7 +12,7 @@
                 </div>
                 <div class="order-block" v-if="showOrder">
                     <span class="my-order">
-                        <router-link :to="{name: 'Orders'}">我的订单</router-link>
+                        <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
                     </span >
 
                     <el-popover

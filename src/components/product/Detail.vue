@@ -5,7 +5,7 @@
                 <img  :src="productDetail.rela[mainPicIndex].filePath ? 'http://47.107.62.230:9080/repo/tb/'+productDetail.rela[mainPicIndex].filePath :''">
                 <div class="thumb-list">
                     <div v-for="(thumb,index) in productDetail.thumb" class="thumb" :class="{is_active_thumb: activeThumbIndex===index+1}" :key="index" @click="selectThumb(index)">
-                        <img :src="'http://47.107.62.230:9080/repo/tb/'+thumb.filePath">
+                        <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+thumb.id">
                     </div>
                 </div>
             </div>
@@ -194,8 +194,14 @@
                     this.$message.error('请选择尺寸')
                     return
                 }
+                let orderitems=[]
                 let size = this.productDetail.product.sizeList[this.activeIndex-1].size
-                this.$router.push({name:'Purchase', params:{price: this.priceDiscounted,size: size,num: this.buyNum}})
+                let fileId = this.productDetail.thumb[0].id
+                let productId = this.productDetail.product.id
+                orderitems.push({productName: this.productDetail.product.productName,
+                    productId: productId, totalPrice: this.priceDiscounted*this.buyNum,
+                    unitPrice: this.priceDiscounted,size: size,count: this.buyNum,fileId: fileId})
+                this.$router.push({name:'Purchase', params:{orderItems: orderitems}})
             },
             addToCart(){
                 if(this.activeIndex===0){

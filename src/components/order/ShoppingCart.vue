@@ -49,7 +49,7 @@
             </div>
             <div class="summary">
                 <div>商品<span class="num">{{totalCount}}</span>件，商品金额： ￥{{totalPrice}}</div>
-                <custom-button>去结算</custom-button>
+                <custom-button @click.native="submitOrder">去结算</custom-button>
             </div>
         </div>
 
@@ -167,6 +167,9 @@
                     this.hotSellSlice = this.hotSellList.slice(0,5)
                     this.sliceAlter=0
                 }
+            },
+            submitOrder(){
+                this.$router.push({name:'Purchase', params:{orderItems: this.multipleSelection}})
             }
 
         }
