@@ -4,23 +4,39 @@
             <slot>订单号：{{order.sn}}</slot>
             <span slot="time">{{order.created_at}}</span>
         </purchase-title>
-        <table class="order-table">
-            <tr>
-                <td class="product-cell">
-                    <shopping-cart-item class="product" v-for="(item,index) in order.orderItem" :key="index" :item="item"></shopping-cart-item>
-                </td>
-                <td class="second-cell">{{order.totalPrice}}</td>
-                <td class="third-cell">
-                    <span>{{order.state===0 ? '未完成' :'已完成'}}</span>
-                </td>
-<!--                <td>-->
-<!--                    <button id="buyAgain" v-if="order.paymentStatus">再次购买</button>-->
-<!--                </td>-->
-                <td class="forth-cell">
-                    <button v-if="order.state===0" id="confirmReceive">确认收货</button>
-                </td>
-            </tr>
-        </table>
+        <el-table
+                ref="multipleTable"
+                :data="[order]"
+                tooltip-effect="dark"
+                style="width: 100%"
+                :show-header="false"
+                :border="true"
+                @selection-change="handleSelectionChange">
+            <el-table-column
+                    width="500">
+                <template slot-scope="scope">
+                    <shopping-cart-item class="product" v-for="(item,index) in scope.row.orderItem" :key="index" :item="item"></shopping-cart-item>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="totalPrice"
+                    width="auto">
+            </el-table-column>
+            <el-table-column
+                    width="auto"
+            >
+                <template slot-scope="scope">
+                    <span class="num">{{orderStatus[scope.row.state]}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    width="auto"
+            >
+                <template slot-scope="scope">
+                    <button v-if="scope.row.state===3" id="confirmReceive">查看详情</button>
+                </template>
+            </el-table-column>
+        </el-table>
     </div>
 </template>
 <script>
@@ -32,10 +48,20 @@
             ShoppingCartItem,
             PurchaseTitle
         },
+        data(){
+            return{
+                orderStatus: ['未付款','已支付','确认中','订单完成'],
+            }
+        },
         props:{
             order:{
                 type: Object,
                 required: true
+            }
+        },
+        methods:{
+            handleSelectionChange(){
+
             }
         }
     }
@@ -47,25 +73,14 @@
     .order-table td{
         border-right: 1px solid #DEDBDC;
     }
-    .product-cell{
-        width:600px;
-    }
-    .second-cell{
-        width:200px;
-    }
-    .third-cell{
-        width:200px;
-    }
-    .forth-cell{
-        width: 200px;
-    }
     .product{
-        border-bottom: 1px solid #DEDBDC;
         text-align: left;
+        padding:12px;
     }
-    .product /deep/ .desc-block{
-        width:128px;
+    .product+.product{
+        border-top: 1px solid #DEDBDC;
     }
+
     .user-order-item{
         background-color:white;
     }
@@ -73,5 +88,15 @@
         color: #f7c85c;
         background-color: transparent;
         border:1px solid #f7c85c;;
+    }
+    .num{
+        color: #f7c85c;
+    }
+    .user-order-item /deep/ .el-table td{
+        padding: 0px;
+        text-align:center;
+    }
+    .user-order-item /deep/ td .cell{
+        padding: 0px;
     }
 </style>

@@ -45,6 +45,8 @@
                     if(res.errcode==='000001'){
                         this.$message.error(res.errmsg)
                     }else{
+                        this.$store.state.isLogin = true
+                        localStorage['cartItems'] =[]
                         this.$message.success('登录成功！')
                         this.$router.push({name:'Home'})
                     }

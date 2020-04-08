@@ -23,24 +23,6 @@ let http = axios.create({
 
 // 错误处理函数
 const err = (error) => {
-    // console.log(error)
-    // if (error.response) {
-    //     // const data = error.response.data
-    //     // const token = Vue.ls.get(ACCESS_TOKEN)
-    //     if (error.response.status === 403) {
-    //         // Notify({ type: 'danger', message: data.message||data.msg });
-    //     }
-    //     if (error.response.status === 401) {
-    //         // Notify({ type: 'danger', message: '你没有权限。' });
-    //         // if (token) {
-    //         //   store.dispatch('Logout').then(() => {
-    //         //     setTimeout(() => {
-    //         //       window.location.reload()
-    //         //     }, 1500)
-    //         //   })
-    //         // }
-    //     }
-    // }
     return Promise.reject(error)
 }
 

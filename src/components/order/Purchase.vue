@@ -46,8 +46,8 @@
             <div class="delivery-way">
                 <span class="purchase-title"> 配送方式：</span>
                 <el-radio-group v-model="logistics">
-                    <el-radio :label="3">顺丰</el-radio>
-                    <el-radio :label="6">平邮</el-radio>
+                    <el-radio :label="3">平邮</el-radio>
+                    <el-radio :label="6">顺丰</el-radio>
                     <el-radio :label="9">EMS</el-radio>
                 </el-radio-group>
             </div>
@@ -57,8 +57,8 @@
                     <el-radio-group v-model="paymentWay">
                         <el-radio :label="2">
                             <img class="pay-img" :src="unionpay">
+                            <span class="recommend">推荐方式</span>
                         </el-radio>
-                        <span class="recommend">推荐方式</span>
                         <el-radio :label="4">
                             <img class="pay-img"  :src="alipay">
                         </el-radio>
@@ -133,8 +133,8 @@
                 selectAddressIndex:0,
                 dialogVisible: false,
                 tableData: [],
-                logistics: '',
-                paymentWay:4,
+                logistics: 3,
+                paymentWay:2,
                 alipay: alipay,
                 wechat:wechat,
                 unionpay: unionpay,
@@ -173,6 +173,13 @@
                 createOrder(sub_params,(res)=>{
                     if(res.errmsg==='ok'){
                         this.$message.success('创建成功')
+
+                        // this.$router.push({name: 'Blank',target:'_blank',params:{htmlData: res.data.formStr}})
+                        let routeUrl = this.$router.resolve({
+                            path: "/blank",
+                            query: {htmlData: '<div>nihao</div>'}
+                        });
+                        window.open(routeUrl.href, '_blank');
                     }
                 })
             },
@@ -253,6 +260,7 @@
         font-size: 14px;
         vertical-align: middle;
         padding-right: 15px;
+        color:black;
     }
     .divider{
         height: 30px;
