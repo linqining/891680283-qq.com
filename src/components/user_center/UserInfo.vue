@@ -1,7 +1,7 @@
 <template>
     <div class="user-info">
         <div class="first-block">
-            <img class="avatar" src="http://47.107.62.230:9080/repo/tb/chugui/589679951859/thumb/O1CN0142MPBc2N0hyon8gKy_!!0-item_pic.jpg_60x60q90.jpg">
+            <img class="avatar" src="http://www.cqrzm.com/repo/tb/chugui/589679951859/thumb/O1CN0142MPBc2N0hyon8gKy_!!0-item_pic.jpg_60x60q90.jpg">
             <div class="name-block">
                 <div class="user-name">用户名：{{this.ruleForm.userName}}</div>
                 <div class="nick-name">昵称：{{this.ruleForm.nickName}}</div>

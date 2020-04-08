@@ -1,6 +1,6 @@
 <template>
     <div class="cart-item">
-        <img :src="'http://47.107.62.230:9080/repo/tb/'+item.rela[0].filePath">
+        <img :src="'http://www.cqrzm.com/repo/tb/'+item.rela[0].filePath">
         <div class="desc-block">
             <router-link :to="{path:'/detail',query:{productId: item.product.id}}">
                 <div class="product-name">{{item.product.productName}}</div>

@@ -2,10 +2,10 @@
     <div class="detail-content">
         <el-card class="detail-main">
             <div class="img-block">
-                <img  :src="productDetail.rela[mainPicIndex].filePath ? 'http://47.107.62.230:9080/repo/tb/'+productDetail.rela[mainPicIndex].filePath :''">
+                <img  :src="productDetail.rela[mainPicIndex].filePath ? 'http://www.cqrzm.com/repo/tb/'+productDetail.rela[mainPicIndex].filePath :''">
                 <div class="thumb-list">
                     <div v-for="(thumb,index) in productDetail.thumb" class="thumb" :class="{is_active_thumb: activeThumbIndex===index+1}" :key="index" @click="selectThumb(index)">
-                        <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+thumb.id">
+                        <img :src="'http://www.cqrzm.com/sm/file/show?fileId='+thumb.id">
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <el-card>
                     <div class="fellow-buy">大家都在买</div>
                     <div class="hot-item" v-for="(item,index) in hotList" :key="index">
-                        <img :src="'http://47.107.62.230:9080/repo/tb/'+item.relaList[0].filePath">
+                        <img :src="'http://www.cqrzm.com/repo/tb/'+item.relaList[0].filePath">
                         <router-link :to="{path:'/detail',query:{productId: item.id}}">
                             <div><span>{{item.productName}}</span></div>
                         </router-link>
@@ -68,13 +68,13 @@
                         <el-tab-pane label="产品详情" name="first">
 <!--                            <div v-for="(item,index) in productDetail.product.descs" :key="index">{{item}}</div>-->
                             <div v-for="(item,index) in productDetail.products" :key="index">
-                                <img  class="description-img" :src="'http://47.107.62.230:9080/repo/tb/'+item.filePath">
+                                <img  class="description-img" :src="'http://www.cqrzm.com/repo/tb/'+item.filePath">
                             </div>
                         </el-tab-pane>
                         <el-tab-pane label="产品评论" name="second">
                             <div class="comment-row" v-for="(item,index) in comments" :key="index">
                                 <div class="comment-left">
-                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.id">
+                                    <img :src="'http://www.cqrzm.com/sm/file/show?fileId='+item.id">
                                     <div>{{item.userName}}</div>
                                 </div>
                                 <div class="comment-right">
