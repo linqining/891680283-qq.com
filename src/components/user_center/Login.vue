@@ -15,7 +15,7 @@
                     <div class="icon-wrap">
                         <span class="el-icon-lock"></span>
                     </div>
-                    <input v-model="form.password" placeholder="密码">
+                    <input type="password" v-model="form.password" placeholder="密码">
                 </div>
             </div>
         </el-form>
@@ -41,8 +41,10 @@
         methods:{
             login(){
                 userLogin(this.form,(res)=>{
-                    console.log(res);
-                    if(res){
+                    console.log(res)
+                    if(res.errcode==='000001'){
+                        this.$message.error(res.errmsg)
+                    }else{
                         this.$message.success('登录成功！')
                         this.$router.push({name:'Home'})
                     }

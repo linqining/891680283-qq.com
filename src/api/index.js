@@ -62,6 +62,8 @@ http.interceptors.response.use((response) => {
         return res
     }else if(res.errcode==='000003'){
         Router.push({name:'Login'})
+    }else if(res.errcode==='000001'){
+        return res
     }else{
         Message.error(res.errmsg)
         return Promise.reject('error')
