@@ -97,6 +97,10 @@ export default new Router({
                 ]
             }
         ]
+        },{
+            path: '/blank',
+            name: 'Blank',
+            component:()=>import('@/components/Blank.vue')
         }
     ]
 })

@@ -233,6 +233,7 @@
                 }
                 this.$store.state.cartItems = cartItems
                 localStorage['cartItems'] = JSON.stringify(cartItems)
+                this.$message.success('添加购物车成功！')
             }
         }
     }

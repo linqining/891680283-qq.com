@@ -145,6 +145,7 @@
             deleteProducts(){
                 let selectProductIds = this.multipleSelection.map(item=>{return item.productId})
                 this.$store.state.cartItems = this.$store.state.cartItems.filter((value)=>{ return selectProductIds.indexOf(value.productId)<0})
+                localStorage['cartItems'] = JSON.stringify(this.$store.state.cartItems)
             },
             selectAll(){
                 this.$refs.multipleTable.clearSelection();
@@ -169,6 +170,10 @@
                 }
             },
             submitOrder(){
+                if(!this.multipleSelection.length){
+                    this.$message.error('请选择商品！')
+                    return
+                }
                 this.$router.push({name:'Purchase', params:{orderItems: this.multipleSelection}})
             }
 

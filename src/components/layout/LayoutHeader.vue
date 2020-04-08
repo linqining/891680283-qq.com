@@ -43,6 +43,7 @@
             <div class="bg-right">
             </div>
             <div class="header-bg-wrap">
+                <span class="company-name">瑞之铭商贸</span>
                 <img :src="logo">
                 <div id="nav-menu" v-if="showMenu" >
                     <div class="nav-container">
@@ -146,7 +147,7 @@
                 }
             },
             showLogin(){
-                return ['Login','Register'].indexOf(this.$route.name)>=0
+                return  !this.$store.state.isLogin
             },
             hideCascader(){
                 if(!this.mouseInCat){
@@ -294,11 +295,17 @@
         float:right;
         background-image: linear-gradient(#1f333c,#2d464c);
     }
+    .company-name{
+        color:white;
+        font-size: 27px;
+        margin-left: 30px;
+    }
+
     .header-bg-wrap{
         background-size: cover;
         background-image:url("~@/assets/image/layout/headbg.png");
         background-repeat: no-repeat;
-        background-position: 48% 0%;
+        background-position: 25% 0%;
         min-width:1200px;
         width:1200px;
         margin:auto;

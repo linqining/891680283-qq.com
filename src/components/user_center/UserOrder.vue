@@ -4,14 +4,35 @@
             <li :class="{active: activeStatus===index}" v-for="(item,index) in orderStatus" :key="index" @click="changeStatus(index)">{{item}}</li>
         </ul>
         <div class="order-table-head">
-            <table>
-                <thead>
-                    <th class="head1">商品</th>
-                    <th class="head2">订单金额</th>
-                    <th class="head3">订单状态</th>
-                    <th class="head4">操作</th>
-                </thead>
-            </table>
+            <el-table
+                    ref="multipleTable"
+                    :data="[]"
+                    tooltip-effect="dark"
+                    style="width: 100%"
+                    :show-header="true"
+                    :border="true"
+                    empty-text=" "
+            >
+                <el-table-column
+                        label="商品"
+                        width="500">
+                </el-table-column>
+                <el-table-column
+                        label="订单金额"
+                        width="auto">
+                </el-table-column>
+                <el-table-column
+                        label="订单状态"
+                        width="auto"
+                >
+
+                </el-table-column>
+                <el-table-column
+                        label="操作"
+                        width="auto"
+                >
+                </el-table-column>
+            </el-table>
         </div>
         <user-order-item v-for="(item,index) in orders" :order="item" :key="index">
         </user-order-item>
@@ -26,7 +47,7 @@
         components: {UserOrderItem},
         data(){
             return{
-                orderStatus: ['全部订单','待付款','待收货','已完成'],
+                orderStatus: ['全部订单','待付款','已支付','已完成'],
                 activeStatus: 0,
                 orders:[],
                 order:{
@@ -90,13 +111,14 @@
         methods:{
             changeStatus(index){
                 this.activeStatus = index
-                // TODO 切换状态栏应该要查询一次，更换数据源
+                orderList(index,(res)=>{
+                    this.orders = res.data
+                })
             }
         },
         created(){
             orderList(0,(res)=>{
                 this.orders = res.data
-                // console.log(res)
             })
         }
     }
@@ -121,19 +143,17 @@
     li.active{
         color: #f7c85c;
     }
-    .order-table-head table{
-        width:100%;
-        padding: 15px 0;
-        margin: 15px 0;
+    .order-table-head{
+        margin: 30px 0;
+    }
+
+    .order-table-head /deep/ .el-table th{
+        text-align: center;
         background-color: #d3d2d5;
+        color:black;
     }
-    .head1{
-        width:400px;
-    }
-    .head2{
-        width: 100px;
-    }
-    .head3{
-        width: 150px;
+
+    .order-table-head /deep/ .el-table__body-wrapper{
+        display:none;
     }
 </style>
