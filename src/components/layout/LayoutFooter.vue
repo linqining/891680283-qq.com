@@ -293,14 +293,14 @@
                 logo: logo,
                 footContact: footContact,
                 dialogVisible: false,
-                activeTab: '1-1'
+                activeTab: '1-1',
             }
         },
         methods:{
             showTabContent(tab){
                 this.activeTab= tab
                 this.dialogVisible= true
-            }
+            },
         }
     }
 </script>
