@@ -79,7 +79,7 @@ const  orderList = (orderType,callback)=>{
 
 const loginDo = (callback)=>{
     let request = new XMLHttpRequest();
-    request.open('GET', 'http://47.107.62.230:9081/sm/user/userInfo');
+    request.open('GET', 'http://www.cqrzm.com/sm/user/userInfo');
     request.onload = callback
     request.send()
 }
