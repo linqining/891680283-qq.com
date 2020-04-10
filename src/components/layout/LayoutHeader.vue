@@ -2,17 +2,15 @@
     <div id="header">
         <div class="top-links-container">
             <div class="top-links">
-                <div class="login-block" v-if="showLogin()">
-                    <span class="login-left">
-                        <router-link to="/login">亲，请登录</router-link>
-                    </span>
-                    <span class="login-right">
-                        <router-link to="/register">免费注册</router-link>
-                    </span>
-                </div>
-                <div  v-else class="login-block">
+                <div class="login-block" >
                     <span class="login-right">
                         欢迎来到瑞之铭商贸
+                    </span>
+                    <span class="login-left" v-if="showLogin()">
+                        <router-link to="/login">亲，请登录</router-link>
+                    </span>
+                    <span class="login-right" v-if="showLogin()">
+                        <router-link to="/register">免费注册</router-link>
                     </span>
                 </div>
                 <div class="order-block" v-if="showOrder">
