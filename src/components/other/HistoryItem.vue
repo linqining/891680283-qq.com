@@ -1,12 +1,12 @@
 <template>
     <div class="cart-item">
-        <img :src="'http://www.cqrzm.com/repo/tb/'+item.rela[0].filePath">
-        <div class="desc-block">
-            <router-link :to="{path:'/detail',query:{productId: item.product.id}}">
-                <div class="product-name">{{item.product.productName}}</div>
-            </router-link>
-            <div class="buy-num" v-if="show_price"><strong>{{item.product.productPrice}}X1</strong></div>
-        </div>
+        <router-link :to="{path:'/detail',query:{productId: item.product.id}}">
+            <img :src="'http://www.cqrzm.com/repo/tb/'+item.rela[0].filePath">
+            <div class="desc-block">
+                    <div class="product-name">{{item.product.productName}}</div>
+                <div class="buy-num" v-if="show_price"><strong>{{item.product.productPrice}}X1</strong></div>
+            </div>
+        </router-link>
     </div>
 </template>
 
@@ -37,7 +37,7 @@
         vertical-align: top;
         /*padding: 0 15px;*/
     }
-    .desc-block a{
+    a{
         text-decoration: none;
         color:black;
     }

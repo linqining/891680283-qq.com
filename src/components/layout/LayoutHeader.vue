@@ -10,6 +10,11 @@
                         <router-link to="/register">免费注册</router-link>
                     </span>
                 </div>
+                <div  v-else class="login-block">
+                    <span class="login-right">
+                        欢迎来到瑞之铭商贸
+                    </span>
+                </div>
                 <div class="order-block" v-if="showOrder">
                     <span class="my-order">
                         <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
@@ -25,7 +30,7 @@
                                 <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>
                             </div>
                             <button class="shopping-link" @click="goToCart">去购物袋结算</button>
-<!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
+                            <!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
                         </div>
                         <span class="shopping-cart"  slot="reference" >
                             <img :src="cart">
@@ -43,13 +48,12 @@
             <div class="bg-right">
             </div>
             <div class="header-bg-wrap">
-                <span class="company-name">瑞之铭商贸</span>
                 <img :src="logo">
                 <div id="nav-menu" v-if="showMenu" >
                     <div class="nav-container">
                         <div class="links-wrapper">
-<!--                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品-->
-<!--                            </a>-->
+                            <!--                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品-->
+                            <!--                            </a>-->
 
 
                             <el-popover
@@ -75,8 +79,8 @@
                             <router-link :to="{path:'/list',query:{categoryId: 10002}}">橱柜</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 10011}}">床上用品</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 23}}">家用电器</router-link>
-<!--                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"-->
-<!--                                               @change="handleChange" ></el-cascader-panel>-->
+                            <!--                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"-->
+                            <!--                                               @change="handleChange" ></el-cascader-panel>-->
 
                         </div>
                     </div>
@@ -295,17 +299,11 @@
         float:right;
         background-image: linear-gradient(#1f333c,#2d464c);
     }
-    .company-name{
-        color:white;
-        font-size: 27px;
-        margin-left: 30px;
-    }
-
     .header-bg-wrap{
         background-size: cover;
         background-image:url("~@/assets/image/layout/headbg.png");
         background-repeat: no-repeat;
-        background-position: 25% 0%;
+        background-position: 48% 0%;
         min-width:1200px;
         width:1200px;
         margin:auto;

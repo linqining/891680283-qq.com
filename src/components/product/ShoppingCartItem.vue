@@ -1,12 +1,12 @@
 <template>
     <div class="cart-item">
-        <img :src="'http://www.cqrzm.com/sm/file/show?fileId='+item.fileId">
-        <div class="desc-block">
-            <router-link :to="{path:'/detail',query:{productId: item.productId}}">
-                <div class="product-name">{{item.productName}}</div>
-            </router-link>
-            <div class="buy-num" v-if="show_price"><strong>{{item.unitPrice}}X{{item.count}}</strong></div>
-        </div>
+        <router-link :to="{path:'/detail',query:{productId: item.productId}}">
+            <img :src="'http://www.cqrzm.com/sm/file/show?fileId='+item.fileId">
+            <div class="desc-block">
+                    <div class="product-name">{{item.productName}}</div>
+                <div class="buy-num" v-if="show_price"><strong>{{item.unitPrice}}X{{item.count}}</strong></div>
+            </div>
+        </router-link>
     </div>
 </template>
 
@@ -47,6 +47,10 @@
     }
     .desc-block a{
         color: black;
+    }
+    a{
+        text-decoration: none;
+        color:unset;
     }
     .cart-item{
         vertical-align: top;

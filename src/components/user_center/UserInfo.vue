@@ -1,11 +1,11 @@
 <template>
     <div class="user-info">
         <div class="first-block">
-            <img class="avatar" src="http://www.cqrzm.com/repo/tb/chugui/589679951859/thumb/O1CN0142MPBc2N0hyon8gKy_!!0-item_pic.jpg_60x60q90.jpg">
-            <div class="name-block">
-                <div class="user-name">用户名：{{this.ruleForm.userName}}</div>
-                <div class="nick-name">昵称：{{this.ruleForm.nickName}}</div>
-            </div>
+            <img class="avatar" :src="logo">
+<!--            <div class="name-block">-->
+<!--                <div class="user-name">用户名：{{this.ruleForm.userName}}</div>-->
+<!--                <div class="nick-name">昵称：{{this.ruleForm.nickName}}</div>-->
+<!--            </div>-->
         </div>
         <div class="user-info-form">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -49,7 +49,7 @@
     </div>
 </template>
 <script>
-
+    import logo from '@/assets/image/layout/logo.png'
     import CustomButton from "../other/CustomButton";
     let dateFormat = require('dateformat');
 
@@ -60,6 +60,7 @@
         components: {CustomButton},
         data(){
             return{
+                logo: logo,
                 ruleForm:{
                     "address":'',
                     "id": "",
@@ -135,10 +136,12 @@
         padding-bottom: 50px;
         border-bottom:1px dashed #DEDBDC;
         text-align:left;
+        margin-left: 50px;
     }
     .avatar{
-        width:100px;
-        height:100px;
+        /*width:100px;*/
+        /*height:100px;*/
+        background-color: #253942;
     }
     .name-block{
         display:inline-block;

@@ -13,5 +13,10 @@
 <style scoped>
     .icp-info{
         padding: 30px;
+        font-size:14px;
+    }
+    .icp-info a{
+        text-decoration: none;
+        color:unset;
     }
 </style>
