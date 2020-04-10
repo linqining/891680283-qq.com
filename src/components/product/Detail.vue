@@ -334,6 +334,7 @@
     .desc-wrap{
         padding:20px;
         color: #444444;
+        font-size: 14px;
     }
     .product-title{
         margin-bottom: 30px;
