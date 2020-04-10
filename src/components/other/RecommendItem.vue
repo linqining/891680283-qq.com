@@ -1,12 +1,12 @@
 <template>
     <div class="cart-item">
-        <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.abbreviationFile">
-        <div class="desc-block">
-            <router-link :to="{path:'/detail',query:{productId: item.id}}">
-                <div class="product-name">{{item.productName}}</div>
-            </router-link>
-            <div class="buy-num" v-if="show_price"><strong>{{item.productPrice}}X1</strong></div>
-        </div>
+        <router-link :to="{path:'/detail',query:{productId: item.id}}">
+            <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.abbreviationFile">
+            <div class="desc-block">
+                    <div class="product-name">{{item.productName}}</div>
+                <div class="buy-num" v-if="show_price"><strong>{{item.productPrice}}X1</strong></div>
+            </div>
+        </router-link>
     </div>
 </template>
 
@@ -33,11 +33,14 @@
     }
     .desc-block{
         vertical-align: top;
-        /*padding: 0 15px;*/
     }
-    .desc-block a{
+    a{
         color:black;
         text-decoration: none;
+        display: block;
+    }
+    a:hover{
+        /*box-shadow: 0px 0px 5px #888888;*/
     }
     .desc-block .product-name{
         /*width: 295px;*/

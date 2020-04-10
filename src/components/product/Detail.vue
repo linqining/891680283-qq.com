@@ -53,11 +53,11 @@
                 <el-card>
                     <div class="fellow-buy">大家都在买</div>
                     <div class="hot-item" v-for="(item,index) in hotList" :key="index">
-                        <img :src="'http://47.107.62.230:9080/repo/tb/'+item.relaList[0].filePath">
                         <router-link :to="{path:'/detail',query:{productId: item.id}}">
-                            <div><span>{{item.productName}}</span></div>
+                            <img :src="'http://47.107.62.230:9080/repo/tb/'+item.relaList[0].filePath">
+                                <div><span>{{item.productName}}</span></div>
+                            <div class="price"><strong>￥{{item.productPrice}}</strong></div>
                         </router-link>
-                        <div class="price"><strong>￥{{item.productPrice}}</strong></div>
                     </div>
                 </el-card>
             </div>
@@ -66,12 +66,27 @@
                 <el-card>
                     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
                         <el-tab-pane label="产品详情" name="first">
-<!--                            <div v-for="(item,index) in productDetail.product.descs" :key="index">{{item}}</div>-->
+                            <div class="desc-wrap">
+                                <div class="product-title">{{productDetail.product.descs[0]}}</div>
+                                <table id="desc-table">
+                                    <tr>
+                                        <td>产品参数:</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr v-for="num in descRow" :key="num">
+                                        <td>{{productDetail.product.descs[(num-1)*3+1]}}</td>
+                                        <td>{{productDetail.product.descs[(num-1)*3+2]}}</td>
+                                        <td>{{productDetail.product.descs[(num-1)*3+3]}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+
                             <div v-for="(item,index) in productDetail.products" :key="index">
                                 <img  class="description-img" :src="'http://47.107.62.230:9080/repo/tb/'+item.filePath">
                             </div>
                         </el-tab-pane>
-                        <el-tab-pane label="产品评论" name="second">
+                        <el-tab-pane :label="'产品评论('+commentsTotal+')'" name="second">
                             <div class="comment-row" v-for="(item,index) in comments" :key="index">
                                 <div class="comment-left">
                                     <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.id">
@@ -87,6 +102,20 @@
                                     </el-rate>
                                     <div class="ping-txt">{{item.pingTxt}}</div>
                                 </div>
+                            </div>
+                            <div class="pager-block">
+                                <el-pagination
+                                        @size-change="handleSizeChange"
+                                        @current-change="handleCurrentChange"
+                                        :current-page="currentPage"
+                                        :page-size="20"
+                                        prev-text="上一页"
+                                        next-text="下一页"
+                                        layout="  prev, pager, next, total,jumper,slot"
+                                        :total="commentsTotal">
+                                    <slot name="-"><button id="confirmJump" >确定</button></slot>
+                                </el-pagination>
+
                             </div>
                         </el-tab-pane>
 
@@ -112,6 +141,7 @@
                         productPrice: 100,
                         sizeList:[],
                         inventoryCount:1,
+                        descs:[]
                     },
                     indexs:[{}],
                     thumb:[{}],
@@ -126,9 +156,20 @@
                 activeThumbIndex:1,
                 activeName:'first',
                 comments:[],
+                commentsTotal:0,
+                currentPage:1,
                 mainPicIndex:0,
                 hotList:[],
             }
+        },
+        computed:{
+          descRow(){
+              if(this.productDetail.product.descs.length){
+                  return Math.ceil((this.productDetail.product.descs.length-1)/3)
+              }else{
+                  return 0;
+              }
+          }
         },
         watch:{
             $route:{
@@ -145,6 +186,7 @@
                             pageSize: 20
                         },(res)=>{
                             this.comments = res.data.comments;
+                            this.commentsTotal = res.data.total;
                         })
                     }
                 },
@@ -167,6 +209,7 @@
                 pageSize: 20
             },(res)=>{
                 this.comments = res.data.comments;
+                this.commentsTotal = res.data.total;
             })
             fetchHotSell((res)=>{
                 this.hotList = res.data
@@ -234,7 +277,26 @@
                 this.$store.state.cartItems = cartItems
                 localStorage['cartItems'] = JSON.stringify(cartItems)
                 this.$message.success('添加购物车成功！')
-            }
+            },
+            handleSizeChange(val) {
+                console.log(`每页 ${val} 条`);
+            },
+            handleCurrentChange(val) {
+                this.queryPage(val)
+            },
+            queryPage(pageNum){
+                this.currentPage = pageNum
+                let _this = this
+                commentList({
+                    productId: _this.productDetail.product.id,
+                    page: pageNum,
+                    pageSize: 20
+                },(res)=>{
+                    this.comments = res.data.comments;
+                    this.commentsTotal = res.data.total;
+                })
+
+            },
         }
     }
 </script>
@@ -268,6 +330,22 @@
     .thumb img{
         width: 100%;
         height: 100%;
+    }
+    .desc-wrap{
+        padding:20px;
+        color: #444444;
+    }
+    .product-title{
+        margin-bottom: 30px;
+    }
+    #desc-table{
+        width:100%;
+    }
+    #desc-table tr td{
+        display: table-cell;
+        width: 33%;
+        height: 16px;
+        line-height: 29px;
     }
     .desc-content{
         display:inline-block;
@@ -410,6 +488,14 @@
     }
     .ping-txt{
         padding: 20px 0;
+    }
+    .pager-block{
+        padding: 20px 30px;
+        text-align: center;
+    }
+    #confirmJump{
+        border: 1px solid #7e8080;
+        margin-left: 15px;
     }
 </style>
 <style>

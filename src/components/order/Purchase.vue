@@ -57,7 +57,6 @@
                     <el-radio-group v-model="paymentWay">
                         <el-radio :label="2">
                             <img class="pay-img" :src="unionpay">
-                            <span class="recommend">推荐方式</span>
                         </el-radio>
                         <el-radio :label="4">
                             <img class="pay-img"  :src="alipay">
@@ -101,7 +100,7 @@
     import {addressList,createOrder} from '@/api/api.js'
     import { mapGetters,mapMutations } from 'vuex'
     import alipay from '@/assets/image/payment/alipay.png'
-    import bank_card from '@/assets/image/payment/bank_card.png'
+    import bank_card from '@/assets/image/payment/bankcard.png'
     import wechat from '@/assets/image/payment/wechat.png'
     import unionpay from '@/assets/image/payment/unionpay.png'
 
@@ -177,7 +176,7 @@
                         // this.$router.push({name: 'Blank',target:'_blank',params:{htmlData: res.data.formStr}})
                         let routeUrl = this.$router.resolve({
                             path: "/blank",
-                            query: {htmlData: '<div>nihao</div>'}
+                            query: {htmlData: res.data.formStr}
                         });
                         window.open(routeUrl.href, '_blank');
                     }

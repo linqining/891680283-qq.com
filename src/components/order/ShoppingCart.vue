@@ -59,7 +59,6 @@
                 <el-tabs  class="recommend-tab" v-model="activeName" type="card" @tab-click="handleClick">
 
                     <el-tab-pane label="为你优选" name="first">
-
                         <div>
                             <recommend-item v-for="(item,index) in this.hotSellSlice" :key="index" :item="item"></recommend-item>
                         </div>
