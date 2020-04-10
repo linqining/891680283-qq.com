@@ -102,7 +102,7 @@
     import alipay from '@/assets/image/payment/alipay.png'
     import bank_card from '@/assets/image/payment/bankcard.png'
     import wechat from '@/assets/image/payment/wechat.png'
-    import unionpay from '@/assets/image/payment/unionpay.png'
+    import unionpay from '@/assets/image/payment/chinaunion.png'
 
     export default{
         name: 'Purchase',
@@ -172,13 +172,10 @@
                 createOrder(sub_params,(res)=>{
                     if(res.errmsg==='ok'){
                         this.$message.success('创建成功')
-
-                        // this.$router.push({name: 'Blank',target:'_blank',params:{htmlData: res.data.formStr}})
-                        let routeUrl = this.$router.resolve({
-                            path: "/blank",
-                            query: {htmlData: res.data.formStr}
-                        });
-                        window.open(routeUrl.href, '_blank');
+                        let w = window.open('about:blank');
+                        w.document.open();
+                        w.document.write(res.data.formStr);
+                        w.document.close();
                     }
                 })
             },
