@@ -76,7 +76,15 @@ const orderDetail = (params,callback)=>{
 const  orderList = (orderType,callback)=>{
     requests.get('/sm/order/list/'+orderType,{},callback)
 }
+
+const loginDo = (callback)=>{
+    let request = new XMLHttpRequest();
+    request.open('GET', 'http://47.107.62.230:9081/sm/user/userInfo');
+    request.onload = callback
+    request.send()
+}
+
 export {userRegister,userLogin,catList,fetchProductList,
     getProductDetail,commentList,addressList,provinceList,
     cityList,areaList, createAddress,fetchHotSell,userEdit,
-    userInfo,changePassword,payType,createOrder,orderDetail,orderList}
+    userInfo,changePassword,payType,createOrder,orderDetail,orderList,loginDo}

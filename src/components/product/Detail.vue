@@ -89,8 +89,8 @@
                         <el-tab-pane :label="'产品评论('+commentsTotal+')'" name="second">
                             <div class="comment-row" v-for="(item,index) in comments" :key="index">
                                 <div class="comment-left">
-                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.id">
-                                    <div>{{item.userName}}</div>
+<!--                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.id">-->
+                                    <div class="user-name">{{item.userName}}</div>
                                 </div>
                                 <div class="comment-right">
                                     <el-rate
@@ -128,7 +128,7 @@
 </template>
 <script>
     import {getProductDetail,commentList} from "@/api/api";
-    import {fetchHotSell} from "@/api/api";
+    import {fetchHotSell,loginDo} from "@/api/api";
 
 
     export default{
@@ -247,6 +247,13 @@
                 this.$router.push({name:'Purchase', params:{orderItems: orderitems}})
             },
             addToCart(){
+                let _this = this
+                loginDo((res)=>{
+                    if(res.errcode==='000003'){
+                        _this.$router.push({name:'Login'})
+                        return
+                    }
+                })
                 if(this.activeIndex===0){
                     this.$message.error('请选择尺寸')
                     return
@@ -334,7 +341,10 @@
     .desc-wrap{
         padding:20px;
         color: #444444;
-        font-size: 14px;
+        font-size: 13px;
+    }
+    .user-name{
+        vertical-align: middle;
     }
     .product-title{
         margin-bottom: 30px;

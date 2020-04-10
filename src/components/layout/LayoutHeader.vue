@@ -94,7 +94,8 @@
 <script>
     import logo from '@/assets/image/layout/logo.png'
     import cart from '@/assets/image/layout/cart.png'
-    import ShoppingCartItem from "../product/ShoppingCartItem";
+    import ShoppingCartItem from "../product/ShoppingCartItem"
+    import {loginDo} from "@/api/api";
 
 
     import { mapMutations } from 'vuex'
@@ -180,6 +181,14 @@
             }
         },
         created(){
+            let _this = this;
+            loginDo((res)=>{
+                if(res.errcode==='000003'){
+                    _this.$router.push({name:'Login'})
+                }else{
+                    this.$store.state.isLogin = true
+                }
+            })
             if(localStorage['cartItems']){
                 this.$store.state.cartItems = JSON.parse(localStorage['cartItems'])
             }
