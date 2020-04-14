@@ -24,6 +24,7 @@
                     <div class="service-title">贴心售后</div>
                 </div>
             </div>
+            <div class="back-to-top" @click="backTop"></div>
         </div>
 
         <div class="footer-container">
@@ -334,6 +335,9 @@
                 this.activeTab= tab
                 this.dialogVisible= true
             },
+            backTop(){
+                window.scrollTo(0, 0);
+            }
         }
     }
 </script>
@@ -354,6 +358,16 @@
         background-position: bottom;
         background-size: 1200px;
         min-width: 1200px;
+        position:relative;
+    }
+    .back-to-top{
+        width: 2%;
+        height: 7%;
+        cursor:pointer;
+        margin: auto;
+        bottom: 13%;
+        position: absolute;
+        left: 49%;
     }
     #service-icon ul{
         display: flex;

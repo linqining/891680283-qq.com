@@ -125,7 +125,7 @@
             })
             fetchHotSell((res)=>{
                 this.hotSellList = res.data
-                this.hotSellSlice = this.hotSellList.slice(0,5)
+                this.hotSellSlice = this.hotSellList.slice(0,6)
             })
         },
         methods:{
@@ -161,10 +161,10 @@
             },
             changeSlice(){
                 if(this.sliceAlter===0){
-                    this.hotSellSlice = this.hotSellList.slice(5,10)
+                    this.hotSellSlice = this.hotSellList.slice(4,10)
                     this.sliceAlter=1
                 }else{
-                    this.hotSellSlice = this.hotSellList.slice(0,5)
+                    this.hotSellSlice = this.hotSellList.slice(0,6)
                     this.sliceAlter=0
                 }
             },
@@ -227,9 +227,9 @@
         background-color: #7C9AB4;
     }
     .recommend-tab /deep/ .el-tabs__item.is-active{
-        background-color: #ffc541cf;
+        background-color: #7C9AB4;
         color: white;
-        border: 1px solid #ffc541cf;
+        border: 1px solid #7C9AB4;
     }
     .recommend-tab /deep/ .el-tabs__item:hover{
         color:black;

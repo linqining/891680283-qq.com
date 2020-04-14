@@ -83,7 +83,7 @@ function productDetail(productid,response){
             existIndex = hisArr.findIndex((item)=>item.product.id===res.data.product.id)
         }
         hisArr.push(res.data)
-        while(hisArr.length>5){
+        while(hisArr.length>6){
             hisArr.shift()
         }
         localStorage['productHistory'] = JSON.stringify(hisArr)

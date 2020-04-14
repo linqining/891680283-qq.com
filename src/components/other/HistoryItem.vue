@@ -30,8 +30,8 @@
 
 <style scoped>
     .cart-item img{
-        width:200px;
-        height:300px;
+        width:150px;
+        height:200px;
     }
     .desc-block{
         vertical-align: top;
@@ -42,6 +42,7 @@
         color:black;
     }
     .desc-block .product-name{
+        font-size: 14px;
         /*width: 295px;*/
         /*display: inline-block;*/
     }
@@ -51,9 +52,9 @@
     }
     .cart-item{
         text-align: left;
-        display:inline-block;
-        width:200px;
+        display: inline-block;
+        width: 150px;
         vertical-align: top;
-        padding:10px;
+        padding: 20px;
     }
 </style>
