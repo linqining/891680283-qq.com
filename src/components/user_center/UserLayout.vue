@@ -72,7 +72,7 @@
         padding:10px;
     }
     .nav-list li a.active{
-        color: #f7c85c;
+        color: #7C9AB4;
     }
     .nav-list li a{
         text-decoration: none;

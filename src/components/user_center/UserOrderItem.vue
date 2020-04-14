@@ -85,12 +85,12 @@
         background-color:white;
     }
     #buyAgain,#confirmReceive{
-        color: #f7c85c;
+        color: #7C9AB4;
         background-color: transparent;
-        border:1px solid #f7c85c;;
+        border:1px solid #7C9AB4;;
     }
     .num{
-        color: #f7c85c;
+        color: #7C9AB4;
     }
     .user-order-item /deep/ .el-table td{
         padding: 0px;

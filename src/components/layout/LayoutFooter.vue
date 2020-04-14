@@ -1,7 +1,31 @@
 <template>
     <div id="footer">
 <!--        <img :src="footContact">-->
-        <div class="footer-image"></div>
+        <div class="footer-image">
+            <div class="icon-wrapper">
+                <div class="service-icon">
+                    <img :src="icon1">
+                    <div class="service-title">值得信赖</div>
+                </div>
+                <div class="service-icon">
+                    <img :src="icon2">
+                    <div class="service-title">品质保证</div>
+                </div>
+                <div class="service-icon">
+                    <img :src="icon3">
+                    <div class="service-title">无忧退换货</div>
+                </div>
+                <div class="service-icon">
+                    <img :src="icon4">
+                    <div class="service-title">闪电发货</div>
+                </div>
+                <div class="service-icon">
+                    <img :src="icon5">
+                    <div class="service-title">贴心售后</div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer-container">
             <div id="bottom-links">
                 <ul class="links-cat">
@@ -273,11 +297,11 @@
                     本商城坚持“诚信为本”的经营理念，我们保证所售商品均为正品，如果您认为购买的商品是假货，并能提供国家相关质检机构的证明文件，我们会按照国家法律规定予以处理。<br>
                 </el-tab-pane>
                 <el-tab-pane label="公司介绍" name="6-1">
-                    重庆瑞之铭商贸有限公司<br>
-                    经营范围：汽车及零配件批发,汽车新车零售,灯具零售,日用百货批发,金属材料批发,建筑材料批发,润滑油零售,五金产品批发,劳保用品批发(除依法须经批准的项目外,凭营业执照依法自主开展经营活动)<br>
-                    联系电话：18521055532<br>
-                    E-mail：pabpkp@163.com<br>
-                    经营地址：重庆市江北区华新村96号5幢16-4<br>
+                    重庆途寻科技有限公司<br>
+                    经营范围：一般项目:信息系统集成服务,信息系统运行维护服务,技术服务、技术开发、技术咨询、技术交流、技术转让、技术推广,信息技术咨询服务,摩托车及零配件零售,润滑油零售,家具零售,五金产品零售,日用品零售,日用百货批发,文具用品批发,劳保用品批发(除依法须经批准的项目外,凭营业执照依法自主开展经营活动)<br>
+                    联系电话  13125261129<br>
+                    E-mail： ndpjtp@163.com<br>
+                    经营地址：重庆市沙坪坝区学智路69号<br>
                 </el-tab-pane>
             </el-tabs>
         </el-dialog>
@@ -285,15 +309,24 @@
 </template>
 <script>
     import logo from '@/assets/image/layout/logo.png'
-    import footContact from '@/assets/image/layout/foot-contact.png'
+    import icon1 from '@/assets/image/layout/1.png'
+    import icon2 from '@/assets/image/layout/2.png'
+    import icon3 from '@/assets/image/layout/3.png'
+    import icon4 from '@/assets/image/layout/4.png'
+    import icon5 from '@/assets/image/layout/5.png'
+
     export default {
         name: 'LayoutFooter',
         data(){
             return{
                 logo: logo,
-                footContact: footContact,
                 dialogVisible: false,
                 activeTab: '1-1',
+                icon1: icon1,
+                icon2: icon2,
+                icon3: icon3,
+                icon4: icon4,
+                icon5: icon5
             }
         },
         methods:{
@@ -316,9 +349,10 @@
         margin:auto;
     }
     .footer-image{
-        height:398px;
-        background-image: url("~@/assets/image/layout/foot-contact.png");
+        height:389px;
+        background-image: url("~@/assets/image/layout/back-to-home.png");
         background-position: bottom;
+        background-size: 100% auto;
         min-width: 1200px;
     }
     #service-icon ul{
@@ -382,5 +416,20 @@
         height:500px;
         overflow-y: auto;
     }
-
+    .icon-wrapper{
+        width:1200px;
+        margin:auto;
+        display: flex;
+        padding-top: 71.5px;
+    }
+    .service-icon{
+        display:inline-block;
+        flex:1;
+    }
+    .service-icon img{
+        width:62px;
+    }
+    .service-title{
+        font-size: 11px;
+    }
 </style>

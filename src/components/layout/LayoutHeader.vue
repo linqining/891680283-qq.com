@@ -12,7 +12,7 @@
                 </div>
                 <div  v-else class="login-block">
                     <span class="login-right">
-                        欢迎来到瑞之铭商贸
+                        欢迎来到途寻科技
                     </span>
                 </div>
                 <div class="order-block" v-if="showOrder">
@@ -20,33 +20,33 @@
                         <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
                     </span >
 
-                    <el-popover
-                            placement="bottom-end"
-                            width="500"
-                            trigger="click"
-                    >
-                        <div >
-                            <div class="cart-item-list">
-                                <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>
-                            </div>
-                            <button class="shopping-link" @click="goToCart">去购物袋结算</button>
-                            <!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
-                        </div>
-                        <span class="shopping-cart"  slot="reference" >
-                            <img :src="cart">
-                            <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>
-                        </span>
-                    </el-popover>
+<!--                    <el-popover-->
+<!--                            placement="bottom-end"-->
+<!--                            width="500"-->
+<!--                            trigger="click"-->
+<!--                    >-->
+<!--                        <div >-->
+<!--                            <div class="cart-item-list">-->
+<!--                                <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>-->
+<!--                            </div>-->
+<!--                            <button class="shopping-link" @click="goToCart">去购物袋结算</button>-->
+<!--                            &lt;!&ndash;                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <span class="shopping-cart"  slot="reference" >-->
+<!--                            <img :src="cart">-->
+<!--                            <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>-->
+<!--                        </span>-->
+<!--                    </el-popover>-->
                 </div>
             </div>
         </div>
         <slot></slot>
 
         <div class="header-home">
-            <div class="bg-left">
-            </div>
-            <div class="bg-right">
-            </div>
+<!--            <div class="bg-left">-->
+<!--            </div>-->
+<!--            <div class="bg-right">-->
+<!--            </div>-->
             <div class="header-bg-wrap">
                 <img :src="logo">
                 <div id="nav-menu" v-if="showMenu" >
@@ -94,7 +94,7 @@
 <script>
     import logo from '@/assets/image/layout/logo.png'
     import cart from '@/assets/image/layout/cart.png'
-    import ShoppingCartItem from "../product/ShoppingCartItem"
+    // import ShoppingCartItem from "../product/ShoppingCartItem"
     import {loginDo} from "@/api/api";
 
 
@@ -105,7 +105,7 @@
     export default {
         name: 'LayoutHeader',
         components:{
-            ShoppingCartItem
+            // ShoppingCartItem
         },
         data(){
             return{
@@ -196,6 +196,9 @@
     }
 </script>
 <style scoped>
+    #header{
+        background: white;
+    }
     .top-links-container{
         border-bottom: 1px solid #7e808040;
     }
@@ -205,7 +208,7 @@
         text-align:left;
         margin:auto;
         position:relative;
-        color: #7e8080;
+        /*color: #7e8080;*/
         height:20px;
     }
     .login-block,.order-block{
@@ -258,11 +261,11 @@
     }
     .cart-num{
         /*color: deeppink;*/
-        color: #f7c85c
+        color: #7C9AB4
     }
     .all-product{
         width:200px;
-        color:white;
+        /*color:white;*/
         padding: 15px 30px;
     }
 
@@ -270,6 +273,8 @@
         position:absolute;
         bottom: 0px;
         display:flex;
+        width: 1000px;
+        right: 0px;
     }
     .nav-container{
         width:1200px;
@@ -282,7 +287,7 @@
     }
     .links-wrapper a{
         text-decoration: none;
-        color: white;
+        color: black;
         padding: 15px 30px;
         display:inline-block;
         flex:1;
@@ -293,7 +298,7 @@
         padding: 15px 0;
     }
     .header-home{
-        height: 150px;
+        /*height: 150px;*/
         /*background-image: linear-gradient(#1d303a,#294048);*/
     }
     .bg-left,.bg-right{
@@ -310,19 +315,20 @@
     }
     .header-bg-wrap{
         background-size: cover;
-        background-image:url("~@/assets/image/layout/headbg.png");
+        /*background-image:url("~@/assets/image/layout/headbg.png");*/
         background-repeat: no-repeat;
         background-position: 48% 0%;
         min-width:1200px;
         width:1200px;
         margin:auto;
-        height: 150px;
+        /*height: 150px;*/
         text-align:left;
         position:relative;
     }
     .header-bg-wrap img{
         padding-left: 29px;
-        padding-top: 21px;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
     #cascader-menu{
         position:absolute;
@@ -345,7 +351,7 @@
     .shopping-link{
         text-decoration:none;
         width:100%;
-        background-color: #f7c85c;
+        background-color: #7C9AB4;
         font-size:20px;
         color:white;
         border:none;

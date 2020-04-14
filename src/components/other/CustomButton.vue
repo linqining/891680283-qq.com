@@ -11,7 +11,7 @@
 </script>
 <style scoped>
     .custom-button{
-        background-color: #f7c85c;
+        background-color: #7C9AB4;
         color:white;
         width:150px;
         height:42px;

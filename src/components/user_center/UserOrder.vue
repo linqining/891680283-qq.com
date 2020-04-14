@@ -141,7 +141,7 @@
         vertical-align: middle;
     }
     li.active{
-        color: #f7c85c;
+        color: #7C9AB4;
     }
     .order-table-head{
         margin: 30px 0;

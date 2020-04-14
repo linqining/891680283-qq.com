@@ -14,7 +14,7 @@
 </script>
 <style scoped>
     .head-title{
-        border-left: 5px solid #f7c85c;
+        border-left: 5px solid #7C9AB4;
         background-color:  #F5F5F5;
         line-height: 50px;
         font-size: 16px;

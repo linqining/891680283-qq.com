@@ -67,7 +67,7 @@
         margin: 30px ;
     }
     .add-new{
-        border-top: 2px solid #f7c85c;
+        border-top: 2px solid #7C9AB4;
     }
     .add-new-form{
         background: white;

@@ -208,7 +208,7 @@
         color: #5096ff;
     }
     .num{
-        color:#f7c85c;
+        color:#7C9AB4;
     }
     .summary{
         display: inline-block;
@@ -224,7 +224,7 @@
         position: relative;
     }
     .is_active_thumb{
-        background-color: #f7c85c;
+        background-color: #7C9AB4;
     }
     .recommend-tab /deep/ .el-tabs__item.is-active{
         background-color: #ffc541cf;
@@ -235,7 +235,7 @@
         color:black;
     }
     .recommend-tab /deep/ .el-tabs__item{
-        border-bottom: 2px solid #f7c85c;
+        border-bottom: 2px solid #7C9AB4;
     }
     .custom-button{
         margin-top: 20px;

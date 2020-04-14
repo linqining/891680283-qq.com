@@ -332,7 +332,7 @@
         display:inline-block;
     }
     .is_active_thumb{
-        background-color: #f7c85c;
+        background-color: #7C9AB4;
     }
     .thumb img{
         width: 100%;
@@ -378,7 +378,7 @@
         padding: 10px 0;
     }
     .num{
-        color: #f7c85c;
+        color: #7C9AB4;
     }
     .sold-out>span{
         padding: 0 30px;
@@ -434,9 +434,9 @@
         margin: 30px;
     }
     .favourite{
-        background: #f7c85c;
+        background: #7C9AB4;
         color: white;
-        border: 1px solid #f7c85c;;
+        border: 1px solid #7C9AB4;;
     }
     .purchase{
         margin-left: 0px;
@@ -521,10 +521,10 @@
         border-radius: 0px;
     }
     .detail-comment .el-tabs__item{
-        border-bottom:3px solid #f7c85c !important;
+        border-bottom:3px solid #7C9AB4 !important;
     }
     .detail-comment .el-tabs__item.is-active{
-        background-color: #f7c85c;
+        background-color: #7C9AB4;
         color: white;
     }
     .comment-right .el-rate__icon{
