@@ -216,9 +216,9 @@
                     订单提交成功后，您可以登陆“我的订单” 查看订单信息。<br>
                 </el-tab-pane>
                 <el-tab-pane label="联系我们" name="3-1">
-                    联系电话：18521055532<br>
-                    E-mail：pabpkp@163.com<br>
-                    经营地址：重庆市江北区华新村96号5幢16-4<br>
+                    联系电话  13125261129<br>
+                    E-mail： ndpjtp@163.com<br>
+                    经营地址：重庆市沙坪坝区学智路69号<br>
 
                 </el-tab-pane>
                 <el-tab-pane label="常见问题" name="3-2">
@@ -352,7 +352,7 @@
         height:389px;
         background-image: url("~@/assets/image/layout/back-to-home.png");
         background-position: bottom;
-        background-size: 100% auto;
+        background-size: 1200px;
         min-width: 1200px;
     }
     #service-icon ul{

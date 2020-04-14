@@ -1,7 +1,7 @@
 <template>
     <router-link  :to="{path: '/detail',query:{productId: data.id}}" class="detail-link">
         <div class="product-card">
-            <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+data.abbreviationFile" class="product-cover">
+            <img :src="'http://www.tuxunkj.com/sm/file/show?fileId='+data.abbreviationFile" class="product-cover">
             <div>
                 <div class="product-info">{{data.productName}}</div>
                 <!--            <img :src="rect">-->

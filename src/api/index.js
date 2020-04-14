@@ -4,7 +4,7 @@ import Router from '@/router/index'
 
 
 let http = axios.create({
-    baseURL: 'http://47.107.62.230:9081',
+    baseURL: 'http://www.tuxunkj.com',
     timeout: 5000,
     // withCredentials: true,
     // headers: {

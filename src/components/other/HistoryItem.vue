@@ -1,7 +1,7 @@
 <template>
     <div class="cart-item">
         <router-link :to="{path:'/detail',query:{productId: item.product.id}}">
-            <img :src="'http://47.107.62.230:9080/repo/tb/'+item.rela[0].filePath">
+            <img :src="'http://www.tuxunkj.com/repo/tb/'+item.rela[0].filePath">
             <div class="desc-block">
                     <div class="product-name">{{item.product.productName}}</div>
                 <div class="buy-num" v-if="show_price"><strong>{{item.product.productPrice}}X1</strong></div>

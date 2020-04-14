@@ -15,80 +15,31 @@
                         欢迎来到途寻科技
                     </span>
                 </div>
-                <div class="order-block" v-if="showOrder">
-                    <span class="my-order">
+                <div class="order-block" v-if="showOrder" >
+                    <span class="my-order" v-if="this.$store.state.isLogin">
                         <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
                     </span >
-
-<!--                    <el-popover-->
-<!--                            placement="bottom-end"-->
-<!--                            width="500"-->
-<!--                            trigger="click"-->
-<!--                    >-->
-<!--                        <div >-->
-<!--                            <div class="cart-item-list">-->
-<!--                                <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>-->
-<!--                            </div>-->
-<!--                            <button class="shopping-link" @click="goToCart">去购物袋结算</button>-->
-<!--                            &lt;!&ndash;                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>&ndash;&gt;-->
-<!--                        </div>-->
-<!--                        <span class="shopping-cart"  slot="reference" >-->
-<!--                            <img :src="cart">-->
-<!--                            <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>-->
-<!--                        </span>-->
-<!--                    </el-popover>-->
                 </div>
             </div>
         </div>
         <slot></slot>
 
         <div class="header-home">
-<!--            <div class="bg-left">-->
-<!--            </div>-->
-<!--            <div class="bg-right">-->
-<!--            </div>-->
             <div class="header-bg-wrap">
                 <img :src="logo">
                 <div id="nav-menu" v-if="showMenu" >
                     <div class="nav-container">
                         <div class="links-wrapper">
-                            <!--                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品-->
-                            <!--                            </a>-->
-
-
-                            <el-popover
-                                    placement="bottom-start"
-                                    :width="180"
-                                    trigger="click"
-                                    :visible-arrow="false"
-                                    class="all-product"
-                                    popper-class="popper-product"
-                                    :offset="12"
-                            >
-                                <span>
-                                        <el-cascader-panel v-show="true" :options="options" id="cascader-menu" :props="menuProps"
-                                                           @change="handleChange" ></el-cascader-panel>
-                                </span>
-                                <span class="shopping-cart"  slot="reference" >
-                                    <span class="el-icon-s-fold"></span>所有产品
-                                </span>
-                            </el-popover>
-
                             <router-link to="/">首页</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 95}}">灯具</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 10002}}">橱柜</router-link>
+                            <router-link :to="{path:'/list',query:{categoryId: 10002}}">高档橱柜</router-link>
+                            <router-link :to="{path:'/list',query:{categoryId: 95}}">北欧灯具</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 10011}}">床上用品</router-link>
                             <router-link :to="{path:'/list',query:{categoryId: 23}}">家用电器</router-link>
-                            <!--                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"-->
-                            <!--                                               @change="handleChange" ></el-cascader-panel>-->
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 </template>
 <script>
@@ -279,18 +230,25 @@
     .nav-container{
         width:1200px;
         margin:auto;
-        text-align: left;
+        text-align: right;
     }
     .links-wrapper{
         /*display: inline-block;*/
         display:flex;
+        width: 600px;
+        margin-left: 50px;
     }
     .links-wrapper a{
         text-decoration: none;
         color: black;
-        padding: 15px 30px;
+        padding: 15px 0px;
         display:inline-block;
         flex:1;
+    }
+    .links-wrapper a+a:before{
+        border-left: 1px solid black;
+        content:'';
+        padding-right: 23px;
     }
     .search-box{
         float: right;

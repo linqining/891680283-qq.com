@@ -15,7 +15,7 @@
             <div class="fast-search-wrapper">
                 <span> 热门搜索：</span>
                 <ul class="fast-search">
-                    <li v-for="(value,key) in searchItems" :key="key" @click="setItem(key)">{{value}}</li>
+                    <li v-for="(value,index) in searchItems" :key="index" @click="setItem(index)">{{value[1]}}</li>
                 </ul>
             </div>
         </div>
@@ -31,7 +31,7 @@
         data(){
             return{
                 keyword:'',
-                searchItems:{97: '免烫衬衫',10012: '羽绒服',10004:'外套',10013: '运动户外',26: '帆布鞋'},
+                searchItems:[ [96, '吸顶灯'],[10002, '橱柜定制'],[96,'现代简约'],[10011, '罗莱家纺']],
                 typeword:'',
             }
         },
@@ -50,10 +50,10 @@
                 }
 
             },
-            setItem(categoryId){
+            setItem(index){
                 this.typeword=''
-                this.keyword = this.searchItems[categoryId];
-                this.$router.push({path:'/list',query:{categoryId: categoryId,search: this.keyword}})
+                this.keyword = this.searchItems[index][1];
+                this.$router.push({path:'/list',query:{categoryId: this.searchItems[index][0],search: this.keyword}})
             },
             ...mapMutations(['setProductList'])
 
@@ -136,7 +136,7 @@
         font-size: 20px;
         color:white;
     }
-    .cart-num{
+    .el-button .cart-num{
         margin: 0;
     }
 
