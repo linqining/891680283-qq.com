@@ -185,8 +185,9 @@
             loginDo((res)=>{
                 if(res.errcode==='000003'){
                     _this.$router.push({name:'Login'})
+                    _this.$store.state.isLogin = false
                 }else{
-                    this.$store.state.isLogin = true
+                    _this.$store.state.isLogin = true
                 }
             })
             if(localStorage['cartItems']){

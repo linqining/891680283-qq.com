@@ -35,7 +35,7 @@
             return{
                 activeName:'order',
             }
-        }
+        },
     }
 </script>
 <style>
