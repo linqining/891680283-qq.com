@@ -175,6 +175,10 @@
                 }
                 createOrder(sub_params,(res)=>{
                     if(res.errmsg==='ok'){
+                        if(!res.data.formStr){
+                            this.$message.error('支付渠道维护中')
+                            return
+                        }
                         this.$message.success('创建成功')
                         let w = window.open('about:blank');
                         w.document.open();
