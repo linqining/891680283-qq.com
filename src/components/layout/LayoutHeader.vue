@@ -4,22 +4,24 @@
             <div class="top-links">
                 <div class="login-block" v-if="showLogin()">
                     <span class="login-left">
+                        欢迎来到途寻科技
+                    </span>
+                    <span class="login-left">
                         <router-link to="/login">亲，请登录</router-link>
                     </span>
-                    <span class="login-right">
+                    <span class="login-right" v-if="showLogin()">
                         <router-link to="/register">免费注册</router-link>
                     </span>
                 </div>
                 <div  v-else class="login-block">
-                    <span class="login-right">
-                        欢迎来到途寻科技
+                    <span class="login-left">
+                        欢迎来到瑞之铭商贸
                     </span>
-                </div>
-                <div class="order-block" v-if="showOrder" >
-                    <span class="my-order" v-if="this.$store.state.isLogin">
+                    <span class="login-right">
                         <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
                     </span >
                 </div>
+
             </div>
         </div>
         <slot></slot>
