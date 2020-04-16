@@ -55,16 +55,16 @@
                 <div class="pay-way">
                     <span class="purchase-title"> 支付方式：</span>
                     <el-radio-group v-model="paymentWay">
-                        <el-radio :label="2">
+                        <el-radio :label="1">
                             <img class="pay-img" :src="unionpay">
                         </el-radio>
-                        <el-radio :label="4">
+                        <el-radio :label="2">
                             <img class="pay-img"  :src="alipay">
                         </el-radio>
-                        <el-radio :label="5">
+                        <el-radio :label="3">
                             <img class="pay-img" :src="wechat">
                         </el-radio>
-                        <el-radio :label="3">
+                        <el-radio :label="4">
                             <img class="pay-img" :src="bank_card">
                         </el-radio>
                     </el-radio-group>
@@ -133,7 +133,7 @@
                 dialogVisible: false,
                 tableData: [],
                 logistics: 3,
-                paymentWay:2,
+                paymentWay:1,
                 alipay: alipay,
                 wechat:wechat,
                 unionpay: unionpay,
@@ -160,6 +160,10 @@
                 // this.dialogVisible = false
             },
             submitOrder(){
+                if(this.paymentWay!==1){
+                    this.$message.error('支付渠道维护中')
+                    return
+                }
                 let sub_params={
                     "totalPrice": this.sumTotalPrice(),
                     "address": this.getAddressList[this.selectAddressIndex].address,
