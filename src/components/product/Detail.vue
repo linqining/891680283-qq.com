@@ -27,7 +27,7 @@
                     </li>
                     <li><span class="attr-title">运费</span><span class="attr-content">包邮</span></li>
                     <li>
-                        <span class="attr-title">尺码</span>
+                        <span class="attr-title">规格</span>
                         <span class="attr-content">
                             <div class="size-box"  v-for="(item,index) in productDetail.product.sizeList" :key="index" :class="{is_active: activeIndex===index+1}" @click="selectSize(item.preProductPrice,item.productPrice,index)">{{item.size}}</div>
                         </span>
@@ -91,6 +91,7 @@
                                 <div class="comment-left">
 <!--                                    <img :src="'http://47.107.62.230:9081/sm/file/show?fileId='+item.id">-->
                                     <div class="user-name">{{item.userName}}</div>
+                                    <div class="comment-time">{{item.createDate}}</div>
                                 </div>
                                 <div class="comment-right">
                                     <el-rate
@@ -507,6 +508,10 @@
     #confirmJump{
         border: 1px solid #7e8080;
         margin-left: 15px;
+    }
+    .comment-time{
+        font-size:14px;
+        margin-top:10px;
     }
 </style>
 <style>
