@@ -15,11 +15,12 @@
                 </div>
                 <div  v-else class="login-block">
                     <span class="login-left">
-                        欢迎来到瑞之铭商贸
+                        欢迎来到途寻科技
                     </span>
                     <span class="login-right">
                         <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
                     </span >
+
                 </div>
 
             </div>
@@ -168,6 +169,7 @@
     .login-block,.order-block{
         display:inline-block;
         font-size:12px;
+        color: #7e8080;
     }
     .order-block{
         position:absolute;
