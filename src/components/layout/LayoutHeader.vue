@@ -139,7 +139,7 @@
             let _this = this;
             loginDo((res)=>{
                 if(JSON.parse(res.target.response).errcode==='000003'){
-                    _this.$router.push({name:'Login'})
+                    // _this.$router.push({name:'Login'})
                     _this.$store.state.isLogin = false
                 }else{
                     _this.$store.state.isLogin = true
