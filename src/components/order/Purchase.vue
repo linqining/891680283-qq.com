@@ -160,7 +160,7 @@
                 // this.dialogVisible = false
             },
             submitOrder(){
-                if(![1,4].includes(this.paymentWay)){
+                if(![1].includes(this.paymentWay)){
                     this.$message.error('支付渠道维护中')
                     return
                 }
