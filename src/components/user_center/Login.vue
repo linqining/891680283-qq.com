@@ -20,7 +20,7 @@
             </div>
         </el-form>
         <button class="submit-btn" @click="login">登录</button>
-        <div class="forget-password"><span><router-link to="/">忘记密码</router-link></span></div>
+        <div class="forget-password"><span><router-link to="/register">注册</router-link></span></div>
     </el-card>
 </template>
 <script>
