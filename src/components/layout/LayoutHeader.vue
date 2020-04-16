@@ -215,6 +215,7 @@
     .login-block,.order-block{
         display:inline-block;
         font-size:12px;
+        color: #7e8080;
     }
     .order-block{
         position:absolute;
