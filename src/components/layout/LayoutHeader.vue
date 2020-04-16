@@ -9,7 +9,8 @@
                     <span class="login-left">
                         <router-link to="/login">亲，请登录</router-link>
                     </span>
-                    <span class="login-right" v-if="showLogin()">
+                    /
+                    <span class="login-right">
                         <router-link to="/register">免费注册</router-link>
                     </span>
                 </div>
@@ -137,7 +138,7 @@
         created(){
             let _this = this;
             loginDo((res)=>{
-                if(res.errcode==='000003'){
+                if(JSON.parse(res.target.response).errcode==='000003'){
                     _this.$router.push({name:'Login'})
                     _this.$store.state.isLogin = false
                 }else{
@@ -183,7 +184,7 @@
         padding: 0px 10px;
     }
     .login-left{
-        border-right: 1px solid #7e8080;
+        /*border-right: 1px solid #7e8080;*/
     }
 
     .my-order,.shopping-cart{
