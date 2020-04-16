@@ -233,13 +233,6 @@
     .login-left{
         /*border-right: 1px solid #7e8080;*/
     }
-    .login-left:after{
-        content: '';
-        border: 1px solid #7e8080;
-        transform: rotate(7deg);
-        background:
-                linear-gradient(45deg, transparent 49.5%, deeppink 49.5%, deeppink 50.5%, transparent 50.5%);
-    }
 
     .my-order,.shopping-cart{
         padding: 5px 20px;
