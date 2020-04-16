@@ -58,6 +58,8 @@
             </div>
         </el-form>
         <button class="submit-btn" @click="register">注册</button>
+        <div class="forget-password"><span><router-link to="/login">登录</router-link></span></div>
+
     </el-card>
 </template>
 <script>
@@ -131,7 +133,7 @@
 </script>
 <style :src="logincss" scoped>
     .box-card{
-        height:440px;
+        height:460px;
     }
     .input-container {
         padding: 4px 0;
