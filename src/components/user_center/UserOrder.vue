@@ -123,7 +123,7 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .order-status{
         text-align: left;
     }
@@ -141,7 +141,7 @@
         vertical-align: middle;
     }
     li.active{
-        color: #f7c85c;
+        color: $theme-color;
     }
     .order-table-head{
         margin: 30px 0;

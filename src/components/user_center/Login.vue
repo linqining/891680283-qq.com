@@ -24,7 +24,7 @@
     </el-card>
 </template>
 <script>
-    import logincss from '@/assets/components/login/form.css'
+    import logincss from '@/assets/components/login/form.scss'
     import {userLogin} from "@/api/api";
 
     export default{

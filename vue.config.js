@@ -11,5 +11,12 @@ module.exports={
             .set('@',resolve('src'))
             // .set('components',resolve('./src/components'))
         //set第一个参数：设置的别名，第二个参数：设置的路径
+    },
+    css: {
+        loaderOptions: {
+            sass: {
+                prependData: `@import "@/assets/scss/_variable.scss";` //引入全局变量
+            }
+        }
     }
 }

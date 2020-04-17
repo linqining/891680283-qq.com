@@ -9,9 +9,9 @@
         name:'CustomButton'
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .custom-button{
-        background-color: #f7c85c;
+        background-color: $theme-color;
         color:white;
         width:150px;
         height:42px;

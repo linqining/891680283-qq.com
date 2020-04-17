@@ -308,7 +308,7 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .detail-content{
         width:1200px;
         margin:auto;
@@ -333,7 +333,7 @@
         display:inline-block;
     }
     .is_active_thumb{
-        background-color: #f7c85c;
+        background-color: $theme-color;
     }
     .thumb img{
         width: 100%;
@@ -379,7 +379,7 @@
         padding: 10px 0;
     }
     .num{
-        color: #f7c85c;
+        color: $theme-color;
     }
     .sold-out>span{
         padding: 0 30px;
@@ -395,9 +395,9 @@
         font-weight: bold;
     }
     .size-box.is_active{
-        background-color: #ffc541cf;
+        background-color: $theme-color;
         color: white;
-        border: 1px solid #ffc541cf;
+        border: 1px solid $theme-color;
     }
     .attr-content{
         margin-left: 30px;
@@ -435,9 +435,9 @@
         margin: 30px;
     }
     .favourite{
-        background: #f7c85c;
+        background: $theme-color;
         color: white;
-        border: 1px solid #f7c85c;;
+        border: 1px solid $theme-color;;
     }
     .purchase{
         margin-left: 0px;
@@ -526,10 +526,10 @@
         border-radius: 0px;
     }
     .detail-comment .el-tabs__item{
-        border-bottom:3px solid #f7c85c !important;
+        border-bottom:3px solid $theme-color !important;
     }
     .detail-comment .el-tabs__item.is-active{
-        background-color: #f7c85c;
+        background-color: $theme-color;
         color: white;
     }
     .comment-right .el-rate__icon{

@@ -56,7 +56,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .search-block{
         padding: 30px 0;
     }
@@ -68,7 +68,7 @@
     .search-wrapper{
         right:0px;
         display:inline-block;
-        border: 3px solid #f7c85c;
+        border: 3px solid $theme-color;
         position: relative;
         width:600px
     }
@@ -85,7 +85,7 @@
     }
 
     .btn-custom{
-        background-color: #f7c85c;
+        background-color: $theme-color;
         color:white;
         width:100px;
         height:45px;

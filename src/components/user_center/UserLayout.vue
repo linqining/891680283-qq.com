@@ -38,7 +38,7 @@
         },
     }
 </script>
-<style>
+<style lang="scss">
     .user-center{
         margin:auto;
         min-height:600px;
@@ -72,7 +72,7 @@
         padding:10px;
     }
     .nav-list li a.active{
-        color: #f7c85c;
+        color: $theme-color;
     }
     .nav-list li a{
         text-decoration: none;

@@ -180,7 +180,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .shopping-cart{
         width:1200px;
         margin:auto;
@@ -208,7 +208,7 @@
         color: #5096ff;
     }
     .num{
-        color:#f7c85c;
+        color:$theme-color;
     }
     .summary{
         display: inline-block;
@@ -224,18 +224,18 @@
         position: relative;
     }
     .is_active_thumb{
-        background-color: #f7c85c;
+        background-color: $theme-color;
     }
     .recommend-tab /deep/ .el-tabs__item.is-active{
-        background-color: #ffc541cf;
+        background-color: $theme-color;
         color: white;
-        border: 1px solid #ffc541cf;
+        border: 1px solid $theme-color;
     }
     .recommend-tab /deep/ .el-tabs__item:hover{
         color:black;
     }
     .recommend-tab /deep/ .el-tabs__item{
-        border-bottom: 2px solid #f7c85c;
+        border-bottom: 2px solid $theme-color;
     }
     .custom-button{
         margin-top: 20px;

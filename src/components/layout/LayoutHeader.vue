@@ -201,7 +201,7 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .top-links-container{
         border-bottom: 1px solid #7e808040;
     }
@@ -265,7 +265,7 @@
     }
     .cart-num{
         /*color: deeppink;*/
-        color: #f7c85c
+        color: $theme-color
     }
     .all-product{
         width:200px;
@@ -352,7 +352,7 @@
     .shopping-link{
         text-decoration:none;
         width:100%;
-        background-color: #f7c85c;
+        background-color: $theme-color;
         font-size:20px;
         color:white;
         border:none;

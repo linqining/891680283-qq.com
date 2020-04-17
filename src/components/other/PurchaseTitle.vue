@@ -12,9 +12,9 @@
 
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .head-title{
-        border-left: 5px solid #f7c85c;
+        border-left: 5px solid $theme-color;
         background-color:  #F5F5F5;
         line-height: 50px;
         font-size: 16px;

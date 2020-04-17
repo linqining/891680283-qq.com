@@ -66,7 +66,7 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .order-table{
         width:100%
     }
@@ -85,12 +85,12 @@
         background-color:white;
     }
     #buyAgain,#confirmReceive{
-        color: #f7c85c;
+        color: $theme-color;
         background-color: transparent;
-        border:1px solid #f7c85c;;
+        border:1px solid $theme-color;;
     }
     .num{
-        color: #f7c85c;
+        color: $theme-color;
     }
     .user-order-item /deep/ .el-table td{
         padding: 0px;

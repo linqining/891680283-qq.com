@@ -169,7 +169,7 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .address-form{
         text-align:left;
     }
@@ -180,7 +180,7 @@
         border-radius:0px;
     }
     button.submit{
-        background-color: #f7c85c;
+        background-color: $theme-color;
         color:white;
     }
 
