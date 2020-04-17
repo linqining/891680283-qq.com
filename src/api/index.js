@@ -2,9 +2,9 @@ import axios from 'axios'
 import { Message } from 'element-ui';
 import Router from '@/router/index'
 
-
+// console.log(process.env)
 let http = axios.create({
-    baseURL: 'http://www.tuxunkj.com',
+    baseURL: process.env.VUE_APP_API_BASE,
     timeout: 5000,
     // withCredentials: true,
     // headers: {
