@@ -11,7 +11,7 @@
 <script>
     import LayoutHeader from "./LayoutHeader";
     import IcpInfo from "./IcpInfo";
-    import loginBg from '@/assets/image/user/loginbg.png'
+    import loginBg from '@/assets/image/user/loginbg.jpg'
 
     export default {
         name: 'Layout',

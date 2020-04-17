@@ -4,7 +4,7 @@
             <div class="top-links">
                 <div class="login-block" v-if="showLogin()">
                     <span class="">
-                        欢迎来到瑞之铭商贸
+                        欢迎来到美客达商贸
                     </span>
                     <span class="login-left">
                         <router-link to="/login">亲，请登录</router-link>
@@ -16,7 +16,7 @@
                 </div>
                 <div  v-else class="login-block">
                     <span class="login-left">
-                        欢迎来到瑞之铭商贸
+                        欢迎来到美客达商贸
                     </span>
                     <span class="login-right">
                         <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
@@ -48,19 +48,10 @@
         <slot></slot>
 
         <div class="header-home">
-            <div class="bg-left">
-            </div>
-            <div class="bg-right">
-            </div>
             <div class="header-bg-wrap">
-                <img :src="logo">
                 <div id="nav-menu" v-if="showMenu" >
                     <div class="nav-container">
                         <div class="links-wrapper">
-                            <!--                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品-->
-                            <!--                            </a>-->
-
-
                             <el-popover
                                     placement="bottom-start"
                                     :width="180"
@@ -231,7 +222,6 @@
         padding: 0px 10px;
     }
     .login-left{
-        /*border-right: 1px solid #7e8080;*/
     }
 
     .my-order,.shopping-cart{
@@ -284,7 +274,6 @@
         text-align: left;
     }
     .links-wrapper{
-        /*display: inline-block;*/
         display:flex;
     }
     .links-wrapper a{
@@ -301,7 +290,7 @@
     }
     .header-home{
         height: 150px;
-        /*background-image: linear-gradient(#1d303a,#294048);*/
+        background-color: #ffffff;
     }
     .bg-left,.bg-right{
         height:150px;
@@ -316,16 +305,16 @@
         background-image: linear-gradient(#1f333c,#2d464c);
     }
     .header-bg-wrap{
-        background-size: cover;
-        background-image:url("~@/assets/image/layout/headbg.png");
+        background-image:url("~@/assets/image/layout/logo.png");
         background-repeat: no-repeat;
-        background-position: 48% 0%;
         min-width:1200px;
         width:1200px;
         margin:auto;
         height: 150px;
         text-align:left;
         position:relative;
+        background-position: center;
+        background-size: auto;
     }
     .header-bg-wrap img{
         padding-left: 29px;
@@ -335,16 +324,12 @@
         position:absolute;
         background-color: #253a43;
         border:solid 1px #5a6478;
-        /*margin-top:55px;*/
         z-index:2;
     }
     .el-cascader-menu{
-        /*border:none;*/
-        /*color: #ffffff;*/
         border-right:solid 1px #5a6478;
     }
     .cart-item-list{
-        /*height:auto;*/
         max-height: 400px;
         overflow-y:scroll;
     }
