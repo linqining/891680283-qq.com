@@ -14,13 +14,37 @@
                 <img :src="sun_glasses">
             </div>
         </div>
-        <img :src="hotSell" class="hot-sell">
-        <img :src="miniUnbrealla" class="mini-umbrealla">
-        <img :src="angelbaby" class="angelbaby">
-        <img :src="bolon" class="bolon">
-        <img :src="children_umbrealla" class="children-umbrealla">
-        <img :src="fold_umbrealla" class="fold-umbrealla">
-        <img :src="helen" class="helen">
+        <router-link :to="{path:'/detail',query:{productId: '1536dba8352911ea90177085c2a6d524'}}">
+            <img :src="hotSell" class="hot-sell">
+        </router-link>
+        <router-link :to="{path:'/detail',query:{productId: '15836529352911ea90177085c2a6d524'}}">
+            <img :src="miniUnbrealla" class="mini-umbrealla">
+        </router-link>
+        <router-link :to="{path:'/detail',query:{productId: '909159cb9f9611e994b47085c2a6d524'}}">
+            <img :src="angelbaby" class="angelbaby">
+        </router-link>
+
+        <router-link :to="{path:'/detail',query:{productId: '8fbcc4bb9f9611e994b47085c2a6d524'}}">
+            <img :src="bolon" class="bolon">
+        </router-link>
+
+
+        <router-link :to="{path:'/detail',query:{productId: '15ec9f09352911ea90177085c2a6d524'}}">
+            <img :src="children_umbrealla" class="children-umbrealla">
+        </router-link>
+
+        <router-link :to="{path:'/detail',query:{productId: '1664047d352911ea90177085c2a6d524'}}">
+            <img :src="fold_umbrealla" class="fold-umbrealla">
+        </router-link>
+        <router-link :to="{path:'/detail',query:{productId: '9064b0749f9611e994b47085c2a6d524'}}">
+            <img :src="pasha" class="pasha">
+        </router-link>
+        <router-link :to="{path:'/detail',query:{productId: '8f314a389f9611e994b47085c2a6d524'}}">
+            <img :src="helen" class="helen">
+        </router-link>
+
+
+
         <div>
             <img :src="backtotop" class="back-to-top">
         </div>
@@ -43,6 +67,7 @@
     import bolon from '@/assets/image/home/bolon.jpg'
     import children_umbrealla from '@/assets/image/home/children_umbrealla.png'
     import fold_umbrealla from '@/assets/image/home/fold_umbrealla.jpg'
+    import pasha from '@/assets/image/home/pasha.jpg'
     import helen from '@/assets/image/home/helen.jpg'
     import backtotop from '@/assets/image/home/backtotop.png'
 
@@ -68,6 +93,7 @@
                 bolon: bolon,
                 children_umbrealla: children_umbrealla,
                 fold_umbrealla: fold_umbrealla,
+                pasha: pasha,
                 helen: helen,
                 backtotop: backtotop
             }
@@ -79,9 +105,11 @@
         min-width: 1200px;
         margin:auto;
     }
-    .banner-image,.hot-sell,.mini-umbrealla,.angelbaby,.bolon,.children-umbrealla{
+    .banner-image,.hot-sell,.mini-umbrealla,.angelbaby,.bolon,.children-umbrealla,.pasha{
         width: 100%;
         height:auto;
+        margin-top:-4px;
+
     }
 
     .new-product-list li,.new-product-list2 li{
@@ -110,13 +138,11 @@
     .product2 img+img{
         padding-top: 3px;
     }
-    .home>img+img{
-        margin-top: -4px;
-    }
+
     .children-umbrealla{
         padding-top: 75px;
     }
-    .fold-umbrealla,.helen,.back-to-top{
+    .fold-umbrealla,.pasha,.helen,.back-to-top{
         padding-top: 120px;
     }
     .back-to-top{
