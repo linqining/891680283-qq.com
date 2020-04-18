@@ -1,96 +1,17 @@
 <template>
     <div id="header">
-        <div class="top-links-container">
-            <div class="top-links">
-                <div class="login-block" v-if="showLogin()">
-                    <span class="">
-                        欢迎来到美客达商贸
-                    </span>
-                    <span class="login-left">
-                        <router-link to="/login">亲，请登录</router-link>
-                    </span>
-                    /
-                    <span class="login-right">
-                        <router-link to="/register">免费注册</router-link>
-                    </span>
-                </div>
-                <div  v-else class="login-block">
-                    <span class="login-left">
-                        欢迎来到美客达商贸
-                    </span>
-                    <span class="login-right">
-                        <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
-                    </span >
-                </div>
-                <div class="order-block" v-if="showOrder">
-
-
-                    <el-popover
-                            placement="bottom-end"
-                            width="500"
-                            trigger="click"
-                    >
-                        <div >
-                            <div class="cart-item-list">
-                                <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>
-                            </div>
-                            <button class="shopping-link" @click="goToCart">去购物袋结算</button>
-                            <!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
-                        </div>
-                        <span class="shopping-cart"  slot="reference" >
-                            <img :src="cart">
-                            <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>
-                        </span>
-                    </el-popover>
-                </div>
-            </div>
-        </div>
+        <slot name="top-links"></slot>
         <slot></slot>
-
-        <div class="header-home">
-            <div class="header-bg-wrap">
-                <div id="nav-menu" v-if="showMenu" >
-                    <div class="nav-container">
-                        <div class="links-wrapper">
-                            <el-popover
-                                    placement="bottom-start"
-                                    :width="180"
-                                    trigger="click"
-                                    :visible-arrow="false"
-                                    class="all-product"
-                                    popper-class="popper-product"
-                                    :offset="12"
-                            >
-                                <span>
-                                        <el-cascader-panel v-show="true" :options="options" id="cascader-menu" :props="menuProps"
-                                                           @change="handleChange" ></el-cascader-panel>
-                                </span>
-                                <span class="shopping-cart"  slot="reference" >
-                                    <span class="el-icon-s-fold"></span>所有产品
-                                </span>
-                            </el-popover>
-
-                            <router-link to="/">首页</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 95}}">灯具</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 10002}}">橱柜</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 10011}}">床上用品</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 23}}">家用电器</router-link>
-                            <!--                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"-->
-                            <!--                                               @change="handleChange" ></el-cascader-panel>-->
-
-                        </div>
-                    </div>
+        <router-link :to="{name:'Home'}">
+            <div class="header-home">
+                <div class="header-bg-wrap">
                 </div>
             </div>
-
-        </div>
-
+        </router-link>
     </div>
 </template>
 <script>
     import logo from '@/assets/image/layout/logo.png'
-    import cart from '@/assets/image/layout/cart.png'
-    import ShoppingCartItem from "../product/ShoppingCartItem"
     import {loginDo} from "@/api/api";
 
 
@@ -101,12 +22,10 @@
     export default {
         name: 'LayoutHeader',
         components:{
-            ShoppingCartItem
         },
         data(){
             return{
                 logo: logo,
-                cart: cart,
                 cartGoodsNum: 3,
                 showCat: false,
                 menuProps:{
@@ -138,23 +57,7 @@
                     this.$router.push({path:'/list',query:{categoryId: value[1]}})
                 }
             },
-            showProductCat(){
-                this.showCat = !this.showCat
-            },
-            goToCart(){
-                this.visible = !this.visible
-                if(this.$route.path!=='/shopping_cart'){
-                    this.$router.push({path:'/shopping_cart',target:'_blank'})
-                }
-            },
-            showLogin(){
-                return  !this.$store.state.isLogin
-            },
-            hideCascader(){
-                if(!this.mouseInCat){
-                    this.showCat=false
-                }
-            },
+
             ...mapMutations(['setProductList'])
         },
         mounted(){
@@ -193,46 +96,8 @@
     }
 </script>
 <style scoped lang="scss">
-    .top-links-container{
-        border-bottom: 1px solid #7e808040;
-    }
-    .top-links{
-        width: 1200px;
-        padding: 5px 0px;
-        text-align:left;
-        margin:auto;
-        position:relative;
-        color: #7e8080;
-        height:20px;
-    }
-    .login-block,.order-block{
-        display:inline-block;
-        font-size:12px;
-        color: #7e8080;
-    }
-    .order-block{
-        position:absolute;
-        right: 50px;
-    }
-    .login-block a{
-        color: #7e8080;
-        text-decoration: none;
-    }
-    .login-left,.login-right{
-        padding: 0px 10px;
-    }
-    .login-left{
-    }
-
-    .my-order,.shopping-cart{
-        padding: 5px 20px;
-    }
-    .my-order a,.shopping-cart a{
-        text-decoration: none;
-        color: #7e8080;
-    }
-    .shopping-cart img{
-        padding-right:5px;
+    #header{
+        border-bottom: 1px solid #D5D2CD;
     }
 
     .header-container{
@@ -289,7 +154,7 @@
         padding: 15px 0;
     }
     .header-home{
-        height: 150px;
+        height: 170px;
         background-color: #ffffff;
     }
     .bg-left,.bg-right{
@@ -334,16 +199,7 @@
         overflow-y:scroll;
     }
 
-    .shopping-link{
-        text-decoration:none;
-        width:100%;
-        background-color: $theme-color;
-        font-size:20px;
-        color:white;
-        border:none;
-        margin-top:20px;
-        height:40px;
-    }
+
     .el-popover{
         padding: 0px;
     }
@@ -354,6 +210,5 @@
     .popper-product{
         padding: 0px;
         background: transparent;
-
     }
 </style>

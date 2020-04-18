@@ -1,18 +1,21 @@
 <template>
     <div class="search-block">
         <div class='search-container'>
-            <div>
-                <div class="search-wrapper">
-                    <input class="search-input" v-model="typeword">
-                    <el-button class="btn-custom" @click="search">搜索</el-button>
+            <div class="menu-wrapper">
+                <div class="menu-list">
+                    <router-link to="/">首页</router-link>
+                    <router-link :to="{path:'/list',query:{categoryId: 95}}">灯具</router-link>
+                    <router-link :to="{path:'/list',query:{categoryId: 10002}}">橱柜</router-link>
+                    <router-link :to="{path:'/list',query:{categoryId: 10011}}">床上用品</router-link>
+                    <router-link :to="{path:'/list',query:{categoryId: 23}}">家用电器</router-link>
                 </div>
             </div>
-            <div>
-                <ul class="fast-search">
-                    <li v-for="(value,key) in searchItems" :key="key" @click="setItem(key)">{{value}}</li>
-                </ul>
+            <div class="search-wrapper">
+                    <input class="search-input" v-model="typeword">
+                    <el-button class="btn-custom" @click="search">
+                        <img :src="searchImg">
+                    </el-button>
             </div>
-
         </div>
     </div>
 </template>
@@ -20,6 +23,7 @@
 <script>
     import {fetchProductList} from "@/api/api";
     import { mapMutations } from 'vuex'
+    import search from '@/assets/image/layout/search.png'
 
     export default{
         name:'HomeSearch',
@@ -28,13 +32,13 @@
                 keyword:'',
                 searchItems:{97: '吊灯',10012: '白鸭绒被被芯',10004:'穿衣镜',10013: '枕头枕芯',26: '洗衣机'},
                 typeword:'',
+                searchImg: search,
             }
         },
         components:{
         },
         methods:{
             search(){
-
                 if(this.$route.name==='ProductList'){
                     fetchProductList({pageNum:1,pageSize:12,search: this.typeword},(result)=>{
                         this.setProductList(result.data)
@@ -58,58 +62,56 @@
 
 <style scoped lang="scss">
     .search-block{
-        padding: 30px 0;
+        padding: 14px 0;
+        background-color: #ffffff;
     }
     .search-container{
         width:1200px;
         margin:auto;
-        text-align:right;
+        height: 30px;
     }
     .search-wrapper{
-        right:0px;
-        display:inline-block;
-        border: 3px solid $theme-color;
-        position: relative;
-        width:600px
-    }
-    .search-input,.btn-custom{
-        border-radius:0px;
-        height: 44px;
-        display:inline-block;
-    }
-    .search-input{
-        border-radius: 0px;
-        border: 0px;
-        padding: 0px;
-        width: 500px;
+        height:30px;
     }
 
     .btn-custom{
-        background-color: $theme-color;
-        color:white;
-        width:100px;
-        height:45px;
-    }
-    .el-button,.el-input__inner{
-        border: 0px solid #DCDFE6;
-    }
-    .el-input__inner{
-        height:44px;
-        border-radius: 0px;
-    }
-    .fast-search{
-        display: inline-flex;
-        width:600px;
-        color: #7e8080;
-    }
-    .fast-search li{
-        list-style:  none;
-        padding: 0 6px;
-        font-size: 12px;
-    }
-    .fast-search li+li{
-        border-left: 1px solid #7e8080;
 
+    }
+
+
+
+    .menu-wrapper,.search-wrapper{
+        display: inline-block;
+    }
+
+    .menu-list{
+        display: flex;
+    }
+    .menu-list a{
+        flex:1;
+        text-decoration: none;
+        color:RGBA(64, 62, 63, 1);
+    }
+    .menu-wrapper{
+        width:60%;
+    }
+    .search-wrapper{
+        /*width:40%;*/
+        border-bottom:1px solid black;
+        float:right;
+    }
+    .search-input{
+        border:none;
+        text-indent: 10px;
+        height:28px;
+        /*border-bottom:1px solid black;*/
+    }
+    .btn-custom{
+        padding: 2px;
+        border: none;
+        /*border-bottom: 1px solid black;*/
+        border-radius: 0;
+        vertical-align: middle;
     }
 
 </style>

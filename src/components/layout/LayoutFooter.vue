@@ -1,7 +1,5 @@
 <template>
     <div id="footer">
-<!--        <img :src="footContact">-->
-        <div class="footer-image"></div>
         <div class="footer-container">
             <div id="bottom-links">
                 <ul class="links-cat">
@@ -47,8 +45,12 @@
                     </li>
                 </ul>
             </div>
+            <div class="footer-image">
+                <img :src="footContact">
+            </div>
             <slot></slot>
         </div>
+
 
 
 
@@ -310,15 +312,16 @@
         bottom:0px;
         width:100%;
         background:white;
+        background-image: url("~@/assets/image/layout/footerbg.png");
     }
     .footer-container{
         width:1200px;
         margin:auto;
     }
     .footer-image{
-        height:398px;
-        background-image: url("~@/assets/image/layout/foot-contact.png");
-        background-position: bottom;
+        padding: 57px 0;
+        border-top: 1px solid #393939;
+        border-bottom: 1px solid #393939;
         min-width: 1200px;
     }
     #service-icon ul{
@@ -328,14 +331,14 @@
         list-style: none;
         flex: 1;
     }
-    #service-icon::after,#bottom-links::after{
-        border: 1px solid #DEDBDC;
-        content:'';
-        display:flex;
+
+    #bottom-links{
+        padding: 57px 0;
     }
 
     .links-cat{
         display: flex;
+        color: #ffffff;
     }
     .links-cat li{
         flex:1;
@@ -345,7 +348,7 @@
     .links-cat-title{
         margin-bottom:14px;
         font-size: 20px;
-        font-weight: bold;
+        /*font-weight: bold;*/
     }
     .links-list{
         text-align:left;
@@ -354,22 +357,6 @@
     }
     .links-cat::after{
 
-    }
-    .contact-group{
-        display:inline-block;
-    }
-    #website-registration{
-        background-color: black;
-        margin:auto;
-        width:100%;
-    }
-    .registration-wrapper{
-        width:1200px;
-        padding:30px 0;
-    }
-    .registration-wrapper{
-        margin:auto;
-        color:white;
     }
     .footer-tab-pane{
         text-align: left;
