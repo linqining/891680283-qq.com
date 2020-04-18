@@ -1,5 +1,8 @@
 <template>
     <div id="footer">
+        <div class="back-to-top" @click="backTop">
+            <img :src="backtotop">
+        </div>
         <div class="footer-container">
             <div id="bottom-links">
                 <ul class="links-cat">
@@ -288,6 +291,8 @@
 <script>
     import logo from '@/assets/image/layout/logo.png'
     import footContact from '@/assets/image/layout/foot-contact.png'
+    import backtotop from '@/assets/image/home/backtotop.png'
+
     export default {
         name: 'LayoutFooter',
         data(){
@@ -296,6 +301,7 @@
                 footContact: footContact,
                 dialogVisible: false,
                 activeTab: '1-1',
+                backtotop: backtotop
             }
         },
         methods:{
@@ -303,6 +309,9 @@
                 this.activeTab= tab
                 this.dialogVisible= true
             },
+            backTop(){
+                window.scrollTo(0, 0);
+            }
         }
     }
 </script>
@@ -313,6 +322,10 @@
         width:100%;
         background:white;
         background-image: url("~@/assets/image/layout/footerbg.png");
+    }
+    .back-to-top{
+        padding: 120px 0;
+        background-color: #ffffff;
     }
     .footer-container{
         width:1200px;

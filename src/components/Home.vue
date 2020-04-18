@@ -45,9 +45,7 @@
 
 
 
-        <div>
-            <img :src="backtotop" class="back-to-top">
-        </div>
+
 
 
 
@@ -69,7 +67,6 @@
     import fold_umbrealla from '@/assets/image/home/fold_umbrealla.jpg'
     import pasha from '@/assets/image/home/pasha.jpg'
     import helen from '@/assets/image/home/helen.jpg'
-    import backtotop from '@/assets/image/home/backtotop.png'
 
 
 
@@ -95,7 +92,6 @@
                 fold_umbrealla: fold_umbrealla,
                 pasha: pasha,
                 helen: helen,
-                backtotop: backtotop
             }
         }
     }
