@@ -80,13 +80,7 @@
                             </el-popover>
 
                             <router-link to="/">首页</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 95}}">灯具</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 10002}}">橱柜</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 10011}}">床上用品</router-link>
-                            <router-link :to="{path:'/list',query:{categoryId: 23}}">家用电器</router-link>
-                            <!--                            <el-cascader-panel v-show="showCat" :options="options" id="cascader-menu" :props="menuProps"-->
-                            <!--                                               @change="handleChange" ></el-cascader-panel>-->
-
+                            <router-link v-for="(item,index) in menuItems" :key="index" :to="{path:'/list',query:{categoryId: item[0]}}">{{item[1]}}</router-link>
                         </div>
                     </div>
                 </div>
@@ -118,6 +112,7 @@
                 cart: cart,
                 cartGoodsNum: 3,
                 showCat: false,
+                menuItems:[[95,'灯具'],[10002,'橱柜'],[10011,'床上用品'],[23,'家用电器']],
                 menuProps:{
                     lazy: true,
                     lazyLoad(node,resolve){
