@@ -4,7 +4,7 @@
             <div class="top-links">
                 <div class="login-block" v-if="showLogin()">
                     <span class="">
-                        欢迎来到瑞之铭商贸
+                        欢迎来到未之峰商贸
                     </span>
                     <span class="login-left">
                         <router-link to="/login">亲，请登录</router-link>
@@ -16,69 +16,39 @@
                 </div>
                 <div  v-else class="login-block">
                     <span class="login-left">
-                        欢迎来到瑞之铭商贸
+                        欢迎来到未之峰商贸
                     </span>
                     <span class="login-right">
                         <router-link :to="{name: 'UserOrder'}">我的订单</router-link>
                     </span >
                 </div>
-                <div class="order-block" v-if="showOrder">
-
-
-                    <el-popover
-                            placement="bottom-end"
-                            width="500"
-                            trigger="click"
-                    >
-                        <div >
-                            <div class="cart-item-list">
-                                <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>
-                            </div>
-                            <button class="shopping-link" @click="goToCart">去购物袋结算</button>
-                            <!--                            <router-link class="shopping-link" to="/shopping-cart">去购物袋结算</router-link>-->
-                        </div>
-                        <span class="shopping-cart"  slot="reference" >
-                            <img :src="cart">
-                            <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>
-                        </span>
-                    </el-popover>
-                </div>
+<!--                <div class="order-block" v-if="showOrder">-->
+<!--                    <el-popover-->
+<!--                            placement="bottom-end"-->
+<!--                            width="500"-->
+<!--                            trigger="click"-->
+<!--                    >-->
+<!--                        <div >-->
+<!--                            <div class="cart-item-list">-->
+<!--                                <shopping-cart-item v-for="(item,index) in this.$store.state.cartItems" :key="index" :item="item"></shopping-cart-item>-->
+<!--                            </div>-->
+<!--                            <button class="shopping-link" @click="goToCart">去购物袋结算</button>-->
+<!--                        </div>-->
+<!--                        <span class="shopping-cart"  slot="reference" >-->
+<!--                            <img :src="cart">-->
+<!--                            <span>购物车(<span class="cart-num">{{$store.state.cartItems.length}}</span>)</span>-->
+<!--                        </span>-->
+<!--                    </el-popover>-->
+<!--                </div>-->
             </div>
         </div>
         <slot></slot>
 
         <div class="header-home">
-            <div class="bg-left">
-            </div>
-            <div class="bg-right">
-            </div>
             <div class="header-bg-wrap">
-                <img :src="logo">
                 <div id="nav-menu" v-if="showMenu" >
                     <div class="nav-container">
                         <div class="links-wrapper">
-                            <!--                            <a href="javascript:void(0)" @click="showProductCat"><span class="el-icon-s-fold"></span>所有产品-->
-                            <!--                            </a>-->
-
-
-                            <el-popover
-                                    placement="bottom-start"
-                                    :width="180"
-                                    trigger="click"
-                                    :visible-arrow="false"
-                                    class="all-product"
-                                    popper-class="popper-product"
-                                    :offset="12"
-                            >
-                                <span>
-                                        <el-cascader-panel v-show="true" :options="options" id="cascader-menu" :props="menuProps"
-                                                           @change="handleChange" ></el-cascader-panel>
-                                </span>
-                                <span class="shopping-cart"  slot="reference" >
-                                    <span class="el-icon-s-fold"></span>所有产品
-                                </span>
-                            </el-popover>
-
                             <router-link to="/">首页</router-link>
                             <router-link v-for="(item,index) in menuItems" :key="index" :to="{path:'/list',query:{categoryId: item[0]}}">{{item[1]}}</router-link>
                         </div>
@@ -92,8 +62,8 @@
 </template>
 <script>
     import logo from '@/assets/image/layout/logo.png'
-    import cart from '@/assets/image/layout/cart.png'
-    import ShoppingCartItem from "../product/ShoppingCartItem"
+    // import cart from '@/assets/image/layout/cart.png'
+    // import ShoppingCartItem from "../product/ShoppingCartItem"
     import {loginDo} from "@/api/api";
 
 
@@ -104,15 +74,16 @@
     export default {
         name: 'LayoutHeader',
         components:{
-            ShoppingCartItem
+            // ShoppingCartItem
         },
+
         data(){
             return{
                 logo: logo,
-                cart: cart,
+                // cart: cart,
                 cartGoodsNum: 3,
                 showCat: false,
-                menuItems:[[95,'灯具'],[10002,'橱柜'],[10011,'床上用品'],[23,'家用电器']],
+                menuItems:[[10021,'装饰材料'],[10015,'五金制品'],[108,'装修必备'],[95,'灯具'],[23,'家用电器']],
                 menuProps:{
                     lazy: true,
                     lazyLoad(node,resolve){
@@ -274,7 +245,7 @@
         display:flex;
     }
     .nav-container{
-        width:1200px;
+        width:980px;
         margin:auto;
         text-align: left;
     }
@@ -284,18 +255,19 @@
     }
     .links-wrapper a{
         text-decoration: none;
-        color: white;
+        color: black;
         padding: 15px 30px;
         display:inline-block;
         flex:1;
     }
     .search-box{
         float: right;
-        color: white;
+        /*color: white;*/
         padding: 15px 0;
     }
     .header-home{
-        height: 150px;
+        /*height: 150px;*/
+        background-color: #ffffff;
         /*background-image: linear-gradient(#1d303a,#294048);*/
     }
     .bg-left,.bg-right{
@@ -312,19 +284,18 @@
     }
     .header-bg-wrap{
         background-size: cover;
-        background-image:url("~@/assets/image/layout/headbg.png");
         background-repeat: no-repeat;
         background-position: 48% 0%;
         min-width:1200px;
         width:1200px;
         margin:auto;
-        height: 150px;
+        height: 50px;
         text-align:left;
         position:relative;
     }
     .header-bg-wrap img{
         padding-left: 29px;
-        padding-top: 21px;
+        margin-top: 58px;
     }
     #cascader-menu{
         position:absolute;
@@ -349,7 +320,7 @@
         width:100%;
         background-color: $theme-color;
         font-size:20px;
-        color:white;
+        /*color:white;*/
         border:none;
         margin-top:20px;
         height:40px;

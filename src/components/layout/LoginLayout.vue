@@ -1,6 +1,8 @@
 <template>
     <div>
-        <layout-header :show-menu="false" :show-order="false"></layout-header>
+<!--        <layout-header :show-menu="false" :show-order="false"></layout-header>-->
+        <home-search :show-search="false"></home-search>
+
         <div class="login-bg">
             <img :src="loginBg" id="loginbg"/>
             <router-view></router-view>
@@ -9,9 +11,10 @@
     </div>
 </template>
 <script>
-    import LayoutHeader from "./LayoutHeader";
+    // import LayoutHeader from "./LayoutHeader";
     import IcpInfo from "./IcpInfo";
     import loginBg from '@/assets/image/user/loginbg.png'
+    import HomeSearch from "./HomeSearch";
 
     export default {
         name: 'Layout',
@@ -21,8 +24,9 @@
           }
         },
         components: {
+            HomeSearch,
             IcpInfo,
-            LayoutHeader,
+            // LayoutHeader,
         },
     }
 </script>
