@@ -66,7 +66,7 @@
                 <el-card>
                     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
                         <el-tab-pane label="产品详情" name="first">
-                            <div class="desc-wrap">
+                            <div class="desc-wrap" v-if="productDetail.product.descs">
                                 <div class="product-title">{{productDetail.product.descs[0]}}</div>
                                 <table id="desc-table">
                                     <tr>
@@ -176,19 +176,7 @@
             $route:{
                 handler(newVal,oldVal){
                     if(newVal.query.productId!==oldVal.query.productId){
-                        getProductDetail(newVal.query.productId,(result)=>{
-                            this.productDetail = result.data
-                            this.priceDiscounted = result.data.product.productPrice
-                            this.priceOrigin = result.data.product.preProductPrice
-                        })
-                        commentList({
-                            productId: newVal.query.productId,
-                            page: 1,
-                            pageSize: 20
-                        },(res)=>{
-                            this.comments = res.data.comments;
-                            this.commentsTotal = res.data.total;
-                        })
+                        this.initProductData(newVal.query.productId)
                     }
                 },
                 intermidate: true,
@@ -199,23 +187,10 @@
 
         },
         created(){
-            getProductDetail(this.$route.query.productId,(result)=>{
-                this.productDetail = result.data
-                this.priceDiscounted = result.data.product.productPrice
-                this.priceOrigin = result.data.product.preProductPrice
-            })
-            commentList({
-                productId: this.$route.query.productId,
-                page: 1,
-                pageSize: 20
-            },(res)=>{
-                this.comments = res.data.comments;
-                this.commentsTotal = res.data.total;
-            })
+            this.initProductData(this.$route.query.productId)
             fetchHotSell((res)=>{
                 this.hotList = res.data
             })
-
         },
         methods:{
             handleChangeBuy(){
@@ -305,6 +280,21 @@
                 })
 
             },
+            initProductData(productId){
+                getProductDetail(productId,(result)=>{
+                    this.productDetail = result.data
+                    this.priceDiscounted = result.data.product.productPrice
+                    this.priceOrigin = result.data.product.preProductPrice
+                })
+                commentList({
+                    productId: productId,
+                    page: 1,
+                    pageSize: 20
+                },(res)=>{
+                    this.comments = res.data.comments;
+                    this.commentsTotal = res.data.total;
+                })
+            }
         }
     }
 </script>

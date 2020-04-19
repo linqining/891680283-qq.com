@@ -13,7 +13,6 @@ router.beforeEach((to, from, next) => {
   //路由切换时，如果没有就添加，有就跳过执行，添加固定参数
   if (!['Home','ProductList','ProductDetail','Login','Register'].includes(to.name)) {
     if(store.state.isLogin){
-      console.log(store.state.isLogin)
       next()
     }else{
       next({
