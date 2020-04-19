@@ -4,14 +4,23 @@
         <img :src="classification" class="classification-img">
         <div class="product-group">
             <div class="product1">
-                <img :src="umbrealla">
+                <router-link  :to="{path:'/list',query:{categoryId: 771}}">
+                    <img :src="umbrealla">
+                </router-link>
             </div>
             <div class="product2">
-                <img :src="hat">
-                <img :src="scarlet">
+                <router-link  :to="{path:'/list',query:{categoryId: 3001}}">
+                    <img :src="hat">
+                </router-link>
+                <router-link  :to="{path:'/list',query:{categoryId: 3001}}">
+                    <img :src="scarlet">
+                </router-link>
+
             </div>
             <div class="product3">
-                <img :src="sun_glasses">
+                <router-link  :to="{path:'/list',query:{categoryId: 64}}">
+                    <img :src="sun_glasses">
+                </router-link>
             </div>
         </div>
         <router-link :to="{path:'/detail',query:{productId: '1536dba8352911ea90177085c2a6d524'}}">
@@ -100,6 +109,7 @@
     .home{
         min-width: 1200px;
         margin:auto;
+        background-color: #ffffff;
     }
     .banner-image,.hot-sell,.mini-umbrealla,.angelbaby,.bolon,.children-umbrealla,.pasha{
         width: 100%;

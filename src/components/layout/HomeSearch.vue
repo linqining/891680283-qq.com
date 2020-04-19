@@ -4,10 +4,7 @@
             <div class="menu-wrapper">
                 <div class="menu-list">
                     <router-link to="/">首页</router-link>
-                    <router-link :to="{path:'/list',query:{categoryId: 95}}">灯具</router-link>
-                    <router-link :to="{path:'/list',query:{categoryId: 10002}}">橱柜</router-link>
-                    <router-link :to="{path:'/list',query:{categoryId: 10011}}">床上用品</router-link>
-                    <router-link :to="{path:'/list',query:{categoryId: 23}}">家用电器</router-link>
+                    <router-link v-for="(item,index) in searchItems" :key="index" :to="{path:'/list',query:{categoryId: item[0]}}">{{item[1]}}</router-link>
                 </div>
             </div>
             <div class="search-wrapper">
@@ -30,7 +27,7 @@
         data(){
             return{
                 keyword:'',
-                searchItems:{97: '吊灯',10012: '白鸭绒被被芯',10004:'穿衣镜',10013: '枕头枕芯',26: '洗衣机'},
+                searchItems:[[19,'墨镜'],[64,'眼镜'],[771,'雨伞'],[33,'个人护理'],[3001,'毛织品']],
                 typeword:'',
                 searchImg: search,
             }
@@ -48,11 +45,6 @@
                     this.$router.push({path:'/list',query:{search: this.typeword}})
                 }
 
-            },
-            setItem(categoryId){
-                this.typeword=''
-                this.keyword = this.searchItems[categoryId];
-                this.$router.push({path:'/list',query:{categoryId: categoryId,search: this.keyword}})
             },
             ...mapMutations(['setProductList'])
 
