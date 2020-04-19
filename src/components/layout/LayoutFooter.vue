@@ -1,7 +1,8 @@
 <template>
     <div id="footer">
-<!--        <img :src="footContact">-->
-        <div class="footer-image"></div>
+        <div class="footer-image">
+            <div class="back-top-btn" @click="window.scrollTo(0,0)"></div>
+        </div>
         <div class="footer-container">
             <div id="bottom-links">
                 <ul class="links-cat">
@@ -46,6 +47,9 @@
                         </ul>
                     </li>
                 </ul>
+            </div>
+            <div class="contact">
+                <img :src="contact">
             </div>
             <slot></slot>
         </div>
@@ -192,9 +196,9 @@
                     订单提交成功后，您可以登陆“我的订单” 查看订单信息。<br>
                 </el-tab-pane>
                 <el-tab-pane label="联系我们" name="3-1">
-                    联系电话：18521055532<br>
-                    E-mail：pabpkp@163.com<br>
-                    经营地址：重庆市江北区华新村96号5幢16-4<br>
+                    联系电话：13121055521<br>
+                    E-mail：syyqqu@163.com<br>
+                    经营地址：重庆市九龙坡区罗汉沟27号万科023创意天地4幢3单元4-3-1号<br>
 
                 </el-tab-pane>
                 <el-tab-pane label="常见问题" name="3-2">
@@ -274,10 +278,10 @@
                 </el-tab-pane>
                 <el-tab-pane label="公司介绍" name="6-1">
                     重庆未之峰商贸有限公司<br>
-                    经营范围：汽车及零配件批发,汽车新车零售,灯具零售,日用百货批发,金属材料批发,建筑材料批发,润滑油零售,五金产品批发,劳保用品批发(除依法须经批准的项目外,凭营业执照依法自主开展经营活动)<br>
-                    联系电话：18521055532<br>
-                    E-mail：pabpkp@163.com<br>
-                    经营地址：重庆市江北区华新村96号5幢16-4<br>
+                    经营范围： 一般项目:仪器仪表批发,塑料制品批发,五金产品零售,灯具零售,建筑装饰材料零售,汽车零配件零售,摩托车及零配件零售,润滑油零售,金属材料批发,建筑材料批发,日用百货批发(除依法须经批准的项目外,凭营业执照依法自主开展经营活动)<br>
+                    联系电话：13121055521<br>
+                    E-mail： syyqqu@163.com<br>
+                    经营地址：重庆市九龙坡区罗汉沟27号万科023创意天地4幢3单元4-3-1号<br>
                 </el-tab-pane>
             </el-tabs>
         </el-dialog>
@@ -285,15 +289,15 @@
 </template>
 <script>
     import logo from '@/assets/image/layout/logo.png'
-    import footContact from '@/assets/image/layout/foot-contact.png'
+    import contact from '@/assets/image/layout/contact.png'
     export default {
         name: 'LayoutFooter',
         data(){
             return{
                 logo: logo,
-                footContact: footContact,
                 dialogVisible: false,
                 activeTab: '1-1',
+                contact:contact,
             }
         },
         methods:{
@@ -304,7 +308,7 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
     #footer{
         /*position:fixed;*/
         bottom:0px;
@@ -317,21 +321,34 @@
     }
     .footer-image{
         height:398px;
-        background-image: url("~@/assets/image/layout/foot-contact.png");
+        background-image: url("~@/assets/image/layout/back_to_top.png");
         background-position: bottom;
         min-width: 1200px;
+        position: relative;
+
     }
+    .back-top-btn{
+        width: 17%;
+        height: 10%;
+        position: absolute;
+        left: 41.5%;
+        top: 78%;
+    }
+    .contact{
+        padding: 35px 0;
+        border-top: 1px solid #E6E6E6;
+        border-bottom: 1px solid #E6E6E6;
+        img{
+            width: 200px;
+        }
+    }
+
     #service-icon ul{
         display: flex;
     }
     #service-icon ul li{
         list-style: none;
         flex: 1;
-    }
-    #service-icon::after,#bottom-links::after{
-        border: 1px solid #DEDBDC;
-        content:'';
-        display:flex;
     }
 
     .links-cat{
@@ -355,22 +372,7 @@
     .links-cat::after{
 
     }
-    .contact-group{
-        display:inline-block;
-    }
-    #website-registration{
-        background-color: black;
-        margin:auto;
-        width:100%;
-    }
-    .registration-wrapper{
-        width:1200px;
-        padding:30px 0;
-    }
-    .registration-wrapper{
-        margin:auto;
-        color:white;
-    }
+
     .footer-tab-pane{
         text-align: left;
     }
