@@ -1,7 +1,7 @@
 <template>
     <div id="footer">
         <div class="footer-image">
-            <div class="back-top-btn" @click="window.scrollTo(0,0)"></div>
+            <div class="back-top-btn" @click="backTop"></div>
         </div>
         <div class="footer-container">
             <div id="bottom-links">
@@ -305,6 +305,9 @@
                 this.activeTab= tab
                 this.dialogVisible= true
             },
+            backTop(){
+                window.scrollTo(0,0)
+            }
         }
     }
 </script>
